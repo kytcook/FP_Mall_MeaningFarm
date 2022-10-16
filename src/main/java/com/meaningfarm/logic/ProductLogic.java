@@ -5,17 +5,20 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import com.meaningfarm.controller.ProductController;
+import com.meaningfarm.dao.ProductDao;
+
 
 public class ProductLogic {
-	Logger logger = LoggerFactory.getLogger(ProductController.class);
+	Logger logger = LoggerFactory.getLogger(ProductLogic.class);
+	private ProductDao productDao = null;
 	
-	@GetMapping("ProductList.farm")
-	public static List<Map<String, Object>> boardList(Map<String, Object> pMap) {
+	public List<Map<String, Object>> productList(Map<String, Object> pMap) {
 		logger.info("boardList 호출 성공");
-		
-		return null;
+		List<Map<String,Object>> productList = null;
+		productList = productDao.productList(pMap);
+		return productList;
 	}
 
 }
