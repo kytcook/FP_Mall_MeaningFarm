@@ -12,12 +12,13 @@ import com.meaningfarm.logic.ProductLogic;
 
 public class ProductController {
 	Logger logger = LoggerFactory.getLogger(ProductController.class);
+	private ProductLogic productLogic = null;
 	
-	public String boardList(Model model, @RequestParam Map<String, Object> pMap) {
-		logger.info("boardList 호출 성공");
-		List<Map<String, Object>> boardList = null;
-		boardList = ProductLogic.boardList(pMap);
-		model.addAttribute("boardList", boardList);
+	public String productList(Model model, @RequestParam Map<String, Object> pMap) {
+		logger.info("ProductList 호출 성공");
+		List<Map<String, Object>> productList = null;
+		productList = productLogic.productList(pMap);
+		model.addAttribute("productList", productList);
 		return "forward:boardList.jsp";
 	}
 }
