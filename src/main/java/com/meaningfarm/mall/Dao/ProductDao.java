@@ -1,4 +1,4 @@
-package com.meaningfarm.dao;
+package com.meaningfarm.mall.Dao;
 
 import java.util.List;
 import java.util.Map;
@@ -15,7 +15,7 @@ public class ProductDao {
 	private SqlSessionTemplate sqlSessionTemplate = null;
 
 	public List<Map<String, Object>> productList(Map<String, Object> pMap) {
-		logger.info("boardList 호출 성공");
+		logger.info("productList 호출 성공");
 		List<Map<String, Object>> productList = null;
 		try {
 			productList = sqlSessionTemplate.selectList("productList", pMap);

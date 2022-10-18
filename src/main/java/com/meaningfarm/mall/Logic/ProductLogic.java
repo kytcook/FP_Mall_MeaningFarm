@@ -1,13 +1,12 @@
-package com.meaningfarm.logic;
+package com.meaningfarm.mall.Logic;
 
 import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import com.meaningfarm.dao.ProductDao;
+import com.meaningfarm.mall.Dao.ProductDao;
 
 
 public class ProductLogic {
