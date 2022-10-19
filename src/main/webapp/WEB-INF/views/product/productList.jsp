@@ -1,56 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="../layout/common.jsp" %><!-- 공통코드(부트스트랩같은애들) -->
+<%@include file="../layout/css/productList_css.jsp" %><!-- 공통코드(부트스트랩같은애들) -->
 <!DOCTYPE html>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상품 리스트</title>
-    <!--===================== CSS only =====================-->
-    <style>
-      * {
-        /* border: 1px solid red; */
-      }
-    /*--------header CSS---------*/
-    .nav-pills > .nav-item > .nav-link{
-      color: rgb(18, 17, 17) !important;
-    }
-
-    .nav-pills > .nav-item > .active {
-      color: rgb(255, 255, 255) !important;
-      background-color: rgb(45, 197, 116) !important;
-    }
-    .nav-pills > .nav-item > .active:hover {
-      color: rgb(255, 255, 255) !important;
-      background-color: rgb(23, 97, 57) !important;
-    }
-    /*--------header CSS---------*/
-    </style>
-    <!--===================== CSS only =====================-->
-    <!-- bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-    <!-- bootstrap -->
-
-    <!-- JavaScript Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
-    <!-- JavaScript Bundle with Popper -->
-
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
   </head>
-
   <body>
     <header class="container">
       <div class="ico_cate">
@@ -92,6 +50,7 @@
       <p class="border"></p>
 
     </header>
+    
     <section>
       <!--================= 상품리스트 =================-->
       <article class="container">
