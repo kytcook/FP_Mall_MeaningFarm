@@ -24,7 +24,9 @@
         <div class=" mb-3 container-fluid" style="max-width: 1000px;">
           <div class="row g-0">
             <div class="col-6 text-center align-self-center">
-              <img src="${pageContext.request.contextPath}/resources/images/이미지준비중_1.jpg" class="img-fluid rounded-start" alt="이미지를 불러오지 못 하고 있습니다.">
+            <!-- jsp에 이미지를 넣기 위해 ${pageContext.request.contextPath}를 사용 
+           		 참조 : https://byul91oh.tistory.com/m/203 -->
+              <img src="<%=request.getContextPath()%>/resources/images/이미지준비중_1.jpg" class="img-fluid rounded-start" alt="이미지를 불러오지 못 하고 있습니다.">
             </div>
             <div class="col-6 ps-3">
               <div>

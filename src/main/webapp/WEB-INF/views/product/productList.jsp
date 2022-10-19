@@ -60,7 +60,7 @@
             <div class="card shadow-lg">
                 <!-- 상품이미지 -->
                 <img
-                  src="./apple.jpg"
+                  src="${pageContext.request.contextPath}/resources/images/apple.jpg"
                   alt="apple.jpg"
                   onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
                   width="100%"
