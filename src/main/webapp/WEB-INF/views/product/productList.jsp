@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="../layout/common.jsp" %><!-- 공통코드(부트스트랩같은애들) -->
-<%@include file="../layout/css/productList_css.jsp" %><!-- 공통코드(부트스트랩같은애들) -->
-<!DOCTYPE html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>상품 리스트</title>
-  </head>
+    pageEncoding="UTF-8"%>
+    
+<!--========= 헤드 =========-->
+<%@include file="../layout/head.jsp"%>
+<!--========= 헤드 =========-->
+
+  <!-- productList.css 추가하기 -->
+  <link href="${path}/css/product/productList.css" rel="stylesheet"/>
+    
+    
   <body>
     <header class="container">
       <div class="ico_cate">
@@ -60,7 +60,7 @@
             <div class="card shadow-lg">
                 <!-- 상품이미지 -->
                 <img
-                  src="${pageContext.request.contextPath}/resources/images/apple.jpg"
+                  src="${path}/resources/images/apple.jpg"
                   alt="apple.jpg"
                   onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
                   width="100%"
@@ -86,7 +86,7 @@
             <div class="card shadow-lg">
                 <!-- 상품이미지 -->
                 <img
-                  src="./이미지준비중_1.jpg"
+                  src="${path}/resources/images/이미지준비중_1.jpg"
                   alt="apple.jpg"
                   onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
                   width="100%"
@@ -131,5 +131,7 @@
       </footer>
       <!--================ 페이지네이션 ================-->
     </section>
+  <!----------------------- FOOTER START ---------------------->
+  <!------------------------ FOOTER END ----------------------->    
 </body>
 </html>
