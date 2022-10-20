@@ -20,12 +20,13 @@ public class ProductController {
 	Logger logger = LoggerFactory.getLogger(ProductController.class);
 	private ProductLogic productLogic = null;
 	
+	//	http://localhost/mall/product/productList.do
 	@GetMapping("productList.do")
 	public String productList(Model model, @RequestParam Map<String, Object> pMap) {
 		logger.info("ProductList 호출 성공");
-		List<Map<String, Object>> productList = null;
-		productList = productLogic.productList(pMap);
-		model.addAttribute("productList", productList);
+//		List<Map<String, Object>> productList = null;
+//		productList = productLogic.productList(pMap);
+//		model.addAttribute("productList", productList);
 		return "product/productList";
 	}
 
@@ -35,6 +36,7 @@ public class ProductController {
 //		return "redirect:productList";
 //	}
 	
+	//	http://localhost/mall/product/productContents.do
 	@GetMapping("productContents.do")
 	public String productContents(Model model, @RequestParam Map<String, Object> pMap) {
 		logger.info("ProductContents 호출 성공");

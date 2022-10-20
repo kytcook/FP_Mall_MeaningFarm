@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../layout/common.jsp" %><!-- 공통코드(부트스트랩같은애들) -->
-<%@include file="../layout/css/productContents_css.jsp" %><!-- 현재페이지 css -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MeaningFarm</title>
-    <body class="d-flex flex-column min-vh-100"></body>
-  </head>
-</html>
-<!-- 맨 위로 버튼 --><a id="MOVE_TOP_BTN" href="#" class="btn btn-warning">TOP</a><!-- 맨 위로 버튼 -->
+    
+<!--========= 헤드 =========-->
+<%@include file="../layout/head.jsp"%>
+<!--========= 헤드 =========-->
+
+<!-- productContents.css 추가 -->    
+<link href="${path}/css/product/productContents.css" rel="stylesheet" type="text/css"/> 
+
+
 <!-- 본문 시작 -->
 <body>
 <!---------------------- HEADER START ---------------------->
@@ -109,6 +106,9 @@
   <!-- 본문 끝 -->
   <!----------------------- FOOTER START ---------------------->
   <!------------------------ FOOTER END ----------------------->
-<%@include file="../layout/js/productContents_js.jsp" %><!-- 현재페이지 js -->  
+  
+<!-- productContents.js 추가 -->    
+<script src="${path}/js/productContents.js" type="text/javascript"></script>
+	
 </body>
 </html>
