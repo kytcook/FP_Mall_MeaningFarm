@@ -1,0 +1,11 @@
+@charset "UTF-8";
+  a#MOVE_TOP_BTN {
+    /* TOP버튼관련 CSS */
+    border-bottom: 10px solid rgb(71, 206, 53);
+    color: white;
+    position: fixed; /* 화면에 고정 */
+    right: 5%; /* right, bottom 버튼의 위치 설정 */
+    bottom: 80px;
+    display: none; /* 화면에서 숨김  */
+    z-index: 999; /* 다른 태그들보다 위로 오도록 설정(z-index 가 설정된 다른 태그가 있다면 그 태그보다 커야 함) */
+  }
