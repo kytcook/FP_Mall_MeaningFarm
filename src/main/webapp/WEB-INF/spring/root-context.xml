@@ -4,21 +4,26 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
    
    <!-- Root Context: defines shared resources visible to all other web components -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
          <property name="driverClassName">
             <value>net.sf.log4jdbc.sql.jdbcapi.DriverSpy</value>
          </property>
+         
          <property name="jdbcUrl">
             <value>jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:orcl11</value>
          </property>
+         
          <property name="username">
-            <value>meaningfarm</value>
+            <value>MEANINGFARM</value>
+            
          </property>
          <property name="password">
             <value>tiger</value>
@@ -35,10 +40,11 @@
          <property name="configLocation" value="classpath:/mapper/mybatis-config.xml" />
          <property name="dataSource" ref="dataSource" />
       </bean>
+      
       <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
          <constructor-arg index="0" ref="sqlSessionFactory" />
       </bean>
       
-      <mybatis-spring:scan base-package="com.meaningfarm"/>
       <context:component-scan base-package="com.meaningfarm" />
+      
 </beans>

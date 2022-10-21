@@ -29,7 +29,9 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760" />	
 	</beans:bean>
+	
 	<context:component-scan base-package="com.meaningfarm.mall" />
+	<context:component-scan base-package="com.meaningfarm.mall.notice.controller" />
 	
 	
 	
