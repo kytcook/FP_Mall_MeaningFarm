@@ -2,5 +2,18 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="callSettersOnNulls" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+		<setting name="defaultStatementTimeout" value="300" />
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
+   <mappers>
+<mapper resource="com/mybatis/mapper/NoticeMapper.xml" />
+   </mappers>
 
 </configuration>
+
