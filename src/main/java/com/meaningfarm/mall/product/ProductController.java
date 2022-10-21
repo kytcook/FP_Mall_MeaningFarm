@@ -62,7 +62,7 @@ public class ProductController {
 //		logger.info("ProductController productDelete");
 		logger.info("ProductController productDelete " + productVO);
 		productService.productDelete(productVO.getProduct_no());
-		return "redirect:/product/productlist";
+		return "redirect:/product/productlisttest";
 	}
 	// product 옵션 설정 창으로 이동
 	@RequestMapping("/product/optionpopup")
