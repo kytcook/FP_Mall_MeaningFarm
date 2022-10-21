@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.boardMapper">
+
+	<select id="productList" parameterType="java.util.Map" resultType="map">
+		SELECT bm.b_no, bm.b_title, bm.b_writer, bs.b_file, bm.b_hit 
+		      ,bm.b_content, bm.b_date, bm.b_group, bm.b_pos, bm.b_step
+		      ,bm.b_pw, bs.b_file, NVL(bs.bs_size,0) bs_size
+		  FROM product p LEFT OUTER JOIN productfile pf
+		    ON bm.b_no = bs.b_no
+		<where>
+			<if test='b_date!=null and b_date.length()>0 and !b_date.equals("undefined")'>
+				AND bm.b_date = #{b_date}
+			</if>
+			<if test="b_no>0">
+				AND bm.b_no = #{b_no}
+			</if>
+			<if test ='cb_search!=null and cb_search.equals("b_title")'>
+				AND bm.b_title LIKE '%'||#{tb_search}||'%'
+			</if>
+			<if test ='cb_search!=null and cb_search.equals("b_content")'>
+				AND bm.b_content LIKE '%'||#{tb_search}||'%'
+			</if>
+			<if test ='cb_search!=null and cb_search.equals("b_writer")'>
+				AND bm.b_writer LIKE '%'||#{tb_search}||'%'
+			</if>
+		</where>    
+	  ORDER BY bm.b_group desc, b_step asc	
+	</select>	
+</mapper>

@@ -18,9 +18,12 @@
             <value>tiger</value>
          </property>
       </bean>
+      
+      <!-- 커넥션 풀 설정 -->
       <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
             <constructor-arg ref="hikariConfig"/>
       </bean>
+      
       <!-- ====================== [[ Spring & MyBatis 시작 ]] ====================== -->
       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
          <property name="configLocation" value="classpath:/mapper/mybatis-config.xml" />
