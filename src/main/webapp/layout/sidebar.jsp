@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-MeaningFarm 테스트입니다
+
 </body>
 </html>
-
-

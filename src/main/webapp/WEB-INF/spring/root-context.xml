@@ -12,12 +12,13 @@
 	         <value>jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:orcl11</value>
 	      </property>
 	      <property name="username">
-	         <value>meaningFarm</value>
+	         <value>meaningfarm</value>
 	      </property>
 	      <property name="password">
 	         <value>tiger</value>
 	      </property>
 	   </bean>
+	   <!-- [[ hikariCP configuration ]] -->
 	   <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 	   		<constructor-arg ref="hikariConfig"/>
 	   </bean>
@@ -29,4 +30,11 @@
 	   <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 	      <constructor-arg index="0" ref="sqlSessionFactory" />
 	   </bean>
+	   
+
+	   
 </beans>
+
+
+
+
