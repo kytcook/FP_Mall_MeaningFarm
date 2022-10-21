@@ -16,8 +16,8 @@ import com.meaningfarm.mall.Logic.ProductLogic;
 
 @Controller
 @RequestMapping("/product/")
-public class ProductController {
-	Logger logger = LoggerFactory.getLogger(ProductController.class);
+public class MemProductController {
+	Logger logger = LoggerFactory.getLogger(MemProductController.class);
 	private ProductLogic productLogic = null;
 	
 	//	http://localhost/mall/product/productList.do

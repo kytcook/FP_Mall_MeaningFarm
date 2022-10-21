@@ -24,8 +24,13 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 김민지 -->
+	<beans:bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760" />	
+	</beans:bean>
 	<context:component-scan base-package="com.meaningfarm.mall" />
-
+	
 	
 	
 </beans:beans>

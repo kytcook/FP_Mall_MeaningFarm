@@ -14,6 +14,12 @@
       <org.slf4j-version>1.6.6</org.slf4j-version>
    </properties>
    <dependencies>
+   	  <!-- 파일 업로드 관련 디펜던시 입니다. : 김민지  -->
+	   <dependency>
+	         <groupId>commons-fileupload</groupId>
+	         <artifactId>commons-fileupload</artifactId>
+	         <version>1.4</version>
+	      </dependency>
       <!-- TOMCAT -->
       <dependency>
           <groupId>org.apache.tomcat</groupId>
