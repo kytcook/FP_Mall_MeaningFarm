@@ -23,7 +23,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public List<NoticeVO> list() throws Exception {
-		logger.info("service List 호출 성공");
+		logger.info("service List ȣ��");
 		// TODO Auto-generated method stub
 		  return dao.list();
 	}

@@ -126,17 +126,24 @@
                 </tr>
               </thead>
 				<!-- 반복문 -->             
-			<c:forEach items="${list}" var="list">
-			<tr>
-				<td>${list.NOTICE_NO}</td>
-				<td>${list.NOTICE_TITLE}</td>
 				<%-- <td><a href="/board/read?bno=${list.bno}">${list.title}</a></td> --%>
+		<%-- 	<c:forEach items="${list}" var="list"> --%>
+			<tr>
+			<%-- 	<td>${list.NOTICE_NO}</td>
+				<td>${list.NOTICE_TITLE}</td>
 				<td>${list.ADMIN_NAME}</td>
 				<td>${list.NOTICE_REGDATE}</td>
 				<td>${list.NOTICE_YN}</td>
-				<td>${list.NOTICE_HIT}</td>
+				<td>${list.NOTICE_HIT}</td> --%>
+				
+				<td><c:out value="${list.NOTICE_NO}"/></td>
+				<td><c:out value="${list.NOTICE_TITLE}"/></td>
+				<td><c:out value="${list.ADMIN_NAME}"/></td>
+				<td><c:out value="${list.NOTICE_REGDATE}"/></td>
+				<td><c:out value="${list.NOTICE_YN}"/></td>
+				<td><c:out value="${list.NOTICE_HIT}"/></td>
 			</tr>
-			</c:forEach>
+	<%-- 		</c:forEach> --%>
 			<!-- 목록 끝 -->
              
             </table>

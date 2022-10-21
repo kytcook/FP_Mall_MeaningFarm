@@ -29,7 +29,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public List<NoticeVO> list() throws Exception {
-		logger.info("daoList 호출 성공");
+		logger.info("daoList ȣ��");
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("list");
 	}

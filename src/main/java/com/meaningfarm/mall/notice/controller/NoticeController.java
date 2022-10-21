@@ -26,17 +26,17 @@ public class NoticeController {
 
 	private Logger logger = LoggerFactory.getLogger(NoticeController.class);
 
-	// 글 목록
+	// 리스트
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(NoticeVO notice, Model model) throws Exception {
 		logger.info("get list");
 
 		List<NoticeVO> list = service.list();
 
-		model.addAttribute("list", list);
+		model.addAttribute("list", notice);
 	}
 
-	// 글 작성 get
+	// 글입력 get
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGet(HttpSession session, Model model) throws Exception {
@@ -46,7 +46,7 @@ public class NoticeController {
 
 	}
 
-	// 글 작성 post
+	// 글입력 post
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPost(NoticeVO notice) throws Exception {
 		logger.info("post write");
