@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meaningfarm.mapper.ProductMapper">
+<select id="productSelectAll" resultType="com.meaningfarm.mall.product.ProductVO">
+	select * from product
+</select>
+<select id="productSelectOne" parameterType="int" resultType="com.meaningfarm.mall.product.ProductVO">
+	select product_no, product_name, product_price, product_detail,
+		   product_stock, product_img, product_dlvyfee, option_no, category_local_no, category_type_no
+	from product
+	where product_no = #{product_no}
+</select>
+<insert id="productInsert">
+	insert into product
+	values(#{product_no}, #{product_name}, #{product_price}, #{product_detail},
+	 	   #{product_stock}, #{product_img}, #{product_dlvyfee}, #{option_no}, #{category_local_no}, #{category_type_no})
+</insert>
+<update id="productUpdate" parameterType="com.meaningfarm.mall.product.ProductVO">
+	update product
+	   set product_name = #{product_name}
+		 , product_price = #{product_price}
+		 , product_detail = #{product_detail}
+		 , product_stock = #{product_stock}
+		 , product_img = #{product_img}
+		 , product_dlvyfee = #{product_dlvyfee}
+		 , category_local_no = #{category_local_no}
+		 , category_type_no = #{category_type_no}
+		 , option_no = #{option_no}
+</update>
+<delete id="productDelete" parameterType="int">
+	delete from product
+	where product_no = #{product_no}
+</delete>
+</mapper>

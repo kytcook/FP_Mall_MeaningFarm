@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-미닝팜 테스트입니다.
+미닝팜 테스트
+<h1>hi ${data}</h1>
 </body>
 </html>
