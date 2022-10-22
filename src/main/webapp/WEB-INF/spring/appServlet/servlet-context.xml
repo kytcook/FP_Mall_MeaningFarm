@@ -32,6 +32,7 @@
 	
 	<context:component-scan base-package="com.meaningfarm.mall" />
 	<context:component-scan base-package="com.meaningfarm.mall.notice.controller" />
+	<context:component-scan base-package="com.meaningfarm.mall.memproduct.controller" />
 	
 	
 	
