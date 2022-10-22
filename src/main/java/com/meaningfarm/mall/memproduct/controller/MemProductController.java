@@ -1,4 +1,4 @@
-package com.meaningfarm.mall.controller;
+package com.meaningfarm.mall.memproduct.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.meaningfarm.mall.Logic.ProductLogic;
+import com.meaningfarm.mall.memproduct.logic.ProductLogic;
 
 
 @Controller

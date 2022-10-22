@@ -1,4 +1,4 @@
-package com.meaningfarm.mall.Dao;
+package com.meaningfarm.mall.memproduct.dao;
 
 import java.util.List;
 import java.util.Map;

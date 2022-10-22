@@ -1,4 +1,4 @@
-package com.meaningfarm.mall.Logic;
+package com.meaningfarm.mall.memproduct.logic;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.meaningfarm.mall.Dao.ProductDao;
+import com.meaningfarm.mall.memproduct.dao.ProductDao;
 
 
 public class ProductLogic {
