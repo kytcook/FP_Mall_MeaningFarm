@@ -12,9 +12,9 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 
-	<typeAliases>
+<!-- 	<typeAliases>
 		<typeAlias alias="productVO" type="com.meaningfarm.mall.product.ProductVO" />
-	</typeAliases>
+	</typeAliases> -->
 	<mappers>
 		<mapper resource="com/meaningfarm/mapper/product.xml" />
 		<mapper resource="com/meaningfarm/mapper/option.xml" />
