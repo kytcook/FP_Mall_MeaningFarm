@@ -19,6 +19,7 @@
 		<mapper resource="com/meaningfarm/mapper/product.xml" />
 		<mapper resource="com/meaningfarm/mapper/option.xml" />
 		<mapper resource="com/mybatis/mapper/NoticeMapper.xml" />
+		<mapper resource="com/mybatis/mapper/MemProduct.xml" />
 	</mappers>
 </configuration>
 
