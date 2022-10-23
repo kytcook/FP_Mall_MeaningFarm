@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page import="java.util.*" %>      
 <!--========= 헤드 =========-->
 <%@include file="../layout/head.jsp"%>
 <!--========= 헤드 =========-->
 	
   <!-- productList.css 추가하기 -->
   <link href="${path}/css/product/productList.css" rel="stylesheet"/>
+  
 
-    
+
   <body>
     <header class="container">
       <div class="ico_cate">
@@ -51,13 +52,17 @@
 
     </header>
     
+    
     <section>
+    
       <!--================= 상품리스트 =================-->
       <article class="container">
         <div class="list_product row row-cols-3">
+	    <!-- var="레코드변수" items="리스트변수" jstl문법 사용 => 자바의 for문 -->
+	   	<c:forEach var="list" items="${productList}">
           <!--===== 상품1 =====-->
           <div class="col mt-5 mb-5">
-            <div class="card shadow-lg">
+            <div class="card shadow-lg m-3">
                 <!-- 상품이미지 -->
                 <img
                   src="${path}/resources/images/apple.jpg"
@@ -65,13 +70,14 @@
                   onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
                   width="100%"
                   height="300"
+                  class="pt-5"
                 >
                 </img>
 
                 <!-- 상품설명 -->
                 <div class="card-body">
                   <p class="card-text">
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled ps-4">
                       <li class="fs-5 fw-bold">[상품 이름]쫄깃쫄깃 사과 250g</li>
                       <li class="fs-5 fw-bold">[가격을 꽂아주세요]</li>
                       <li class="text-muted">무농약으로 재배한 달콤쌉살사과(1개/200g)</li>
@@ -80,9 +86,10 @@
                 </div>
               </div>
             </div>
+  	 	</c:forEach>
           <!--===== 상품1 =====-->
           <!--===== 상품2 =====-->
-          <div class="col mt-5 mb-5">
+<%--           <div class="col mt-5 mb-5">
             <div class="card shadow-lg">
                 <!-- 상품이미지 -->
                 <img
@@ -105,10 +112,11 @@
                   </p>
                 </div>
               </div>
-            </div>
+            </div> --%>
           <!--===== 상품2 =====-->
           </div>
       </article>
+      
       <!--================= 상품리스트 =================-->
 
       <!--================ 페이지네이션 ================-->

@@ -2,19 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.MemProductMapper">
 
-		<select id="memproductList" parameterType="java.util.Map" resultType="map">
+	<!-- <select id="memproductList" parameterType="java.util.Map" resultType="map">
 		SELECT * FROM product
-		</select>
+	</select> -->
 		
-	<!-- 	
 
 	<select id="memproductList" parameterType="java.util.Map" resultType="map">
 		SELECT p.product_no, p.product_name, p.product_price, p.product_detail
 		     , p.product_stock, p.product_img, p.product_dlvyfee, p.option_no
 		     , p.category_local_no, p.category_type_no, p.m_id
-		  FROM product p 
-
+		     , pf.productfile_name, NVL(pf.productfile_size,0), pf.productfile_path
+		  FROM product p LEFT OUTER JOIN productfile pf
+		    ON p.product_no = pf.product_no
+		ORDER BY p.product_no ASC
+		
 	</select>	 
 	
-	-->
 </mapper>
