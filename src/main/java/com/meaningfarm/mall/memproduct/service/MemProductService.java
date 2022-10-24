@@ -21,7 +21,6 @@ public class MemProductService {
 		logger.info("boardList 호출 성공"); // 최종에는 지워주셈
 		List<Map<String,Object>> productList = null;
 		productList = productDao.productList(pMap);
-		logger.info("productList 호출 성공" + productList); // 최종에는 지워주세요
 		return productList;
 	}
 

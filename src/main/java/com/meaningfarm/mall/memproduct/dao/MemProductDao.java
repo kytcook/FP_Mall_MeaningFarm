@@ -3,6 +3,8 @@ package com.meaningfarm.mall.memproduct.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ public class MemProductDao {
 	private SqlSessionTemplate sqlSessionTemplate = null;
 	
 	
+	//상품리스트
 	public List<Map<String, Object>> productList(Map<String, Object> pMap) {
 		logger.info("productList 호출 성공");
 		List<Map<String, Object>> productList = null;

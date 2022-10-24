@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.MemProductMapper">
-
-	<!-- <select id="memproductList" parameterType="java.util.Map" resultType="map">
-		SELECT * FROM product
-	</select> -->
-		
-
+	<!-- 01. 상품 전체 목록  -->
 	<select id="memproductList" parameterType="java.util.Map" resultType="map">
 		SELECT p.product_no, p.product_name, p.product_price, p.product_detail
 		     , p.product_stock, p.product_img, p.product_dlvyfee, p.option_no
@@ -16,6 +11,13 @@
 		    ON p.product_no = pf.product_no
 		ORDER BY p.product_no ASC
 		
-	</select>	 
+	</select> 
+	
+	<!-- 02. 상품내용 보기 -->
+	<select id="memproductContents" parameterType="java.util.Map" resultType="map">
+		SELECT p.product_no
+		  FROM product
+		
+	</select> 
 	
 </mapper>

@@ -34,6 +34,8 @@ public class MemProductController {
 		return "product/productList";
 	}
 	
+	
+	
 	// 상품내용
 	// http://localhost/mall/product/productContents.do
 	@GetMapping("productContents.do")
