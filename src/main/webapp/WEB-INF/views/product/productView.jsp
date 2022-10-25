@@ -6,7 +6,7 @@
 <!--========= 헤드 =========-->
 
 <!-- productContents.css 추가 -->    
-<link href="${path}/css/product/productContents.css" rel="stylesheet" type="text/css"/> 
+<link href="${path}/css/product/productView.css" rel="stylesheet" type="text/css"/> 
 
 
 <!-- 본문 시작 -->
@@ -108,7 +108,7 @@
   <!------------------------ FOOTER END ----------------------->
   
 <!-- productContents.js 추가 -->    
-<script src="${path}/js/productContents.js" type="text/javascript"></script>
+<script src="${path}/js/productView.js" type="text/javascript"></script>
 	
 </body>
 </html>

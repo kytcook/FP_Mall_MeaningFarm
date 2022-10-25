@@ -36,14 +36,14 @@ public class MemProductController {
 	
 	
 	
-	// 상품내용
+	// 상품보기
 	// http://localhost/mall/product/productContents.do
-	@GetMapping("productContents.do")
-	public String productContents(Model model, @RequestParam Map<String, Object> pMap) {
-		logger.info("ProductContents 호출 성공");
-		List<Map<String, Object>> productList = null;
-		productList = productService.productList(pMap);
-		model.addAttribute("productList", productList);
-		return "product/productContents";
+	@GetMapping("productView.do")
+	public String productView(Model model, @RequestParam Map<String, Object> pMap) {
+		logger.info("ProductView 호출 성공");
+		List<Map<String, Object>> productView = null;
+		productView = productService.productView(pMap);
+		model.addAttribute("productView", productView);
+		return "product/productView";
 	}
 }

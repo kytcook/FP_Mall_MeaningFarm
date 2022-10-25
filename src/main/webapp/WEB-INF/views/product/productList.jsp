@@ -74,7 +74,7 @@
 	   	<c:forEach var="list" items="${productList}">
           <!--===== 상품1 =====-->
           <div class="col mt-5 mb-4">
-            <div class="card shadow-lg m-3" id="a" onclick='productSelect()'>
+            <div class="card shadow-lg m-3">
                 <!-- 상품이미지 -->
                 <img
                   src="${path}/resources/images/apple.jpg"
@@ -88,7 +88,7 @@
                 <div class="card-body">
                    <ul class="card-text list-unstyled ps-4 pb-3">
                    	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
-                   	 <li style="display:none"><c:out value="${list.PRODUCT_NO}"/></li>
+                   	 <li class="PRODUCT_NO" style="display:none"><c:out value="${list.PRODUCT_NO}"/></li>
                      <li class="fs-5 fw-bold"><c:out value="${list.PRODUCT_NAME}"/></li>
                      <li class="fs-5 fw-bold"><fmt:formatNumber value="${list.PRODUCT_PRICE}" pattern="###,###,###"/> 원</li>
                      <li class="text-muted"><c:out value="${list.PRODUCT_DETAIL}"/>(1개/200g)</li>
@@ -99,12 +99,19 @@
   	 	</c:forEach>
           <!--===== 상품1 =====-->
 <script>
-    	function productSelect(){
+/*     	function productSelect(){
         alert("상품눌리임");
         //location.href = "./productContents.do?"
-    	}
+    	} */
     	
-    	$(document).ready(function(){//DOM구성이 완료된 시점-자바스크립트로 태그접근,설정변경,이미지
+   		$(".card").click(function() {
+   			alert("상품눌리임");
+   			let PRODUCT_NO = $(this).find(".PRODUCT_NO").text();
+   			location = "productView.do?product_no="+PRODUCT_NO
+   		});
+    	
+    	
+ /*    	$(document).ready(function(){//DOM구성이 완료된 시점-자바스크립트로 태그접근,설정변경,이미지
     		$(".card").datagrid({
     			onSelect:function(index, row) {
     				g_no = row.PRODUCT_NO;
@@ -118,7 +125,7 @@
     			     }
     	         }
     	      });
-    	})
+    	}) */
 </script>
           
           <!--===== 상품2 =====-->

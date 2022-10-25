@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class MemProductDao {
 	Logger logger = LoggerFactory.getLogger(MemProductDao.class);
 	@Autowired(required = false)
-	private SqlSessionTemplate sqlSessionTemplate = null;
+	private SqlSessionTemplate sql = null;
 	
 	
 	//상품리스트
@@ -23,7 +23,7 @@ public class MemProductDao {
 		logger.info("productList 호출 성공");
 		List<Map<String, Object>> productList = null;
 		try {
-			productList = sqlSessionTemplate.selectList("memproductList", pMap);
+			productList = sql.selectList("memproductList", pMap);
 			// insert here
 			logger.info(productList.toString());
 		} catch (DataAccessException e) {
@@ -31,5 +31,18 @@ public class MemProductDao {
 		}
 		return productList;
 
+	}
+
+
+	public List<Map<String, Object>> productView(Map<String, Object> pMap) {
+		logger.info("productList 호출 성공");
+		List<Map<String, Object>> productView = null;
+		try {
+			productView = sql.selectList("memproductView", pMap);
+			logger.info(productView.toString());
+		} catch (DataAccessException e) {
+			logger.info("Exception : " + e.toString());
+		}		
+		return productView;
 	}
 }
