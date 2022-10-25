@@ -1,13 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %> 
 <!--========= 헤드 =========-->
 <%@include file="../layout/head.jsp"%>
 <!--========= 헤드 =========-->
-
 <!-- productContents.css 추가 -->    
 <link href="${path}/css/product/productView.css" rel="stylesheet" type="text/css"/> 
 
+<%
+	/////////////////////////////////////////////////////////////
+	String rb_no = null;
+	String rb_pw = null;
+	String rb_title = null;
+	String rb_writer = null;
+	String rb_content = null;
+	String rb_date = null;
+	String rb_group = null;
+	String rb_pos = null;
+	String rb_step = null;
+	List<Map<String,Object>> productList = //유지의문제 - DB를 경유해야한다 ->servlet
+	(List<Map<String,Object>>)request.getAttribute("productList");
+	out.print(productList);
+	if(productList !=null && productList.size()>0){
+		rb_no = productList.get(0).get("PRODUCT_NO").toString();
+		rb_pw = productList.get(0).get("PRODUCT_PW").toString();
+		rb_title = productList.get(0).get("PRODUCT_TITLE").toString();
+		rb_writer = productList.get(0).get("PRODUCT_WRITER").toString();
+		rb_content = productList.get(0).get("PRODUCT_CONTENT").toString();
+		rb_date = productList.get(0).get("PRODUCT_DATE").toString();
+		rb_group = productList.get(0).get("PRODUCT_GROUP").toString();
+		rb_pos = productList.get(0).get("PRODUCT_POS").toString();
+		rb_step = productList.get(0).get("PRODUCT_STEP").toString();
+	}
+	/////////////////////////////////////////////////////////////
+%>
 
 <!-- 본문 시작 -->
 <body>

@@ -2,23 +2,33 @@
 <%@ page import="java.util.*" %>      
 <!--========= 헤드 =========-->
 <%@include file="../layout/head.jsp"%>
-
 <!--========= 헤드 =========-->
-  <!-- productList.css 추가하기 -->
-  <link href="${path}/css/product/productList.css" rel="stylesheet"/>
+
+
+
+<!-- productList.css 추가하기 -->
+<link href="${path}/css/product/productList.css" rel="stylesheet"/>
   
 <%
-	/* 데이터를 가져오는지 확인해봅시다. */
+	/////////////////////////////////////////////////////
 	List<Map<String,Object>> productList = //유지의문제 - DB를 경유해야한다 ->servlet
 		(List<Map<String,Object>>)request.getAttribute("productList");//sql문을 넘겨넘겨 받아서 가지고옴
+	/* 데이터를 가져오는지 화면에서 확인해봅시다. */
 	out.print(productList);
+	int size = 0;
+	if(productList!=null){
+		size = productList.size();// 컬럼의 개수 변수에 담기
+	}
+	/////////////////////////////////////////////////////
 	
+	/////////////////////////////////////////////////////
 	/* 페이징처리 변수*/
 	int numPerPage = 10;
 	int nowPage = 0;
 	if(request.getParameter("nowPage")!=null){
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
 	}
+	/////////////////////////////////////////////////////
 %>
 
 
@@ -75,86 +85,30 @@
           <!--===== 상품1 =====-->
           <div class="col mt-5 mb-4">
             <div class="card shadow-lg m-3">
-                <!-- 상품이미지 -->
-                <img
-                  src="${path}/resources/images/apple.jpg"
-                  alt="apple.jpg"
-                  onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
-                  width="100%"
-                  height="300"
-                  class="pt-5"
-                />
-                <!-- 상품설명 -->
-                <div class="card-body">
-                   <ul class="card-text list-unstyled ps-4 pb-3">
-                   	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
-                   	 <li class="PRODUCT_NO" style="display:none"><c:out value="${list.PRODUCT_NO}"/></li>
-                     <li class="fs-5 fw-bold"><c:out value="${list.PRODUCT_NAME}"/></li>
-                     <li class="fs-5 fw-bold"><fmt:formatNumber value="${list.PRODUCT_PRICE}" pattern="###,###,###"/> 원</li>
-                     <li class="text-muted"><c:out value="${list.PRODUCT_DETAIL}"/>(1개/200g)</li>
-                   </ul>
-                </div>
-              </div>
+               <!-- 상품이미지 -->
+               <img
+                 src="${path}/resources/images/apple.jpg"
+                 alt="apple.jpg"
+                 onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
+                 width="100%"
+                 height="300"
+                 class="pt-5"
+               />
+               <!-- 상품설명 -->
+               <div class="card-body">
+                  <ul class="card-text list-unstyled ps-4 pb-3">
+                  	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
+                  	 <li class="PRODUCT_NO" style="display:none"><c:out value="${list.PRODUCT_NO}"/></li>
+                    <li class="fs-5 fw-bold"><c:out value="${list.PRODUCT_NAME}"/></li>
+                    <li class="fs-5 fw-bold"><fmt:formatNumber value="${list.PRODUCT_PRICE}" pattern="###,###,###"/> 원</li>
+                    <li class="text-muted"><c:out value="${list.PRODUCT_DETAIL}"/>(1개/200g)</li>
+                  </ul>
+               </div>
             </div>
-  	 	</c:forEach>
-          <!--===== 상품1 =====-->
-<script>
-/*     	function productSelect(){
-        alert("상품눌리임");
-        //location.href = "./productContents.do?"
-    	} */
-    	
-   		$(".card").click(function() {
-   			alert("상품눌리임");
-   			let PRODUCT_NO = $(this).find(".PRODUCT_NO").text();
-   			location = "productView.do?product_no="+PRODUCT_NO
-   		});
-    	
-    	
- /*    	$(document).ready(function(){//DOM구성이 완료된 시점-자바스크립트로 태그접근,설정변경,이미지
-    		$(".card").datagrid({
-    			onSelect:function(index, row) {
-    				g_no = row.PRODUCT_NO;
-    				console.log("g_no : "+g_no);
-    			},
-    			onDblClickCell: function(index, field, value){
-    				if("B_TITLE" == field){
-    					location.href="./boardDetail.sp4?b_no="+g_no
-    					g_no = 0;		
-    					$("#dg_board").datagrid('clearSelections')		
-    			     }
-    	         }
-    	      });
-    	}) */
-</script>
-          
-          <!--===== 상품2 =====-->
-<%--           <div class="col mt-5 mb-5">
-            <div class="card shadow-lg">
-                <!-- 상품이미지 -->
-                <img
-                  src="${path}/resources/images/이미지준비중_1.jpg"
-                  alt="apple.jpg"
-                  onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
-                  width="100%"
-                  height="300"
-                >
-                </img>
-
-                <!-- 상품설명 -->
-                <div class="card-body">
-                  <p class="card-text">
-                    <ul class="list-unstyled">
-                      <li class="fs-5 fw-bold">[상품 이름]쫄깃쫄깃 사과 250g</li>
-                      <li class="fs-5 fw-bold">[가격을 꽂아주세요]</li>
-                      <li class="text-muted">무농약으로 재배한 달콤쌉살사과(1개/200g)</li>
-                    </ul>
-                  </p>
-                </div>
-              </div>
-            </div> --%>
-          <!--===== 상품2 =====-->
           </div>
+        <!--===== 상품1 =====-->
+  	 	</c:forEach>
+       	</div>
       </article>
       <!--================= 상품리스트 =================-->
 
@@ -179,6 +133,21 @@
       <!--================ 페이지네이션 ================-->
     </section>
   <!----------------------- FOOTER START ---------------------->
-  <!------------------------ FOOTER END ----------------------->    
+  <!------------------------ FOOTER END ----------------------->  
+<!-- productList.js코드 추가 -->
+<script defer>
+	// 상품 한번 클릭시 상품번호 출력 : 나중에 더블클릭만 남기고 없애줄걸
+	$(".card").click(function() {
+		let product_no = $(this).find(".PRODUCT_NO").text();
+		console.log(product_no);
+	});
+	
+	// 상품 두 번 클릭시 페이지 이동
+	$(".card").dblclick(function() {
+		alert("상품눌리임");
+		let product_no = $(this).find(".PRODUCT_NO").text();
+		location = "productView.do?product_no="+product_no
+	});
+</script>  
 </body>
 </html>

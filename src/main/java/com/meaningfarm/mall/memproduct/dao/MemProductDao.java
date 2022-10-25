@@ -18,7 +18,7 @@ public class MemProductDao {
 	private SqlSessionTemplate sql = null;
 	
 	
-	//상품리스트
+	//상품리스트 | 상품보기
 	public List<Map<String, Object>> productList(Map<String, Object> pMap) {
 		logger.info("productList 호출 성공");
 		List<Map<String, Object>> productList = null;
@@ -34,15 +34,5 @@ public class MemProductDao {
 	}
 
 
-	public List<Map<String, Object>> productView(Map<String, Object> pMap) {
-		logger.info("productList 호출 성공");
-		List<Map<String, Object>> productView = null;
-		try {
-			productView = sql.selectList("memproductView", pMap);
-			logger.info(productView.toString());
-		} catch (DataAccessException e) {
-			logger.info("Exception : " + e.toString());
-		}		
-		return productView;
-	}
+
 }
