@@ -24,7 +24,7 @@ public class MemProductController {
 	private MemProductService productService = null;
 	
 	// 상품리스트
-	//	http://localhost/mall/product/productList.do
+	// http://localhost/mall/product/productList.do
 	@GetMapping("productList.do")
 	public String productList(@RequestParam Map<String, Object> pMap, Model model) {
 		logger.info("productList 호출 성공");
