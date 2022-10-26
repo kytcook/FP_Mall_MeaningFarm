@@ -6,8 +6,14 @@
 	
 }
 
+/* input태그에 number타입의 화살표 항상 보이기 : 크롬에서만 적용됨 */
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
+	{
+	opacity: 1;
+}
+
+/* 당장 쓰지 않는 정보는 캡션으로 막아둡시다. 설명용 캡션은 table에서만 사용하는 설명용 */
 caption {
-	/* 당장 쓰지 않는 정보는 캡션으로 막아둡시다. 설명용 캡션은 table에서만 사용하는 설명용 */
 	display: none;
 }
 

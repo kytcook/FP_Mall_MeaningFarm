@@ -9,17 +9,13 @@
 		     , pf.productfile_name, NVL(pf.productfile_size,0), pf.productfile_path
 		  FROM product p LEFT OUTER JOIN productfile pf
 		    ON p.product_no = pf.product_no
+		<where>
+			<if test="product_no>0">
+				AND p.product_no = #{product_no}
+			</if>
+		</where>  
 		ORDER BY p.product_no ASC
 		
 	</select> 
-	
-	<!-- 02. 상품조회 -->
-	<select id="memproductView" parameterType="java.util.Map" resultType="map">
-		SELECT product_no, product_name, product_price, product_detail
-		     , product_stock, product_img, product_dlvyfee, option_no
-		     , category_local_no, category_type_no, m_id
-		  FROM product
-		 WHERE product_no=${PRODUCT_NO}
-	</select> 
-	
+
 </mapper>

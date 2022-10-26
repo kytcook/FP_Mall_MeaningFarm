@@ -22,6 +22,7 @@ public class MemProductService {
 		List<Map<String,Object>> productList = null;
 		productList = productDao.productList(pMap);
 		if(productList!=null && productList.size()==1) {//.size는 Collections Framework의 ArrayList의 길이를 확인
+			
 		}
 		return productList;
 	}

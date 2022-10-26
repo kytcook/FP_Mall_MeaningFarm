@@ -4,7 +4,23 @@
 <%@include file="../layout/head.jsp"%>
 <!--========= 헤드 =========-->
 
-
+<!-- productList.js 추가하기 -->
+<script defer>
+	$(document).ready(function(){
+		// 상품 한번 클릭시 상품번호 출력 : 나중에 더블클릭만 남기고 없애줄걸
+		$(".card").click(function() {
+			let product_no = $(this).find(".PRODUCT_NO").text();
+			console.log(product_no);
+		});
+		
+		// 상품 두 번 클릭시 페이지 이동
+		$(".card").dblclick(function() {
+			alert("상품눌리임");
+			let product_no = $(this).find(".PRODUCT_NO").text();
+			location = "productView.do?product_no="+product_no
+		});
+	})
+</script>  
 
 <!-- productList.css 추가하기 -->
 <link href="${path}/css/product/productList.css" rel="stylesheet"/>
@@ -41,13 +57,16 @@
         <!-- 메뉴분류 -->
         <ul class="nav nav-pills mb-3 col-11" id="pills-tab" role="tablist">
           <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-상품별" aria-selected="true">상품별</button>
+            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+            type="button" role="tab" aria-controls="pills-상품별" aria-selected="true">상품별</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-가격별" aria-selected="false">가격별</button>
+            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" 
+            type="button" role="tab" aria-controls="pills-가격별" aria-selected="false">가격별</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-맛있는거" aria-selected="false">맛있는거</button>
+            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+             type="button" role="tab" aria-controls="pills-맛있는거" aria-selected="false">맛있는거</button>
           </li>
           <!-- <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-상품별" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0"></div>
@@ -100,7 +119,7 @@
                   	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
                   	 <li class="PRODUCT_NO" style="display:none"><c:out value="${list.PRODUCT_NO}"/></li>
                     <li class="fs-5 fw-bold"><c:out value="${list.PRODUCT_NAME}"/></li>
-                    <li class="fs-5 fw-bold"><fmt:formatNumber value="${list.PRODUCT_PRICE}" pattern="###,###,###"/> 원</li>
+                    <li class="fs-5 fw-bold"><fmt:formatNumber value="${list.PRODUCT_PRICE}" pattern="###,###,###" /> 원</li>
                     <li class="text-muted"><c:out value="${list.PRODUCT_DETAIL}"/>(1개/200g)</li>
                   </ul>
                </div>
@@ -135,19 +154,6 @@
   <!----------------------- FOOTER START ---------------------->
   <!------------------------ FOOTER END ----------------------->  
 <!-- productList.js코드 추가 -->
-<script defer>
-	// 상품 한번 클릭시 상품번호 출력 : 나중에 더블클릭만 남기고 없애줄걸
-	$(".card").click(function() {
-		let product_no = $(this).find(".PRODUCT_NO").text();
-		console.log(product_no);
-	});
-	
-	// 상품 두 번 클릭시 페이지 이동
-	$(".card").dblclick(function() {
-		alert("상품눌리임");
-		let product_no = $(this).find(".PRODUCT_NO").text();
-		location = "productView.do?product_no="+product_no
-	});
-</script>  
+
 </body>
 </html>
