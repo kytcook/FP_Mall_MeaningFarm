@@ -19,22 +19,22 @@
 	</select> 
 	
 	<!-- 02. 상품 전체목록 조회 및 페이징  -->
-	<select id="memproductListpagin" parameterType="java.util.Map" resultType="map">
-		<![CDATA[
-		SELECT rnum, product_no, product_name,product_price, product_detail
-		    	, product_stock, product_img, product_dlvyfee, option_no
-		    	, category_local_no, category_type_no,m_id
-		 FROM(
-			   SELECT 
-			    	/*+ INDEX_ASC(product pk_product) */
-			             ROWNUM rnum, product_no, product_name,product_price, product_detail
-			           , product_stock, product_img, product_dlvyfee, option_no
-			           , category_local_no, category_type_no,m_id
-			     FROM product
-			    WHERE ROWNUM <= 10 #{pageNum} * #{amount}
-		) WHERE rnum > (#{pageNum)-1) * #{amount} 
+<!-- 	<select id="memproductListpagin" parameterType="java.util.Map" resultType="map"> -->
+<!-- 		<![CDATA[ -->
+<!-- 		SELECT rnum, product_no, product_name,product_price, product_detail -->
+<!-- 		    	, product_stock, product_img, product_dlvyfee, option_no -->
+<!-- 		    	, category_local_no, category_type_no,m_id -->
+<!-- 		 FROM( -->
+<!-- 			   SELECT  -->
+<!-- 			    	/*+ INDEX_ASC(product pk_product) */ -->
+<!-- 			             ROWNUM rnum, product_no, product_name,product_price, product_detail -->
+<!-- 			           , product_stock, product_img, product_dlvyfee, option_no -->
+<!-- 			           , category_local_no, category_type_no,m_id -->
+<!-- 			     FROM product -->
+<!-- 			    WHERE ROWNUM <= 10 #{pageNum} * #{amount} -->
+<!-- 		) WHERE rnum > (#{pageNum)-1) * #{amount}  -->
 		
-		]]>
-	</select> 
+<!-- 		]]> -->
+<!-- 	</select>  -->
 
 </mapper>
