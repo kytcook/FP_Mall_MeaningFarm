@@ -7,7 +7,7 @@
 <!-- productList.js 추가하기 -->
 <script defer>
 	$(document).ready(function(){
-		// 상품 한번 클릭시 상품번호 출력 : 나중에 더블클릭만 남기고 없애줄걸
+		// 상품 한번 클릭시 상품번호 출력 : 나중에 페이지이동을 한번 클릭으로 옮기고 더블클릭 삭제할것.
 		$(".card").click(function() {
 			let product_no = $(this).find(".PRODUCT_NO").text();
 			console.log(product_no);
@@ -39,6 +39,10 @@
 	
 	/////////////////////////////////////////////////////
 	/* 페이징처리 변수*/
+	boolean isOk = false;
+	if(request.getParameter("isOk")!=null){
+		isOk = Boolean.parseBoolean(request.getParameter("isOk"));
+	}	
 	int numPerPage = 5;
 	int nowPage = 0;
 	if(request.getParameter("nowPage")!=null){
