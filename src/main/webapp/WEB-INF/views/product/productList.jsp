@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>      
+<%@ page import="java.util.*, com.meaningfarm.util.PageBar" %>      
 <!--========= 헤드 =========-->
 <%@include file="../layout/head.jsp"%>
 <!--========= 헤드 =========-->
@@ -39,7 +39,7 @@
 	
 	/////////////////////////////////////////////////////
 	/* 페이징처리 변수*/
-	int numPerPage = 10;
+	int numPerPage = 5;
 	int nowPage = 0;
 	if(request.getParameter("nowPage")!=null){
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
@@ -148,6 +148,15 @@
               </a>
             </li>
           </ul>
+		<!-- 페이지 네이션 추가 시작 -->
+			<div style="display:table-cell;vertical-align:middle; width:800px; background:#efefef; height:30; border:1px solid #ccc;">
+		<%
+			String pagePath = "productList.do";
+			PageBar pb = new PageBar(numPerPage, size, nowPage, pagePath);
+			out.print(pb.getPageBar());
+		%>
+			</div>
+		<!-- 페이지 네이션 추가   끝  -->          
       </footer>
       <!--================ 페이지네이션 ================-->
     </section>

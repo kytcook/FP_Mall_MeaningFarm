@@ -4,27 +4,36 @@ import org.apache.log4j.Logger;
 
 public class PageBar {
 	Logger logger = Logger.getLogger(PageBar.class);
+	
 	//전체레코드 갯수 - SELECT count(*) FROM board_master_t
 	// List<Map<String,Object>>.size() -> 전체 레코드 수
 	private int totalRecord;//list.size():47row
+	
 	// 페이지당 레코드 수
 	// boardList.pj or memberList.pj or orderList.pj
 	private int numPerPage;// 10개씩이다
+	
 	// 블럭당 디폴트 페이지 수 - 여기서는 일단 2개로 정함.
 	// 페이지 수에 대한 블록
 	private int pagePerBlock=5;
+	
 	// 총페이지 수
 	private int totalPage;// (int)ceil(47/10.0)
+	
 	// 총블럭 수
 	private int totalBlock;
+	
 	// 현재 내가 바라보는 페이지 수
 	private int nowPage;
+	
 	// 현재 내가 바라보는 블럭 수
 	private int nowBlock;
+	
 	// 적용할 페이지 이름 - 따로 변수처리 하나?
 	private String pagePath;
 	
 	private String pagination;
+	
 	// 페이지 네비게이션 초기화
 	/*
 	 * 화면에서 받아와야 하는 정보에는 어떤 것들이 있을까?
