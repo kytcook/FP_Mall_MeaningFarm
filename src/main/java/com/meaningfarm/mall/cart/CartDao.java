@@ -1,9 +1,7 @@
-package com.meaningfarm.mall.memproduct.dao;
+package com.meaningfarm.mall.cart;
 
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -12,25 +10,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.meaningfarm.mall.memproduct.dao.MemProductDao;
+
 @Service
-public class MemProductDao {
+public class CartDao {
+
 	Logger logger = LoggerFactory.getLogger(MemProductDao.class);
 
 	@Autowired(required = false)
 	private SqlSessionTemplate sql = null;
 
-	// 상품리스트 | 상품보기
-	public List<Map<String, Object>> productList(Map<String, Object> pMap) {
-		logger.info("productList 호출 성공");
-		List<Map<String, Object>> productList = null;
+	// 장바구니 전체 리스트
+	public List<Map<String, Object>> cartList(Map<String, Object> pMap) {
+		logger.info("cartList 호출 성공");
+		List<Map<String, Object>> cartList = null;
 		try {
-			productList = sql.selectList("memproductList", pMap);
+			cartList = sql.selectList("cartList", pMap);
 			// insert here
-			logger.info(productList.toString());
+			logger.info(cartList.toString());
 		} catch (DataAccessException e) {
 			logger.info("Exception : " + e.toString());
 		}
-		return productList;
+		return cartList;
 
 	}
 

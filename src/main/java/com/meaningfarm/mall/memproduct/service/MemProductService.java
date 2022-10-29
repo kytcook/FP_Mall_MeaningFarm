@@ -21,17 +21,14 @@ public class MemProductService {
 		logger.info("boardList 호출 성공"); // 최종에는 삭제
 		List<Map<String,Object>> productList = null;
 		productList = productDao.productList(pMap);
-		if(productList!=null && productList.size()==1) {//.size는 Collections Framework의 ArrayList의 길이를 확인
-			
-		}
 		return productList;
 	}
 	
-	// 상품보기
+	// 상품상세보기
 	public List<Map<String, Object>> productView(Map<String, Object> pMap) {
 		logger.info("boardList 호출 성공"); // 최종에는 삭제
 		List<Map<String,Object>> productList = null;
-		productList = productDao.productList(pMap);		
+		productList = productDao.productList(pMap);
 		return productList;
 	}
 
