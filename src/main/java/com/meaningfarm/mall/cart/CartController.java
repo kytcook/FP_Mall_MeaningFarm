@@ -25,10 +25,10 @@ public class CartController {
 	// http://localhost/mall/product/cart.do
 	@GetMapping("cartList.do")
 	public String cartList(Model model, @RequestParam Map<String, Object> pMap) {
-//		logger.info("carList 호출 성공");
-//		List<Map<String, Object>> cartList = null;
-//		cartList = cartService.cartList(pMap);
-//		model.addAttribute("cartList", cartList);
+		logger.info("carList 호출 성공");
+		List<Map<String, Object>> cartList = null;
+		cartList = cartService.cartList(pMap);
+		model.addAttribute("cartList", cartList);
 		return "cart/cart";
 
 	}
