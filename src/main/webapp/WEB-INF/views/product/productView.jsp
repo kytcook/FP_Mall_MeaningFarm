@@ -109,7 +109,7 @@
                 </div>
                 <div class="container-fluid row justify-content-between">
                   <button class="btn btn-light border fw-bolder p-3 col-4" type="submit">관심상품</button>
-                  <button class="btn btn-warning border fw-bolder p-3 col-4"  type="submit">장바구니 담기</button>
+                  <button id="cartInsert" class="btn btn-warning border fw-bolder p-3 col-4"  type="submit">장바구니 담기</button>
                   <button class="btn btn-primary border fw-bolder  p-3 col-4" type="submit">주문하기</button>
                 </div>
                 <p class="border mt-3 border-dark"></p><!-- 줄간격 -->
@@ -142,6 +142,10 @@
   
 <!-- productContents.js 추가 -->    
 <script src="${path}/js/productView.js" type="text/javascript"></script>
-	
+<script>
+	$('#cartInsert').bind('click', function(){
+		alert("으아아");
+	})
+</script>	
 </body>
 </html>

@@ -35,4 +35,15 @@ public class CartDao {
 
 	}
 
+	public int cartDelete(Map<String, Object> pMap) {
+	      int result = 0;
+	      try {
+	         result = sql.delete("cartDelete",pMap);
+	         logger.info("result: "+ result);
+	      } catch (Exception e) {
+	         logger.info("Exception : " + e.toString());
+	      }
+	      return result;
+	}
+
 }

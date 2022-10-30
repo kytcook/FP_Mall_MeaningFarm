@@ -24,4 +24,10 @@ public class CartService {
 		return cartList;
 	}
 
+	public int cartDelete(Map<String, Object> pMap) {
+		int result = 0;
+		result = cartDao.cartDelete(pMap);
+		return result;
+	}
+
 }

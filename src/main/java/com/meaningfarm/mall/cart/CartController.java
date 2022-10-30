@@ -32,5 +32,12 @@ public class CartController {
 		return "cart/cart";
 
 	}
-
+	
+	@GetMapping("cartDelete.do")
+	public Object cartDelete(@RequestParam Map<String, Object> pMap) {
+		logger.info("boardDelete 호출 성공");
+		int result = 0;
+		result = cartService.cartDelete(pMap);
+		return "redirect:cartList.sp4";
+	}
 }

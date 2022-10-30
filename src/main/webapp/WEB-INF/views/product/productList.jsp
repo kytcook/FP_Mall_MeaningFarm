@@ -17,7 +17,7 @@
 		$(".card").dblclick(function() {
 			alert("상품눌리임");
 			let product_no = $(this).find(".PRODUCT_NO").text();
-			location = "productView.do?product_no="+product_no
+			location.href = "productView.do?product_no="+product_no
 		});
 	})
 </script>  

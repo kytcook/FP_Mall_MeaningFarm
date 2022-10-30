@@ -10,8 +10,15 @@
 			<if test="m_id != null">
 				AND c.m_id = #{m_id}
 			</if>
+			<if test="cart_no > 0">
+				AND c.cart_no = #{cart_no}
+			</if>
 		ORDER BY c.cart_no ASC
-		
 	</select> 
+
+	<delete id="cartDelete" parameterType="map">
+		delete from cart
+		where cart_no = #{cart_no}
+	</delete>
 
 </mapper>
