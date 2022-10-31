@@ -17,14 +17,12 @@ out.print(cartList);
 %>
 <body>
 	<%-- 반복문을 on/off 하는 기능 --%>
-	<c:set var="doneLoop" value="false"/>
 	<c:choose>
 		<%-- if 장바구니가 비어있으면 문구 출력 else 장바구니 리스트 출력 --%>
 		<c:when test="${cartList.size() == 0 and not doneLoop}">
 			장바구니가 비어있습니다.
 		</c:when>
 		<c:otherwise>
-		<c:set var="doneLoop" value="true"/>
 			<form id="f_cartIns" method="post" enctype="multipart/form-data"
 				action="./cartInsert.do">
 				<table class="table border">
@@ -40,11 +38,11 @@ out.print(cartList);
 						</tr>
 					</thead>
 					<c:set var="total" value="0" />
-					<c:forEach var="row" items="${cartList}">
+					<c:forEach var="row" items="${cartList}" varStatus="status">
 						<c:set var="rowSum" value="0" />
 						<tr>
 							<!-- 상품체크박스 -->
-							<td><input class="form-check-input" type="checkbox" name="cb_cartProduct" value="${row.cart_no}" /></td>
+							<td><input class="form-check-input" type="checkbox" name="cb_cartProduct" value="${row.CART_NO}" /></td>
 							<!-- 상품그림 -->
 							<td>이미지.img</td>
 							<!-- 상품이름 -->
@@ -76,8 +74,9 @@ out.print(cartList);
 	<button type="button" value="selectDelete" class="btn btn-dark" onclick="remove()">삭제</button>
 	<button type="button" id="btnList">상품목록</button>
 	</div>
-	<script type="text/javascript">
-
+	
+	
+<script type="text/javascript">
 // 상품목록 페이지로 이동
 $(document).ready(function(){
 	$("#btnList").click(function(){
@@ -85,9 +84,10 @@ $(document).ready(function(){
 	});
 });
 
-/*--------------- 체크박스 선택 삭제 ---------------*/
+/*------------------------- 체크박스 -------------------------*/
 //체크박스 선택       
 $(document).ready(function(){
+	// 체크박스의 name을 가져와서 체크박스와 체크된 박스 개수만큼 dom을 구성
 	let cb_cartProduct = document.getElementsByName("cb_cartProduct");
 	let cb_cartProduct_cnt = cb_cartProduct.length;
 		
@@ -98,6 +98,8 @@ $(document).ready(function(){
 			chk_listArr[i].checked = this.checked;
 		}
 	});
+	
+	// 체크박스가 만약 모두 클릭됐다면 전체체크박스 활성화/비활성화
 	$("input[name='cb_cartProduct']").click(function(){
 		console.log("클릭됐슴다");
 		if($("input[name='cb_cartProduct']:checked").length == cb_cartProduct_cnt){
@@ -108,20 +110,24 @@ $(document).ready(function(){
 		}
 	});
 });
+/*------------------------- 체크박스 -------------------------*/
 
-// 장바구니 상품 삭제
+/*--------------------- 장바구니 상품 삭제 ----------------------*/
+// 삭제버튼 클릭 이벤트
 function remove() {
+	// 장바구니상품 체크박스에 쿼리를 모두 담아옴
 	let obj = document.querySelectorAll("input[name='cb_cartProduct']"); //체크 박스 -> class가 check
+	console.log(obj);
 	let noList = new Array();
 	for (let i = 0; i< obj.length; i++) {
-		if (obj[i].checked == true) {
+		if (obj[i].checked) {
 			noList.push(obj[i].value);
 			console.log(noList);
 		}
 	}
 	$.ajax({
-        url: 'cartDelete.do',
 		type: 'POST',
+        url: 'cartDelete.do',
 		traditional: true,
 		dataType: 'text',
 		data: {
@@ -130,11 +136,11 @@ function remove() {
 	}).done(function(res) {
 		location.reload();
 		})
-	.fail(function (error) {
-		console.log(JSON.stringify(error));
+	  .fail(function (error) {
+		console.log("에러발생:" + JSON.stringify(error));
 	})
 }
-
+/*--------------------- 장바구니 상품 삭제 ----------------------*/
 </script>
 </body>
 </html>

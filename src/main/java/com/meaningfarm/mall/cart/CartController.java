@@ -47,12 +47,12 @@ public class CartController {
 //	}
 	
 	@PostMapping("/cartDelete.do")
-	public String cartDelete(@RequestParam(value="cartProduct_nos", required=false) String cart_nos, Model model) {
-		String a = cart_nos;
+	public String cartDelete(@RequestParam(value="cartProduct_nos", required=false) String cartProduct_nos, Model model) {
+		String a = cartProduct_nos;
 		logger.info(a);
 		logger.info("carDelete 호출 성공");
 		List<String> cartProductchk = null;
-		cartProductchk = new ArrayList<String>(Arrays.asList(cart_nos.split(",")));
+		cartProductchk = new ArrayList<String>(Arrays.asList(cartProduct_nos.split(",")));
 		for(String cart_no : cartProductchk) {
 			cartService.cartDelete(Integer.parseInt(cart_no));
 			logger.info(cart_no);
