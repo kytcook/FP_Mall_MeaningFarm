@@ -5,22 +5,7 @@
 <%@include file="../layout/head.jsp"%>
 <!--========= 헤드 =========-->
 
-<script>
-// $(document).ready(function(){
-// 	// 상품 한번 클릭시 상품번호 출력 : 나중에 페이지이동을 한번 클릭으로 옮기고 더블클릭 삭제할것.
-// 	$(".productDelete").click(function() {
-// 		let product_no = $(this).find(".CART_NO").text();
-// 		console.log(product_no);
-// 	});
-	
-	// 상품 두 번 클릭시 페이지 이동
-// 	$(".productDelet").dblclick(function() {
-// 		alert("상품눌리임");
-// 		let product_no = $(this).find(".CART_NO").text();
-// 		location.href = "cartDelete.do?cart_no="+cart_no
-// 	});
-// })
-</script>
+
 
 <%
 /////////////////////////////////////////////////////
@@ -28,27 +13,30 @@ List<Map<String, Object>> cartList = (List<Map<String, Object>>) request.getAttr
 /* 데이터를 가져오는지 화면에서 확인해봅시다. */
 int size = cartList.size();
 out.print(size);
+out.print(cartList);
 %>
 <body>
+	<%-- 반복문을 on/off 하는 기능 --%>
+	<c:set var="doneLoop" value="false"/>
 	<c:choose>
-		<!-- if 장바구니가 비어있으면 문구 출력 else 장바구니 리스트 출력 -->
-		<c:when test="${cartList.size() == 0}">
-			장바구니 페이지입니다.
+		<%-- if 장바구니가 비어있으면 문구 출력 else 장바구니 리스트 출력 --%>
+		<c:when test="${cartList.size() == 0 and not doneLoop}">
+			장바구니가 비어있습니다.
 		</c:when>
 		<c:otherwise>
+		<c:set var="doneLoop" value="true"/>
 			<form id="f_cartIns" method="post" enctype="multipart/form-data"
 				action="./cartInsert.do">
 				<table class="table border">
 					<thead>
 						<tr>
-							<th><input type="checkbox" /></th>
+							<td><input class="form-check-input" type="checkbox" name="cb_cartProduct_all" value="${row.cart_no}" /></td>
 							<th>이미지</th>
 							<th>상품이름</th>
 							<th>상품금액</th>
 							<th>수량</th>
 							<th>총 금액</th>
 							<th>배송비</th>
-							<th>취 소</th>
 						</tr>
 					</thead>
 					<c:set var="total" value="0" />
@@ -56,13 +44,13 @@ out.print(size);
 						<c:set var="rowSum" value="0" />
 						<tr>
 							<!-- 상품체크박스 -->
-							<td><input type="checkbox" /></td>
+							<td><input class="form-check-input" type="checkbox" name="cb_cartProduct" value="${row.cart_no}" /></td>
 							<!-- 상품그림 -->
 							<td>이미지.img</td>
 							<!-- 상품이름 -->
 							<td>${row.PRODUCT_NAME}</td>
 							<!-- 상품가격 -->
-							<td>${row.PRODUCT_PRICE}</td>
+							<td><fmt:formatNumber value="${row.PRODUCT_PRICE}"/></td>
 							<!-- 입력수량 -->
 							<td><input style="width: 55px" type="number" min="1"
 								max="99" value="${row.CART_AMOUNT}" /></td>
@@ -72,10 +60,6 @@ out.print(size);
 							<td><fmt:formatNumber value="${rowSum}" /></td>
 							<!-- 배송비 -->
 							<td><fmt:formatNumber value="${row.PRODUCT_DLVYFEE}" /></td>
-							<!-- 삭제 -->
-							<td class="productDelete">
-								<a href="cartDelete.do?cart_no=${row.CART_NO}"></a>삭제
-							</td>
 							<!-- 총 합계 : 총 상품합계 + 배송비 -->
 							<c:set var="total"
 								value="${total + rowSum + row.PRODUCT_DLVYFEE}" />
@@ -88,5 +72,69 @@ out.print(size);
 			</form>
 		</c:otherwise>
 	</c:choose>
+	<div>
+	<button type="button" value="selectDelete" class="btn btn-dark" onclick="remove()">삭제</button>
+	<button type="button" id="btnList">상품목록</button>
+	</div>
+	<script type="text/javascript">
+
+// 상품목록 페이지로 이동
+$(document).ready(function(){
+	$("#btnList").click(function(){
+		location.href="${path}/product/productList.do"
+	});
+});
+
+/*--------------- 체크박스 선택 삭제 ---------------*/
+//체크박스 선택       
+$(document).ready(function(){
+	let cb_cartProduct = document.getElementsByName("cb_cartProduct");
+	let cb_cartProduct_cnt = cb_cartProduct.length;
+		
+	// 전체선택 : cb_cartProduct 이름을 가진 체크박스의 개수 만큼 반복하여 전체 체크박스 선택
+	$("input[name='cb_cartProduct_all']").click(function(){
+		let chk_listArr = $("input[name='cb_cartProduct']");
+		for (var i=0; i<chk_listArr.length; i++){
+			chk_listArr[i].checked = this.checked;
+		}
+	});
+	$("input[name='cb_cartProduct']").click(function(){
+		console.log("클릭됐슴다");
+		if($("input[name='cb_cartProduct']:checked").length == cb_cartProduct_cnt){
+			$("input[name='cb_cartProduct_all']")[0].checked = true;
+		}
+		else{
+			$("input[name='cb_cartProduct_all']")[0].checked = false;
+		}
+	});
+});
+
+// 장바구니 상품 삭제
+function remove() {
+	let obj = document.querySelectorAll("input[name='cb_cartProduct']"); //체크 박스 -> class가 check
+	let noList = new Array();
+	for (let i = 0; i< obj.length; i++) {
+		if (obj[i].checked == true) {
+			noList.push(obj[i].value);
+			console.log(noList);
+		}
+	}
+	$.ajax({
+        url: 'cartDelete.do',
+		type: 'POST',
+		traditional: true,
+		dataType: 'text',
+		data: {
+            'cartProduct_nos': noList
+		},
+	}).done(function(res) {
+		location.reload();
+		})
+	.fail(function (error) {
+		console.log(JSON.stringify(error));
+	})
+}
+
+</script>
 </body>
 </html>

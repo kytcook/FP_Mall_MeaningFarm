@@ -156,23 +156,6 @@
 
       <!--================ 페이지네이션 ================-->
       <footer class="container">
-<!--           <ul class="pagination justify-content-center"> -->
-<!--             <li class="page-item"> -->
-<!--               <a class="page-link" href="#" aria-label="Previous"> -->
-<!--                 <span aria-hidden="true">&laquo;</span> -->
-<!--               </a> -->
-<!--             </li> -->
-<!--             <li class="page-item active" aria-current="page"><a class="page-link bg-success" href="#">1</a></li> -->
-<!--             <li class="page-item"><a class="page-link" href="#">2</a></li> -->
-<!--             <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!--             <li class="page-item"> -->
-<!--               <a class="page-link" href="#" aria-label="Next"> -->
-<!--                 <span aria-hidden="true">&raquo;</span> -->
-<!--               </a> -->
-<!--             </li> -->
-<!--           </ul> -->
-		<!-- 페이지 네이션 추가 시작 -->
-<!-- 			<div style="display:table-cell;vertical-align:middle; width:300px; background:#efefef; height:30; border:1px solid #ccc;"> -->
 			<div class="pagination justify-content-center">
 		<%
 			String pagePath = "productList.do";

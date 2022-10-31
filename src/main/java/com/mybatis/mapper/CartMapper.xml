@@ -16,7 +16,7 @@
 		ORDER BY c.cart_no ASC
 	</select> 
 
-	<delete id="cartDelete" parameterType="map">
+	<delete id="cartDelete" parameterType="int">
 		delete from cart
 		where cart_no = #{cart_no}
 	</delete>
