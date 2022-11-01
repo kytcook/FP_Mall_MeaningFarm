@@ -330,3 +330,4 @@
       <!--=== 배송관련 끝 ===-->
     </section>
     <!--========================== 상품정보탭 ==========================-->
+<script src="${path}/js/productViewSub.js" type="text/javascript"></script>

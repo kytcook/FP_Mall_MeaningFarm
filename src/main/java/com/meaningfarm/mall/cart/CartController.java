@@ -51,7 +51,7 @@ public class CartController {
 //	return "redirect:cart/cart";
 //		
 //	}
-	public String cartAdd(@RequestParam(value="ajax url넣어주기", required=false) String product_no) {
+	public String cartAdd(@RequestParam(value="cartAdd.do", required=false) String product_no) {
 		// 로그인 체크
 //		HttpSession session = request.getSession();
 //		MemberVO mvo = (MemberVO)session.getAttribute("member");
