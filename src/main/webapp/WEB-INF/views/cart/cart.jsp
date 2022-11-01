@@ -16,7 +16,6 @@ out.print(size);
 out.print(cartList);
 %>
 <body>
-	<%-- 반복문을 on/off 하는 기능 --%>
 	<c:choose>
 		<%-- if 장바구니가 비어있으면 문구 출력 else 장바구니 리스트 출력 --%>
 		<c:when test="${cartList.size() == 0 and not doneLoop}">

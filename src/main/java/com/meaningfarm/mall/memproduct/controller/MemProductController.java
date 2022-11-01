@@ -23,9 +23,10 @@ public class MemProductController {
 	Logger logger = LoggerFactory.getLogger(MemProductController.class);
 	@Autowired(required = false)
 	private MemProductService productService = null;
-	
-	// 상품리스트
-	//	http://localhost/mall/product/productList.do
+
+/////////////////////////////////////////////////////////////////////
+	/*-------------------------- 상품 목록 --------------------------*/
+	/* localhost/mall/product/productList.do */
 	@GetMapping("productList.do")
 	public String productList(Model model,@RequestParam Map<String, Object> pMap) {
 		logger.info("productList 호출 성공");
@@ -35,10 +36,9 @@ public class MemProductController {
 		return "product/productList";
 	}
 	
-	
-	
-	// 상품보기
-	// http://localhost/mall/product/productView.do
+/////////////////////////////////////////////////////////////////////
+	/*-------------------------- 상품 보기 --------------------------*/	
+	/* localhost/mall/product/productView.do	*/
 	@GetMapping("productView.do")
 	public String productView(Model model
 							,@RequestParam Map<String, Object> pMap
@@ -49,6 +49,7 @@ public class MemProductController {
 		logger.info("productList를 잡았다! : "+productList.toString());
 		model.addAttribute("productView", productList);
 		return "product/productView";
-		
 	}
-}
+
+/////////////////////////////////////////////////////////////////////
+}//end of MemProductController.class

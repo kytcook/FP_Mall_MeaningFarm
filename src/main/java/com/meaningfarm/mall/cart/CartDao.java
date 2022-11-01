@@ -20,7 +20,8 @@ public class CartDao {
 	@Autowired(required = false)
 	private SqlSessionTemplate sql = null;
 
-	// 장바구니 전체 리스트
+///////////////////////////////////////////////////////////////////////////
+	/*---------------------------- 장바구니 목록 ----------------------------*/
 	public List<Map<String, Object>> cartList(Map<String, Object> pMap) {
 		logger.info("cartList 호출 성공");
 		List<Map<String, Object>> cartList = null;
@@ -35,16 +36,8 @@ public class CartDao {
 
 	}
 
-//	public int cartDelete(Map<String, Object> pMap) {
-//	      int result = 0;
-//	      try {
-//	         result = sql.delete("cartDelete",pMap);
-//	         logger.info("result: "+ result);
-//	      } catch (Exception e) {
-//	         logger.info("Exception : " + e.toString());
-//	      }
-//	      return result;
-//	}
+///////////////////////////////////////////////////////////////////////////
+	/*---------------------------- 장바구니 삭제 ----------------------------*/
 	public int cartDelete(int cart_no) {
 		int result = 0;
 		try {
@@ -54,6 +47,18 @@ public class CartDao {
 			logger.info("Exception : " + e.toString());
 		}
 		return result;
+	}
+
+///////////////////////////////////////////////////////////////////////////
+	/*-------------------------- 장바구니 번호채번 ---------------------------*/
+	public int cartNo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int cartAdd(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

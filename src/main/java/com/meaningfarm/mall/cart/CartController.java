@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,10 @@ public class CartController {
 
 	@Autowired(required = false)
 	private CartService cartService = null;
-
-	// 장바구니 목록
-	// http://localhost/mall/product/cart.do
+	
+///////////////////////////////////////////////////////////////////////////
+	/*---------------------------- 장바구니 목록 ----------------------------*/
+	/* localhost/mall/product/cart.do */
 	@GetMapping("cartList.do")
 	public String cartList(Model model, @RequestParam Map<String, Object> pMap) {
 		logger.info("carList 호출 성공");
@@ -34,19 +37,35 @@ public class CartController {
 		cartList = cartService.cartList(pMap);
 		model.addAttribute("cartList", cartList);
 		return "cart/cart";
-
 	}
 	
-	// 장바구니 삭제
-//	@GetMapping("cartDelete.do")
-//	public Object cartDelete(@RequestParam Map<String, Object> pMap) {
-//		logger.info("boardDelete 호출 성공");
-//		int result = 0;
-//		result = cartService.cartDelete(pMap);
-//		return "redirect:cartList.do";
+///////////////////////////////////////////////////////////////////////////
+	/*---------------------------- 장바구니 추가 ----------------------------*/
+	@GetMapping("cartAdd.do")
+	// 강사님 코드 진행중
+//	public String cartAdd(@RequestParam Map<String, Object> pMap) {
+//	// 세션에서 유저 id받아오기
+////	String userId = (String) session.getAttribute("userId");
+//	int result = 0;
+//	result = cartService.cartAdd(pMap);
+//	return "redirect:cart/cart";
+//		
 //	}
-	
-	@PostMapping("/cartDelete.do")
+	public String cartAdd(@RequestParam(value="ajax url넣어주기", required=false) String product_no) {
+		// 로그인 체크
+//		HttpSession session = request.getSession();
+//		MemberVO mvo = (MemberVO)session.getAttribute("member");
+//		if(mvo == null) {
+//			return "5";
+//		}
+		int result = cartService.cartAdd(value값);
+		
+		return result + ""; // 반환타입을 String 으로 변환
+	}
+
+///////////////////////////////////////////////////////////////////////////	
+	/*---------------------------- 장바구니 삭제 ----------------------------*/
+	@PostMapping("cartDelete.do")
 	public String cartDelete(@RequestParam(value="cartProduct_nos", required=false) String cartProduct_nos, Model model) {
 		String a = cartProduct_nos;
 		logger.info(a);
@@ -59,15 +78,6 @@ public class CartController {
 		}
 		return "redirect:cartList.do";
 	}
-//	@PostMapping("/cartDelete.do")
-//	public String cartDelete(@RequestParam Map<String, Object> pMap, Model model) {
-//		logger.info("carDelete 호출 성공");
-//		List<Map<String, Object>> cartProductchk = null;
-//		cartProductchk = new List<String,Object>(Arrays.asList(pMap.split(",")));
-//		logger.info(cartProductchk.toString());
-//		for(Map<String, Object> pMap : cartProductchk) {
-//			cartService.cartDelete(Integer.parseInt(pMap.getString("")));
-//		}
-//		return "redirect:cartList.do";
-//	}
-}
+
+///////////////////////////////////////////////////////////////////////////	
+}// end of CartController.class

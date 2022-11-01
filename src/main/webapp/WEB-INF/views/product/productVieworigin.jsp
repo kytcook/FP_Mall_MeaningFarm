@@ -49,28 +49,26 @@
       <header class="container">
         <div class=" mb-3 container-fluid" style="max-width: 1000px;">
           <div class="row g-0">
-          <!-- jstl foreach 시작 -->
-          <c:forEach var="p" items="${productView}" >
             <div class="col-6 text-center align-self-center">
             <!-- jsp에 이미지를 넣기 위해 ${pageContext.request.contextPath}를 사용 
            		 참조 : https://byul91oh.tistory.com/m/203 -->
-              <img src="${path}/resources/images/이미지준비중_1.jpg" class="img-fluid rounded-start" alt="이미지를 불러오지 못 하고 있습니다.">
+              <img src="{path}/resources/images/이미지준비중_1.jpg" class="img-fluid rounded-start" alt="이미지를 불러오지 못 하고 있습니다.">
             </div>
             <div class="col-6 ps-3">
               <div>
-                <h3><b>${p.PRODUCT_NAME}</b></h3><!-- 상품명 -->
+                <h3><b><%=p_name%></b></h3><!-- 상품명 -->
                 <hr />
               </div>
                 <table>
                   <caption>기본 정보</caption>
                   <tbody>
                     <tr>
-                      <th><b>판매가</b></th>
-                      <td><b>${p.PRODUCT_PRICE} 원 </b></td>
+                      <th><b>판매가</th>
+                      <td><%=p_price%>원 </b></td>
                     </tr>
                      <tr>
                    		<td>ㅁㄴㅇ</td>
-                   		<fmt:formatNumber value="${product.PORDUCT_PRICE}" pattern="###,###,###"/>
+                   		<fmt:formatNumber value="${produceView.PORDUCE_PRICE}" pattern="###,###,###"/>
                      </tr>
                   </tbody>
                 </table>
@@ -94,16 +92,12 @@
                     </thead>
                     <tbody class="text">
                       <tr>
-                        <td>${p.PRODUCT_NAME} (30개)</td>
+                        <td><%=p_name %>(30개)</td>
                         <td> 
-                          <input class="amount_input" type="text" style="width:55px" value="1" >개<!-- 상품수량 입력 -->
-                          <span>
-                          	<button class="plus_btn">+</button>
-                          	<button class="minus_btn">-</button>
-                          </span>
+                          <input class="productCount" style="width:55px" type="number" min="1" max="99" value="1" >개<!-- 상품수량 입력 -->
                         </td>
                         <td class="right">
-                          ${p.PRODUCT_PRICE} 원
+                          <%=p_price%> 원
                         </td>
                       </tr>
                     </tbody>
@@ -133,8 +127,6 @@
                   </small></p>
                 </div>
             </div>
-            </c:forEach>
-            <!-- jstl foreach 끝 -->
           </div>
         </div>
       </header>
@@ -150,5 +142,10 @@
   
 <!-- productContents.js 추가 -->    
 <script src="${path}/js/productView.js" type="text/javascript"></script>
+<script>
+	$('#cartInsert').bind('click', function(){
+		alert("으아아");
+	})
+</script>	
 </body>
 </html>
