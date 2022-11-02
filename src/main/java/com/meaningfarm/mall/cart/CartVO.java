@@ -4,14 +4,14 @@ import lombok.Data;
 
 @Data
 public class CartVO {
-	int cart_no 		= 0;
-	int cart_date 		= 0;
-	int cart_amount 	= 0;
-	int product_price	= 0;
-	int product_no		= 0;
-	String m_id 		= null;
-	String product_name	= null;
-	String prudct_img	= null;
-	int product_dlvyfee = 0;
+	private int cart_no 		= 0;
+	private int cart_date 		= 0;
+	private int cart_amount 	= 0;
+	private int product_price	= 0;
+	private int product_no		= 0;
+	private String m_id 		= null;
+	private String product_name	= null;
+	private String prudct_img	= null;
+	private int product_dlvyfee = 0;
 	
 }
