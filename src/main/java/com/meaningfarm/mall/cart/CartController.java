@@ -51,14 +51,14 @@ public class CartController {
 //	return "redirect:cart/cart";
 //		
 //	}
-	public String cartAdd(@RequestParam(value="cartAdd.do", required=false) String product_no) {
+	public String cartAdd(@RequestParam(value="cartAdd.do", required=false) CartVO cartVO) {
 		// 로그인 체크
 //		HttpSession session = request.getSession();
 //		MemberVO mvo = (MemberVO)session.getAttribute("member");
 //		if(mvo == null) {
 //			return "5";
 //		}
-		int result = cartService.cartAdd(value값);
+		int result = cartService.cartAdd(cartVO);
 		
 		return result + ""; // 반환타입을 String 으로 변환
 	}

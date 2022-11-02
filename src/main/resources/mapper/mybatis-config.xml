@@ -14,7 +14,9 @@
 
  	<typeAliases>
 		<typeAlias alias="productVO" type="com.meaningfarm.mall.product.ProductVO" />
+		<typeAlias alias="CartVO" type="com.meaningfarm.mall.cart.CartVO" />
 	</typeAliases> 
+	
 	<mappers>
 		<mapper resource="com/meaningfarm/mapper/product.xml" />
 		<mapper resource="com/meaningfarm/mapper/option.xml" />

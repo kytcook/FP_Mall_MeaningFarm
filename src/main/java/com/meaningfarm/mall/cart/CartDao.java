@@ -51,12 +51,14 @@ public class CartDao {
 
 ///////////////////////////////////////////////////////////////////////////
 	/*-------------------------- 장바구니 번호채번 ---------------------------*/
-	public int cartNo() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+//	public int cartNo() {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
-	public int cartAdd(Map<String, Object> pMap) {
+///////////////////////////////////////////////////////////////////////////
+	/*--------------------------- 장바구니 추가 -----------------------------*/
+	public int cartAdd(CartVO cartVO) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -11,21 +11,16 @@
 		  	  	member m, cart c, product p
 		 WHERE 
 		 		m.m_id = c.m_id AND c.product_no = p.product_no
-			<if test="m_id != null">
 				AND c.m_id = #{m_id}
-			</if>
-			<if test="cart_no > 0">
-				AND c.cart_no = #{cart_no}
-			</if>
 		ORDER BY c.cart_no ASC
 	</select> 
 	
 	<!-- 02. 장바구니 추가 -->
-	<insert id="cartAdd" parameterType="map">
+	<insert id="cartAdd" parameterType="com.meaningfarm.mall.cart.CartVO">
 		INSERT INTO cart (
-		            cart_no,cart_amount,cart_date,m_id,product_no
+		            cart_no,cart_amount,m_id,product_no
 		        ) VALUES (
-		            seq_cart_no.NEXTVAL,#{cart_amount},to_char(sysdate,'YYYY-MM-DD'),'무직의맛' ,#{product_no}
+		            seq_cart_no.NEXTVAL,#{cart_amount},to_char(sysdate,'YYYY-MM-DD'),#{m_id},#{product_no}
 		        );
 	</insert>
 

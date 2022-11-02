@@ -27,7 +27,7 @@ public class CartService {
 	
 ///////////////////////////////////////////////////////////////////////////
 	/*---------------------------- 장바구니 추가 ----------------------------*/
-	public int cartAdd(Map<String, Object> pMap) {
+	public int cartAdd(CartVO cartVO) {
 		// 강사님코드 진행중
 //		logger.info("cartInsert 호출 성공");
 //		int result = 0;
@@ -46,7 +46,7 @@ public class CartService {
 //			return 2;
 //		}
 		try {
-			return cartDao.cartAdd(pMap);
+			return cartDao.cartAdd(cartVO);
 		} catch (Exception e) {
 			return 0;// 실패시 0 반환
 		}
