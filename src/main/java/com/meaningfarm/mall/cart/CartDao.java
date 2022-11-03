@@ -34,7 +34,7 @@ public class CartDao {
 		}
 		return cartList;
 
-	}
+	}// end of cartList.method
 
 ///////////////////////////////////////////////////////////////////////////
 	/*---------------------------- 장바구니 삭제 ----------------------------*/
@@ -47,7 +47,7 @@ public class CartDao {
 			logger.info("Exception : " + e.toString());
 		}
 		return result;
-	}
+	}// end of cartDelete.method
 
 ///////////////////////////////////////////////////////////////////////////
 	/*-------------------------- 장바구니 번호채번 ---------------------------*/
@@ -59,8 +59,33 @@ public class CartDao {
 ///////////////////////////////////////////////////////////////////////////
 	/*--------------------------- 장바구니 추가 -----------------------------*/
 	public int cartAdd(CartVO cartVO) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		logger.info("cartInsert 호출 성공");
+		int result = 0;
+		try {// 등록
+			result = sql.insert("cartAdd",cartVO);
+			logger.info("등록성공 : "+ result);
+		} catch (Exception e) {
+			logger.info("등록실패 : " + e.toString());
+		}
+		return result;
 
-}
+	}// end of cartAdd.method
+
+///////////////////////////////////////////////////////////////////////////
+	/*--------------------------- 장바구니 확인 -----------------------------*/
+	public int cartCheck(CartVO cartVO) {// 회원정보와 상품 정보를 넘겨 해당하는 row가 있나 확인
+		logger.info("cartCheck 호출 성공");
+		// 장바구니 데이터 체크
+		int cartCheck = 1;
+		try {
+			cartCheck = sql.selectOne("cartCheck",cartVO);
+			logger.info("result : "+ cartCheck);
+		} catch (Exception e) {
+			logger.info("Exception(데이터 중복검사 실패) : " + e.toString());
+		}
+		return cartCheck;
+
+	}// end of cartCheck.method
+	
+
+}// end of CartDao.class

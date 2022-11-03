@@ -74,6 +74,18 @@ out.print(cartList);
 	<button type="button" id="btnList">상품목록</button>
 	</div>
 	
+	<form id="test" method="Get" enctype="multipart/form-data" action="./cartAdd">
+	    <input type="hidden" id="cart_amount" name="cart_amount" value=3>
+	    <input type="hidden" id="m_id" name="m_id" value="야호랑">
+	    <input type="hidden" id="product_no" name="product_no" value=3>
+	</form>
+	<a href="javascript:test()" class="easyui-linkbutton">저장</a>
+	
+	<script>
+	function test(){
+		$("#test").submit();
+	}
+	</script>
 	
 <script type="text/javascript">
 // 상품목록 페이지로 이동

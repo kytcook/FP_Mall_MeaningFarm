@@ -19,7 +19,8 @@ public class MemProductDao {
 	@Autowired(required = false)
 	private SqlSessionTemplate sql = null;
 
-	// 상품리스트 | 상품보기
+/////////////////////////////////////////////////////////////////////
+	/*----------------------- 상품목록 | 상품보기 ----------------------*/	
 	public List<Map<String, Object>> productList(Map<String, Object> pMap) {
 		logger.info("productList 호출 성공");
 		List<Map<String, Object>> productList = null;

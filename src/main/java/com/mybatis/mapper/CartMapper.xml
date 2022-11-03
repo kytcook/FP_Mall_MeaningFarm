@@ -18,16 +18,23 @@
 	<!-- 02. 장바구니 추가 -->
 	<insert id="cartAdd" parameterType="com.meaningfarm.mall.cart.CartVO">
 		INSERT INTO cart (
-		            cart_no,cart_amount,m_id,product_no
+		            cart_no,cart_amount,cart_date,m_id,product_no
 		        ) VALUES (
 		            seq_cart_no.NEXTVAL,#{cart_amount},to_char(sysdate,'YYYY-MM-DD'),#{m_id},#{product_no}
-		        );
+		        )
 	</insert>
 
 	<!-- 03. 장바구니 삭제 -->
 	<delete id="cartDelete" parameterType="int">
-		delete from cart
-			  where cart_no = #{cart_no}
+		DELETE from cart
+		 WHERE cart_no = #{cart_no}
 	</delete>
+	
+	<!-- 04. 장바구니 확인 -->
+	<select id="cartCheck" parameterType="com.meaningfarm.mall.cart.CartVO" resultType="int">
+		SELECT * from cart 
+		 WHERE m_id = #{m_id} AND product_no = #{product_no}
+		 		
+	</select>
 
 </mapper>

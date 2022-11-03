@@ -16,7 +16,8 @@ public class MemProductService {
 	@Autowired(required=false)
 	private MemProductDao productDao = null;
 	
-	// 상품리스트
+/////////////////////////////////////////////////////////////////////
+	/*-------------------------- 상품 목록 --------------------------*/
 	public List<Map<String, Object>> productList(Map<String, Object> pMap) {
 		logger.info("boardList 호출 성공"); // 최종에는 삭제
 		List<Map<String,Object>> productList = null;
@@ -24,7 +25,8 @@ public class MemProductService {
 		return productList;
 	}
 	
-	// 상품상세보기
+/////////////////////////////////////////////////////////////////////
+	/*-------------------------- 상품 보기 --------------------------*/	
 	public List<Map<String, Object>> productView(Map<String, Object> pMap) {
 		logger.info("boardList 호출 성공"); // 최종에는 삭제
 		List<Map<String,Object>> productList = null;
