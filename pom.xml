@@ -22,8 +22,24 @@
       </repositories>
       
 
-   <dependencies>
+	<dependencies>
 		
+
+   
+	  <!-- 김민지 : 10.26 -->
+      <dependency>
+          <groupId>net.sf.json-lib</groupId>
+          <artifactId>json-lib</artifactId>
+          <version>2.4</version>
+          <classifier>jdk15</classifier>
+      </dependency>
+   	  <!-- 파일 업로드 관련 디펜던시 입니다. : 김민지  -->
+	   <dependency>
+	         <groupId>commons-fileupload</groupId>
+	         <artifactId>commons-fileupload</artifactId>
+	         <version>1.4</version>
+	      </dependency>
+
       <!-- TOMCAT -->
       <dependency>
           <groupId>org.apache.tomcat</groupId>
@@ -195,7 +211,7 @@
                <artifactId>jmxri</artifactId>
             </exclusion>
          </exclusions>
-         <scope>runtime</scope>
+         <!-- <scope>runtime</scope> -->
       </dependency>
 
       <!-- @Inject -->
@@ -205,7 +221,7 @@
          <version>1</version>
       </dependency>
             
-      <!-- Servlet -->
+      <!-- servlet -->
       <dependency>
          <groupId>javax.servlet</groupId>
          <artifactId>servlet-api</artifactId>

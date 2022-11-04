@@ -14,7 +14,10 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	<resources mapping="/css/**" location="/resources/css/" />
+	<resources mapping="/js/**" location="/resources/js/" />
+	
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -22,12 +25,35 @@
 	</beans:bean>
 
 
+
+
+
+
+	
+
+	
+	<!-- 파일 -->
+	<beans:bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760" />	
+	</beans:bean>
+	
 	<context:component-scan base-package="com.meaningfarm.mall" />
-	<context:component-scan base-package="com.meaningfarm.mall.recipe.controller" />
-	
+	<context:component-scan base-package="com.meaningfarm.mall.notice.controller" />
+	<context:component-scan base-package="com.meaningfarm.mall.memproduct.controller" />
+	<context:component-scan base-package="com.meaningfarm.mall.cart.controller" />
+	<context:component-scan base-package="com.meaningfarm.mall.recipe.controller" />	
 	<context:component-scan base-package="com.vo" /> 
-
-
 	
+	<!-- 인터셉터 -->
+<!-- 	<interceptors> -->
+		<!-- 장바구니 인터셉터 -->
+<!-- 		<interceptor> -->
+<!-- 		<mapping path="/cart/**"/> -->
+<!-- 		<exclude-mapping path="/cart/add"/> -->
+<!-- 		<beans:bean id="CartIntreceptor" class="com.meaningfarm.mall.interceptor.CartInterceptor"></beans:bean> -->
+<!-- 		</interceptor> -->
+<!-- 	</interceptors> -->
+
 	
 </beans:beans>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meaningfarm.mapper.OptionMapper">
+<select id="optionSelectAll" resultType="com.meaningfarm.mall.product.OptionVO">
+	select * from p_option
+	order by option_no asc
+<!-- 	select option_name, option_value, option_price, option_stock from p_option -->
+</select>
+<select id="optionSelectOne" parameterType="int" resultType="com.meaningfarm.mall.product.OptionVO">
+	select * from p_option
+	where option_no = #{option_no}
+</select>
+<insert id="optionInsert">
+	insert into p_option
+	values(#{option_no}, #{option_name}, #{option_value}, #{option_stock}, #{option_price})
+</insert>
+<update id="optionUpdate">
+	update p_option
+	   set option_name = #{option_name},
+		   option_value = #{option_value},
+		   option_stock = #{option_stock},
+		   option_price = #{option_price}
+	 where option_no = #{option_no}
+</update>
+<delete id="optionDelete" parameterType="int">
+delete from p_option where option_no = #{option_no}
+</delete>
+</mapper>
