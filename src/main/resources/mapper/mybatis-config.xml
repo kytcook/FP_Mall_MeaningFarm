@@ -2,5 +2,14 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	<typeAliases>
+		<typeAlias alias="recipeVO" type="com.vo.RecipeVO"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/mybatis/mapper/recipeMapper.xml"/>
+		<mapper resource="com/mybatis/mapper/recipeReplyMapper.xml"/>
+	</mappers>
 </configuration>

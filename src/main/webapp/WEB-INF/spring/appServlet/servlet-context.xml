@@ -20,9 +20,14 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
+
 	<context:component-scan base-package="com.meaningfarm.mall" />
+	<context:component-scan base-package="com.meaningfarm.mall.recipe.controller" />
 	
+	<context:component-scan base-package="com.vo" /> 
+
+
 	
 	
 </beans:beans>
