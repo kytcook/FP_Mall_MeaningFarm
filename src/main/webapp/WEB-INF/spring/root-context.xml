@@ -31,7 +31,7 @@
          </property>
          
          <property name="jdbcUrl">
-            <value>jdbc:log4jdbc:oracle:thin:@127.0.0.1:1523:orcl11</value>
+            <value>jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:orcl11</value>
          </property>
          
          <property name="username">
