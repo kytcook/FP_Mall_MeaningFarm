@@ -5,17 +5,18 @@
 <mapper namespace="com.meaningfarm.mapper.ProductMapper">
 <select id="productSelectAll" resultType="com.meaningfarm.mall.product.ProductVO">
 	select * from product
+	order by product_no asc
 </select>
 <select id="productSelectOne" parameterType="int" resultType="com.meaningfarm.mall.product.ProductVO">
 	select product_no, product_name, product_price, product_detail,
-		   product_stock, product_img, product_dlvyfee, option_no, category_local_no, category_type_no
+		   product_stock, product_img, product_dlvyfee, option_no, category_local_no, category_type_no, m_id
 	from product
 	where product_no = #{product_no}
 </select>
 <insert id="productInsert">
 	insert into product
 	values(#{product_no}, #{product_name}, #{product_price}, #{product_detail},
-	 	   #{product_stock}, #{product_img}, #{product_dlvyfee}, #{option_no}, #{category_local_no}, #{category_type_no})
+	 	   #{product_stock}, #{product_img}, #{product_dlvyfee}, #{option_no}, #{category_local_no}, #{category_type_no}, #{m_id})
 </insert>
 <update id="productUpdate" parameterType="com.meaningfarm.mall.product.ProductVO">
 	update product
@@ -28,9 +29,15 @@
 		 , category_local_no = #{category_local_no}
 		 , category_type_no = #{category_type_no}
 		 , option_no = #{option_no}
+		 , m_id = #{m_id}
+	 where product_no = #{product_no}
 </update>
 <delete id="productDelete" parameterType="int">
 	delete from product
 	where product_no = #{product_no}
 </delete>
+<select id="selectCategoryType">
+	select category_type_no, category_type_name
+	from category_type
+</select>
 </mapper>

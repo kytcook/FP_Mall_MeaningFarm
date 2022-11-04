@@ -24,43 +24,75 @@ public class ProductDAO {
 	
 	public ProductVO productDetail(int product_no) {
 		logger.info("ProductDAO productDetail product_no " + product_no);
-//		ProductVO productDetail = 
 		return sst.selectOne("productSelectOne", product_no);
 	}
 	
 	public int productInsert(ProductVO productVO) {
+		logger.info("ProductDAO productInsert");
 		int result = 0;
 		result = sst.insert("productInsert", productVO);
 		logger.info("ProductDAO productInsert result " + result);
 		return result;
 	}
 	
-	public void productUpdate(ProductVO productVO) {
-		sst.update("productUpdate", productVO);
+	public int productUpdate(ProductVO productVO) {
+		logger.info("ProductDAO productUpdate " + productVO);
+		return sst.update("productUpdate", productVO);
 	}
 	
 	public void productDelete(int product_no) {
+		logger.info("ProductService productDelete " + product_no);
 		sst.delete("productDelete", product_no);
 	}
 	
-	public List<OptionVO> optionList() {
-		List<OptionVO> optionList = null;
-		optionList = sst.selectList("optionSelectAll");
-		logger.info("ProductDAO optionList " + optionList);
-		return optionList;
+	
+	
+	
+	public List<CategoryLocalVO> CLList() {
+		List<CategoryLocalVO> CLList = null;
+		CLList = sst.selectList("selectCategoryLocal");
+		return CLList;
 	}
 	
-//	public List<Map<String, Object>> optionList(Map<String, Object> optionListMap) {
-//		logger.info("ProductDAO optionList");
-//		List<Map<String, Object>> optionList = null;
-//		optionList = sst.selectList("optionSelectAll", optionListMap); // 여기 앞에는 xml name 적기
-//		return optionList;
-//	}
-
-	public int optionInsert(OptionVO optionVO) {
+	public List<CategoryTypeVO> CTList() {
+		List<CategoryTypeVO> CTList = null;
+		CTList = sst.selectList("selectCategoryType");
+		return CTList;
+		
+	}
+	
+	public List<ProductFileVO> productfileList(int product_no) {
+		logger.info("ProductDAO productfileList product_no " + product_no);
+		return sst.selectList("productfileList", product_no);
+//		return sst.selectOne("productfileList", product_no);
+	}
+	
+	public int productfileInsert(ProductFileVO productfileVO) {
+		logger.info("ProductDAO productfileInsert");
 		int result = 0;
-		result = sst.insert("optionInsert", optionVO);
-		logger.info("ProductDAO optionInsert result " + result);
+		result = sst.insert("productfileInsert", productfileVO);
+		logger.info("ProductDAO productfileInsert result " + result);
 		return result;
 	}
+
+	public void productfileDelete(int product_no) {
+		logger.info("ProductService productfileDelete " + product_no);
+		sst.delete("productfileDelete", product_no);
+	}
+	
+	public void productfileDeleteOne(int product_no) {
+		logger.info("ProductService productfileDeleteOne " + product_no);
+		sst.delete("productfileDeleteOne", product_no);
+	}
+	
+	// 게시물 목록 조회
+	public List<ProductVO> list(SearchVO searchVO) {
+		return sst.selectList("listPage", searchVO);
+	}
+	
+	// 게시물 총 갯수
+	public int listCount(SearchVO searchVO) {
+		return sst.selectOne("listCount", searchVO);
+	}
+	
 }

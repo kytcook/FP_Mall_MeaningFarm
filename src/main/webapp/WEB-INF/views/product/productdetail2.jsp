@@ -5,74 +5,55 @@
 <head>
 <meta charset="UTF-8">
 <title>detail</title>
-<%@ include file="../../../common/common.jsp" %>
 </head>
 <body>
-<style>
-.scontainer {
-	float: left;
-	margin-top: -40px;
-	margin-left: 100px;
-}
-#pdContainer {
-	width: 70%;
-	margin: 0 auto;
-	float: right;
-	margin-right: 120px;
-	margin-bottom: 50px;
-}
-#ffooter {
-	clear: both;
-}
-a {
-	text-decoration: none;
-	color: black;
-}
-table {
-	text-align: center;
-}
-</style>
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
-<%@ include file="../../../layout/sidebar.jsp" %>
-<div id="pdContainer">
+<%@ include file="../../../common/common.jsp" %>
+
 <h1>상품 상세</h1>
 <form action="/mall/product/productdetail?product_no=${productSelectOne.product_no}" method="post" id="f_product"> <br/>
-<input type="hidden" name="product_no" id="product_no" value="${productSelectOne.product_no}">
-<input type="text" class="form-control" name="product_name" value="${productSelectOne.product_name}" placeholder="상품명"> <br/>
-<select class="form-select" id="s_category_local_no" name="category_local_no" value="${productSelectOne.category_local_no}">
-	<option selected value="">카테고리-지역</option>
-</select><br/>
-<select class="form-select" id="s_category_type_no" name="category_type_no" value="${productSelectOne.category_type_no}">
-	<option selected value="">카테고리-종류</option>
-</select><br/>
-<input type="text" class="form-control" name="product_price" value="${productSelectOne.product_price}" placeholder="상품 가격"> <br/>
-<input type="text" class="form-control" name="product_stock"  value="${productSelectOne.product_stock}" placeholder="상품 재고"> <br/>
+<input type="hidden" name="product_no" value="${productSelectOne.product_no}">
+상품명 : <input type="text" name="product_name" value="${productSelectOne.product_name}"> <br/>
+카테고리(지역) :
+	<select id="s_category_local_no" name="category_local_no" value="${productSelectOne.category_local_no}">
+		<option selected value="">선택</option>
+	</select><br/>
+카테고리(종류) :
+	<select id="s_category_type_no" name="category_type_no" value="${productSelectOne.category_type_no}">
+		<option selected value="">선택</option>
+	</select><br/>
+
+판매가격 : <input type="text" name="product_price" value="${productSelectOne.product_price}"> <br/>
+재고 : <input type="text" name="product_stock"  value="${productSelectOne.product_stock}"> <br/>
+대표이미지 : 첨부파일 
 <div class="form_section">
+	<div class="form_section_title">
+		<label>상품 이미지</label>
+	</div>
 	<div class="form_section_content">
-		<input type="file" class="form-control" name="product_img" id="product_img" accept="image/*" multiple>
+		<input type="file" name="product_img" id="product_img" accept="image/*" multiple>
 		<div id="uploadResult">
+			<ul class="imgUL"></ul>
 		</div>
 	</div>
 </div>
 <br/>
-<input type="radio" class="form-check-input" name="dlvyfee_radio" value="dlvyfee_x"> 무료
-<input type="radio" class="form-check-input" name="dlvyfee_radio" value="dlvyfee_s"> 조건부 무료
-<input type="radio" class="form-check-input" name="dlvyfee_radio" value="dlvyfee_o"> 유료 <br/>
+배송비 :
+<input type="radio" name="dlvyfee_radio" value="dlvyfee_x"> 무료
+<input type="radio" name="dlvyfee_radio" value="dlvyfee_s"> 조건부 무료
+<input type="radio" name="dlvyfee_radio" value="dlvyfee_o"> 유료 <br/>
 <div id="tb_dlvyfee_s" style="display:none;">
-	배송비 조건 <input type="text" class="form-control" name="product_dlvylimit"  value="${productSelectOne.product_dlvylimit}"> 원 이상 무료 <br/>
-	기본 배송비 <input type="text" class="form-control" id="" name="product_dlvyfee" value="${productSelectOne.product_dlvyfee}"> 원
+	배송비 조건 <input type="text" name="product_dlvylimit"  value="${productSelectOne.product_dlvylimit}"> 원 이상 무료 <br/>
+	기본 배송비 <input type="text" id="" name="product_dlvyfee" value="${productSelectOne.product_dlvyfee}"> 원
 </div>
 <div id="tb_dlvyfee_o" style="display:none;">
-	기본 배송비 <input type="text" class="form-control" id="" name="product_dlvyfee" value="${productSelectOne.product_dlvyfee}"> 원
+	기본 배송비 <input type="text" id="" name="product_dlvyfee" value="${productSelectOne.product_dlvyfee}"> 원
 </div>
-<input type="textarea" class="form-control" name="product_detail" value="${productSelectOne.product_detail}" placeholder="상세 설명"> <br/>
-<input type="hidden" name="m_id"  value="${productSelectOne.m_id}">
-<button id="b_update" class="btn btn-warning" data-oper="modify">수정</button>
-<button id="b_delete" class="btn btn-dark" data-oper="remove">삭제</button>
+상세 설명 : <input type="textarea" name="product_detail"  value="${productSelectOne.product_detail}"> <br/>
+m_id : <input type="textarea" name="m_id"  value="${productSelectOne.m_id}"> <br/>
+<button id="b_update" data-oper="modify">수정</button>
+<button id="b_delete" data-oper="remove">삭제</button>
 </form>
 
-</div>
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -180,48 +161,42 @@ let productForm = $("form[name='f_product']");
 	// 카테고리-로컬 끝
 	
 	// 기존 이미지 출력 시작
-	let product_no = '<c:out value="${productSelectOne.product_no}"/>';
-	let uploadResult = $("#uploadResult");
-	
-	$.getJSON("productfilelist", {product_no : product_no}, function(arr) {
-		
-		if(arr.length === 0) {
-			let str = "";
-			str += "<div id='result_card'>";
-			str += "<img src='/resources/image/logo.png'>";
-			str += "</div>";
+		let product_no = "${productSelectOne.product_no}"
+		console.log("출력")
+		$.getJSON("productfilelist", {product_no : product_no}, function(obj) {
+			console.log(obj);
 			
-			uploadResult.html(str);
-			return;
-		}
-
-		let str = "";
-		let obj = arr[0];
-		
-		let fileCallPath = encodeURIComponent(obj.productfile_sname);
-		str += "<div id='result_card' data-name='" + obj.productfile_name + "' data-sname='" + obj.productfile_sname + "' data-path='" + obj.productfile_path + "'>";
-		str += "<img src='productfiledetail?imgName=" + fileCallPath + "'>";
-		str += "<div class='imgDeleteBtn' data-name='" + fileCallPath +"'>x</div>";
-		str += "</div>";
-		str += "<input type='hidden' id='productfile_no' name='productfileVO[0].productfile_no' value='"+ obj.productfile_no +"'>";
-		str += "<input type='hidden' name='productfileVO[0].productfile_name' value='"+ obj.productfile_name +"'>";
-		str += "<input type='hidden' name='productfileVO[0].productfile_sname' value='"+ obj.productfile_sname +"'>";
-		str += "<input type='hidden' name='productfileVO[0].productfile_path' value='"+ obj.productfile_path +"'>";
-		
-		uploadResult.html(str);
-		
-		
-	}) // end of getJSON
+			let str = "";
+			
+			$(obj).each(function(i, obj) {
+				if(obj.productfile_name) { // ? 괄호 안 무슨 뜻인지
+					let fileCallPath = encodeURIComponent(obj.productfile_sname);
+					str += "<li style='cursor:pointer' data-name='" + obj.productfile_name+"'>";
+					str += "<span> " + obj.productfile_name + " </span>";
+					str += " <button type='button' class='imgDeleteBtn' data-name='"+obj.productfile_name+"'>x</button>"
+					str += "<div>";
+					str += "<img src='productfiledetail?imgName=" + fileCallPath + "'>";
+					str += "</div>";
+					str += "</li>";
+				} else {
+					let fileCallPath = encodeURIComponent(obj.productfile_name);
+					let fileLink = fileCallPath.repalce(new RegExp(/\\/g), "/");
+					str += "<li style='cursor:pointer' data-name='" + obj.productfile_name+"'>";
+					str += "<span> " + obj.productfile_name + " </span>";
+					str += " <button type='button' class='imgDeleteBtn' data-name='"+obj.productfile_name+"'>x</button>"
+					str += "<div>";
+					str += "<img src='/resources/image/logo.png'>";
+					str += "</div>";
+					str += "</li>";
+				}
+			})
+		$("#uploadResult ul").html(str);
+		}) // end of getJSON
 	// 기존 이미지 출력 끝
 	
 	//이미지 업로드
+	let formData = new FormData();
 	$("input[type='file']").on("change", function(e) {
-		
-		if($(".imgDeleteBtn").length > 0) {
-			deleteImg();
-		}
-		
-		let formData = new FormData();
 		let img = $("input[name='product_img']");
 		let imgList = img[0].files;
 		let imgObj = imgList[0];
@@ -230,8 +205,11 @@ let productForm = $("form[name='f_product']");
 			console.log(imgObj.name, imgObj.size)
 			return false;
 		}
+		alert("통과");
 		
-		formData.append("uploadImg", imgObj);
+		for(let i=0;i<imgList.length;i++) {
+			formData.append("uploadImg", imgList[i]);
+		}
 	
 		$.ajax({
 			url: 'productfileinsert',
@@ -243,13 +221,14 @@ let productForm = $("form[name='f_product']");
 			dataType: 'json',
 			success: function(result) {
 				console.log(result);
-				console.log("성공")
 				showUploadImage(result);
 			},
 			error: function(error) {
 				alert("이미지 파일이 아닙니다.")
 			}
 		});
+		console.log(imgList);
+		console.log(imgObj);
 	}) // end of input type file change
 	
 	let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$"); // 파일 형식 제한
@@ -260,7 +239,7 @@ let productForm = $("form[name='f_product']");
 			alert("파일 사이즈 초과");
 			return false;
 		}
-		if(regex.test(imgName)) {
+		if(!regex.test(imgName)) {
 			alert("업로드할 수 없는 파일 형식");
 			return false;
 		}
@@ -270,61 +249,41 @@ let productForm = $("form[name='f_product']");
 	// 이미지 출력
 	function showUploadImage(uploadResultArr) {
 		if(!uploadResultArr || uploadResultArr.length == 0) { alert("showUploadImage 오류"); return }
-		let uploadResult = $("#uploadResult");
-		let obj = uploadResultArr[0];
-		let str = "";
-		let fileCallPath = encodeURIComponent(obj.productfile_name);
+		let uploadUL = $("#uploadResult UL");
+		let imsi = "";
+//		uploadResult.html(imsi);
+
+		$(uploadResultArr).each(function(i, obj) {
+			if(obj.image) {
+				let fileCallPath = encodeURIComponent(obj.productfile_name);
+				str += "<li data-name='" + obj.productfile_name + "'>";
+				str += "<span>" + obj.productfile_name + "</span>";
+				str += "<button type='button' data-name='" + obj.productfile_name + "'>x</button><br>";
+				str += "<div>";
+				str += "<img src='productfiledetail?imgName=" + fileCallPath + "'>";
+				str += "</div> </li>";
+			} else {
+				let fileCallPath = encodeURIComponent(obj.productfile_name);
+				let fileLink = fileCallPath.repalce(new RegExp(/\\/g), "/");
+				str += "<li style='cursor:pointer' data-name='" + obj.productfile_name+"'>";
+				str += "<span>" + obj.productfile_name + "</span>";
+				str += "<button type='button' data-name='" + obj.productfile_name + "'>x</button><br>";
+				str += "<div>";
+				str += "<img src='/resources/image/logo.png'>";
+				str += "</div> </li>";
+			}
+		})
 		
-		str += "<div id='result_card'>";
-		str += "<img src='productfiledetail?imgName=" + fileCallPath + "'>";
-		str += "<div class='imgDeleteBtn' data-name='" + fileCallPath +"'>x</div>";
-		str += "</div>"
-		str += "<input type='hidden' name='productfileVO[0].productfile_name' value='"+ obj.productfile_name +"'>";
-		str += "<input type='hidden' name='productfileVO[0].productfile_sname' value='"+ obj.productfile_sname +"'>";
-		str += "<input type='hidden' name='productfileVO[0].productfile_path' value='"+ obj.productfile_path +"'>";
-		
-		uploadResult.append(str);
+		uploadUL.append(str);
 
 	} // end of showUpImage
 	
 	// 이미지 화면에서 삭제 시작
-	$("#uploadResult").on("click", ".imgDeleteBtn", function(e) {
-		deleteImg();	
-	});
-	
-	
-	// 파일 삭제
-	function deleteImg() {
-		console.log("delete 실행")
-		
-		let targetImg = $(".imgDeleteBtn").data("name");
-		let targetDiv = $("#result_card");
-		
-		let productfile_no = $("#productfile_no").val();
-		console.log(productfile_no)
-		let product_no = $("#product_no").val();
-		console.log(product_no)
-
-//		$.ajax({
-//			url: 'productfiledeleteone',
-//			data: {
-//				imgName : targetImg,
-//				productfile_no : productfile_no
-//				},
-//			dataType: 'text',
-//			type: 'POST',
-//			success: function(result) {
-//				console.log(result + " 삭제 완료");
-				targetDiv.remove();
-//				$("input[type='file']").val("");
-//			},
-//			error: function(error) {
-//				console.log(error);
-//				alert("파일 삭제 실패");
-//			}
-//		})
-	}
-		
+	$("#uploadResult").on("click", "button", function(e) {
+		console.log("delete button");
+		let targetLi = $(this).closest("li");
+		targetLi.remove();
+	})
 	// 이미지 화면에서 삭제 끝
 	
 	
@@ -344,6 +303,25 @@ $("#b_update").on("click", function(e) {
 	}
 	// dlvyfee_x나 o면 배송비조건 0원으로 초기화 끝
 	
+	// 수정...?
+	let operation = $(this).data("oper");
+	
+	if(operation === 'modify') {
+		console.log("submit clicked");
+		let str = "";
+		
+		$("#uploadResult ul li").each(function(i, obj) {
+			let jobj = $(obj);
+			console.log("jobj");
+			console.log(jobj.data("name"));
+			
+			str += "<input type='hidden' name='productfile[" + i + "].productfile_name' value='" + jobj.data("name")+"'>";  
+		});
+		formObj.append(str)
+		//.submit();
+		console.log(formObj)
+	}
+	// 수정...?
 	$("#f_product").submit();
 })
 </script>

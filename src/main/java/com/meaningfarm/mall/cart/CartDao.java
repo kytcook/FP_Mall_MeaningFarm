@@ -74,15 +74,17 @@ public class CartDao {
 ///////////////////////////////////////////////////////////////////////////
 	/*--------------------------- 장바구니 확인 -----------------------------*/
 	public int cartCheck(CartVO cartVO) {// 회원정보와 상품 정보를 넘겨 해당하는 row가 있나 확인
-		logger.info("cartCheck 호출 성공");
+		logger.info("cartCheck 호출 성공"+cartVO.getM_id() + cartVO.getProduct_no());
 		// 장바구니 데이터 체크
-		int cartCheck = 1;
+		int cartCheck = 0;
 		try {
-			cartCheck = sql.selectOne("cartCheck",cartVO.getProduct_no());
+			cartCheck = sql.selectOne("cartCheck",cartVO);
 			logger.info("중복검사 : "+ cartCheck);
 		} catch (Exception e) {
 			logger.info("Exception(데이터 중복검사 실패) : " + e.toString());
+			throw e;
 		}
+		System.out.println("여기");
 		return cartCheck;
 
 	}// end of cartCheck.method

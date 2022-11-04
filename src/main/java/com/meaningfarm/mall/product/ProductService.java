@@ -1,12 +1,13 @@
 package com.meaningfarm.mall.product;
 
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class ProductService {
@@ -15,6 +16,7 @@ public class ProductService {
 	
 	@Autowired
 	private ProductDAO productDAO;
+	
 	
 	public List<ProductVO> productList() {
 		List<ProductVO> productList = null;
@@ -31,36 +33,97 @@ public class ProductService {
 	
 	public int productInsert(ProductVO productVO) {
 		logger.info("ProductService productInsert");
-		int result = productDAO.productInsert(productVO);
-		logger.info("result " + result);
+		// if문을 vo.set~~을 0으로
+		if(productVO.getProduct_dlvyfee() == null) {
+			productVO.setProduct_dlvyfee(0);
+		}
+//		if(productVO.getProductfileVO() == null || productVO.getProductfileVO().size() <= 0) {
+//			return productVO.setProductfileVO(0);
+//		}
+		int result = 0;
+		result = productDAO.productInsert(productVO);
+		productVO.getProductfileVO().forEach(productfileVO -> {
+			productfileVO.setProduct_no(productVO.getProduct_no());
+			productDAO.productfileInsert(productfileVO);
+		});
+		logger.info("ProductService productInsert result" + productVO);
 		return result;
 	}
 	
-	public void productUpdate(ProductVO productVO) {
-		productDAO.productUpdate(productVO);
+	@Transactional
+	public int productUpdate(ProductVO productVO) {
+		logger.info("ProductService productUpdate " + productVO);
+		int result = productDAO.productUpdate(productVO);
+		
+		if(result == 1 && productVO.getProductfileVO() != null && productVO.getProductfileVO().size() > 0) {
+			productDAO.productfileDelete(productVO.getProduct_no());
+			System.out.println(productVO.getProductfileVO().toString());
+			
+			productVO.getProductfileVO().forEach(productfileVO -> {
+				productfileVO.setProduct_no(productVO.getProduct_no());
+				productDAO.productfileInsert(productfileVO);
+			});
+		}
+		return result;
 	}
 	
 	public void productDelete(int product_no) {
+		logger.info("ProductService productDelete " + product_no);
 		productDAO.productDelete(product_no);
 	}
 	
-	public List<OptionVO> optionList() {
-		List<OptionVO> optionList = null;
-		optionList = productDAO.optionList();
-		logger.info("ProductService optionList " + optionList);
-		return optionList;
+	public void productCheckDelete(int option_no) {
+		logger.info("ProductService productCheckDelete " + option_no);
+		productDAO.productDelete(option_no);
 	}
 	
-//	public List<Map<String, Object>> optionList(Map<String, Object> optionListMap) {
-//		logger.info("ProductService optionList");
-//		List<Map<String, Object>> optionList = null;
-//		optionList = productDAO.optionList(optionListMap);
-//		return optionList;
-//	}
 	
-	public int optionInsert(OptionVO optionVO) {
-		logger.info("ProductService optionInsert");
-		int result = productDAO.optionInsert(optionVO);
-		return result;
+	
+	
+	public List<CategoryTypeVO> CTList() {
+		List<CategoryTypeVO> CTList = null;
+		CTList = productDAO.CTList();
+		return CTList;
+	}
+
+	public List<CategoryLocalVO> CLList() {
+		List<CategoryLocalVO> CLList = null;
+		CLList = productDAO.CLList();
+		return CLList;
+	}
+	
+		public List<ProductFileVO> productfileList(int product_no) {
+		List<ProductFileVO> PFList = null;
+		PFList = productDAO.productfileList(product_no);
+		return PFList;
+	}
+
+//	public int productfileInsert(ProductFileVO productfileVO) {
+//		logger.info("ProductService productfileInsert");
+//		int result = productDAO.productfileInsert(productfileVO);
+//		logger.info("ProductService productfileInsert result" + productfileVO);
+//		logger.info("result " + result);
+//		return result;
+//	}
+
+	public void productfileDelete(int product_no) {
+		logger.info("ProductService productDelete " + product_no);
+		productDAO.productfileDelete(product_no);		
+	}
+
+	public void productfileDeleteOne(int productfile_no) {
+		logger.info("ProductService productDelete " + productfile_no);
+		productDAO.productfileDeleteOne(productfile_no);		
+	}
+	
+	
+	// 페이지
+	public List<ProductVO> list(SearchVO searchVO) {
+		logger.info("ProductService list " + searchVO);
+		return productDAO.list(searchVO);
+	}
+	
+	public int listCount(SearchVO searchVO) {
+		return productDAO.listCount(searchVO);
 	}
 }
