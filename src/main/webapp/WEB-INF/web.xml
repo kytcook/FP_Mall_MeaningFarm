@@ -20,7 +20,9 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml
+						/WEB-INF/spring/context-common.xml
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -30,6 +32,22 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
+	
+	<!-- 바인딩 안된거 추가사항 -->
+	<context-param>  
+    <param-name>spring.profiles.active</param-name>  
+    <param-value>dev</param-value>  
+	</context-param>  
+	<context-param>  
+	    <param-name>spring.profiles.default</param-name>  
+	    <param-value>dev</param-value>  
+	</context-param>
+	<context-param>  
+	    <param-name>spring.liveBeansView.mbeanDomain</param-name>  
+	    <param-value>dev</param-value>  
+	</context-param>  
+	
+
 	<!-- 한글 인코딩 Start -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
