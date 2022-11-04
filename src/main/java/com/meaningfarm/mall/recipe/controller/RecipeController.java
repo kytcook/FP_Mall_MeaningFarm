@@ -43,14 +43,15 @@ public class RecipeController {
 	
 	//목록 조회
 	@RequestMapping (value="/recipe_list", method = RequestMethod.GET)
-	public String list (Model model) throws Exception {
+	public void getList (Model model) throws Exception {
 		logger.info("list");
 		
-		List<RecipeVO> list = service.list();
+		List<RecipeVO> list = null;
+		list = service.list();
 		
 		model.addAttribute("list", list);
 		
-		return "recipe/recipe_list";
+		//return "recipe/recipe_list";
 	}
 	
 	

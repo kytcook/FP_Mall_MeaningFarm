@@ -3,18 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/>
-	</settings>
-	<typeAliases>
-		<typeAlias alias="recipeVO" type="com.vo.RecipeVO"/>
-	</typeAliases>
-	<mappers>
-		<mapper resource="com/mybatis/mapper/recipeMapper.xml"/>
-		<mapper resource="com/mybatis/mapper/recipeReplyMapper.xml"/>
-	</mappers>
-
-
-	<settings>
 		<setting name="cacheEnabled" value="false" />
 		<setting name="jdbcTypeForNull" value="NULL" />
 		<setting name="callSettersOnNulls" value="true" />
@@ -22,19 +10,26 @@
 		<setting name="defaultStatementTimeout" value="300" />
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
-
- 	<typeAliases>
+	
+	<typeAliases>
+		<typeAlias alias="recipeVO" type="com.vo.RecipeVO"/>
 		<typeAlias alias="productVO" type="com.meaningfarm.mall.product.ProductVO" />
 		<typeAlias alias="CartVO" type="com.meaningfarm.mall.cart.CartVO" />
-	</typeAliases> 
+	</typeAliases>
 	
 	<mappers>
+		<mapper resource="com/mybatis/mapper/recipeMapper.xml"/>
+		<mapper resource="com/mybatis/mapper/recipeReplyMapper.xml"/>
 		<mapper resource="com/meaningfarm/mapper/product.xml" />
 		<mapper resource="com/meaningfarm/mapper/option.xml" />
 		<mapper resource="com/mybatis/mapper/NoticeMapper.xml" />
 		<mapper resource="com/mybatis/mapper/MemProductMapper.xml" />
 		<mapper resource="com/mybatis/mapper/CartMapper.xml" />
 	</mappers>
+
+
+
+
 </configuration>
 
 

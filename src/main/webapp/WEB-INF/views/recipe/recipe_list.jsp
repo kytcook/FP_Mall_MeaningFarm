@@ -80,7 +80,7 @@
 	            <tr>
 	           	<th scope="row">
 		              	<c:out value="${list.rnum}" />
-		         </th>
+		         </th> 
 	              <!--  <th scope="row">
 		              	<c:out value="${list.recipe_no}" />
 		         </th>-->

@@ -27,7 +27,7 @@ public class JDBCTest {
 				DriverManager.getConnection(
                 // Oracle19 버전인 경우 => "jdbc:oracle:thin:@localhost:1521:orcl"
                 // Oracle11 버전인 경우 => "jdbc:oracle:thin:@localhost:1521:XE"
-						"jdbc:oracle:thin@localhost:1523:orcl11",
+						"jdbc:oracle:thin:@localhost:1523:orcl11",
 						"meaningfarm",
 						"tiger")){
 			System.out.println(con);

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.vo.RecipeVO;
 
 @Service
+@Repository
 public class RecipeDaoImpl implements RecipeDao {
 
    private Logger logger = LoggerFactory.getLogger(RecipeDaoImpl.class);   
@@ -35,8 +36,10 @@ public class RecipeDaoImpl implements RecipeDao {
 	@Override
 	public List<RecipeVO> list() throws Exception {
 	   logger.info("daoList 호출 성공");
+	   
+	  // logger.info("list 출력되나요?"+list);
 	   // TODO Auto-generated method stub
-	   return sql.selectList("list");
+	   return sql.selectList(NAMESPACE +".list");
 	}
 	
 

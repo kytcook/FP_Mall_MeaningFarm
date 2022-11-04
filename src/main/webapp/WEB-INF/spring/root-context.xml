@@ -12,11 +12,12 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
-   		http://java.sun.com/xml/ns/javaee 
-		http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+   		http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 		<!-- context 버전차이 -->
-		<!--  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd-->
+		<!-- 
+		
+		 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd-->
 		
 
 
@@ -62,14 +63,14 @@
     	<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="transactionManager" /> 
 
       <!--  scan -->
-	<!-- <context:component-scan base-package="com.meaningfarm.mall.recipe.dao" />
+ 	<context:component-scan base-package="com.meaningfarm.mall.recipe.dao" />
    	<context:component-scan base-package="com.meaningfarm.mall.recipe.service" />
    	<context:component-scan base-package="com.vo" />
-   	<context:component-scan base-package="com.meaningfarm.mall.recipe.util" />
- -->
+
+ 
 
 
 </beans>
