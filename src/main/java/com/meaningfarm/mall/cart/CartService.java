@@ -20,7 +20,6 @@ public class CartService {
 	/*---------------------------- 장바구니 목록 ----------------------------*/
 	public List<Map<String, Object>> cartList(Map<String, Object> pMap) {
 		logger.info("cartList 호출 성공"); 
-		logger.info("cartList 호출 성공"); 
 		List<Map<String, Object>> cartList = null;
 		cartList = cartDao.cartList(pMap);
 		return cartList;

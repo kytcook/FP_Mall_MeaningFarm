@@ -77,7 +77,7 @@ out.print(cartList);
 	<form id="test" method="Get" enctype="multipart/form-data" action="./cartAdd">
 	    <input type="hidden" id="cart_amount" name="cart_amount" value=3>
 	    <input type="hidden" id="m_id" name="m_id" value="야호랑">
-	    <input type="hidden" id="product_no" name="product_no" value=3>
+	    <input type="hidden" id="product_no" name="product_no" value=5>
 	</form>
 	<a href="javascript:test()" class="easyui-linkbutton">저장</a>
 	

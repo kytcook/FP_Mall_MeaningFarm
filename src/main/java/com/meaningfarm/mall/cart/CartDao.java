@@ -29,7 +29,7 @@ public class CartDao {
 			cartList = sql.selectList("cartList", pMap);
 			// insert here
 			logger.info(cartList.toString());
-		} catch (DataAccessException e) {
+		} catch (Exception e) {
 			logger.info("Exception : " + e.toString());
 		}
 		return cartList;
@@ -78,8 +78,8 @@ public class CartDao {
 		// 장바구니 데이터 체크
 		int cartCheck = 1;
 		try {
-			cartCheck = sql.selectOne("cartCheck",cartVO);
-			logger.info("result : "+ cartCheck);
+			cartCheck = sql.selectOne("cartCheck",cartVO.getProduct_no());
+			logger.info("중복검사 : "+ cartCheck);
 		} catch (Exception e) {
 			logger.info("Exception(데이터 중복검사 실패) : " + e.toString());
 		}
