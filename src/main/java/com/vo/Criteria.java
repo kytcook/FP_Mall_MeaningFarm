@@ -1,18 +1,21 @@
-package com.meaningfarm.mall.notice.domain;
+package com.vo;
 
+import lombok.Data;
+
+@Data
 public class Criteria {
-	//rNum의 제한값과 현재 페이지, 페이지에 출력되는 게시물 숫자를 제어함
+	
 	private int page;
 	private int perPageNum;
 	private int rowStart;
 	private int rowEnd;
 
-	public Criteria() { // 기본 1 페이지 출력 10개
+	public Criteria() {
 		this.page = 1;
 		this.perPageNum = 10;
 	}
 
-	public void setPage(int page) { //아무것도 없을때 처리
+	public void setPage(int page) {
 		if (page <= 0) {
 			this.page = 1;
 			return;
@@ -40,7 +43,6 @@ public class Criteria {
 		return this.perPageNum;
 	}
 
-
 	public int getRowStart() {
 		rowStart = ((page - 1) * perPageNum) + 1;
 		return rowStart;
@@ -50,10 +52,11 @@ public class Criteria {
 		rowEnd = rowStart + perPageNum - 1;
 		return rowEnd;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "" + ", rowStart=" + getRowStart()
-		+ ", rowEnd=" + getRowEnd() + "]";
+		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", rowStart=" + rowStart + ", rowEnd=" + rowEnd
+				+ "]";
 	}
+
 }

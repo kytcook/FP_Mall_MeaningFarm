@@ -1,18 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.mybatis.mapper.NoticeMapper">
 
-	<select id="list" resultType="com.meaningfarm.mall.notice.domain.NoticeVO">
-		select * 
-		from notice 
-		order by notice_no desc
+	<select id="listPage" resultType="com.vo.NoticeVO" parameterType="com.vo.SearchCriteria">
+        	<![CDATA[
+        	
+        SELECT  
+        		notice_no, 
+                notice_title, 
+                notice_content,
+                notice_regdate,
+                notice_hit,
+                notice_yn,
+                admin_name
+                
+         FROM ( 
+              SELECT    notice_no, 
+                        notice_title, 
+                        notice_content,
+                        notice_regdate,
+                        notice_hit,
+                        notice_yn,
+                        admin_name,
+                        ROW_NUMBER() OVER(order by notice_no desc) AS rnum
+              FROM notice
+              where 1=1
+               ]]>
+              <include refid="search"></include>
+                               )mp
+        WHERE rnum BETWEEN #{rowStart} AND #{rowEnd}
+        order by  ROW_NUMBER() OVER(order by notice_no desc)
+	
+</select>
+
+<!--검색조건쿼리  -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND notice_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND notice_content LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND admin_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (notice_title LIKE '%' || #{keyword} || '%') or (notice_content LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+<!--검색조건쿼리  -->	
+	
+	
+<!--게시물 총갯수-->
+	<select id="listCount" parameterType="com.vo.SearchCriteria" resultType="int">
+	<![CDATA[
+		SELECT COUNT(notice_no)
+		   FROM notice
+		   WHERE 1=1
+		     ]]>
+		<include refid="search"></include>	
+		 	 <![CDATA[
+		   AND notice_no > 0
+		       ]]>
 	</select>
 	
-   
-    <!-- 작성 -->
-	<insert id="register">
-		insert into NOTICE (NOTICE_NO, NOTICE_TITLE, ADMIN_NAME,  NOTICE_CONTENT)
-    		values (SEQ_NOTICE_NO.NEXTVAL, #{NOTICE_TITLE}, #{ADMIN_NAME}, #{NOTICE_CONTENT})
-	</insert>
 
+<!-- 작성 -->
+	<insert id="write" parameterType="com.vo.NoticeVO" useGeneratedKeys="true" keyProperty="notice_no">
+	    <selectKey keyProperty="notice_no" resultType="int" order="BEFORE">
+	   	select seq_notice_no.nextval from dual
+	   	</selectKey>
+		insert into notice
+		(notice_no, notice_title, admin_name, notice_content)
+		values
+		(#{notice_no}, #{notice_title}, #{admin_name}, #{notice_content})
+	</insert>
+	
+	
+<!-- 상세조회 -->
+	<select id="read" parameterType="int"
+		resultType="com.vo.NoticeVO">
+		SELECT
+		notice_no, notice_title, admin_name, notice_content
+		FROM notice
+		WHERE notice_no = #{notice_no}
+	</select>
+
+<!-- 수정 -->
+	<update id="update" parameterType="com.vo.NoticeVO">
+		UPDATE notice
+		SET notice_title = #{notice_title},
+		notice_content = #{notice_content}
+		WHERE notice_no = #{notice_no}
+	</update>
+
+<!--삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE
+		FROM notice
+		WHERE notice_no = #{notice_no}
+	</delete>
+	
+<!-- 조회수 -->
+	<update id="hit" parameterType="int">
+	  <![CDATA[
+	    UPDATE notice
+	    SET notice_hit = notice_hit+1
+	    WHERE notice_no = #{notice_no}
+	  ]]>
+	</update>
+	
+	<!--첨부파일 추가  -->
+    <insert id="insertFile" parameterType="hashMap">
+	INSERT INTO noticefile(
+		noticefile_no,
+		notice_no,
+		noticefile_name,
+		noticefile_rename,
+		noticefile_size
+	)VALUES(
+		seq_noticefile_no.nextval,
+		#{notice_no},
+		#{noticefile_name},
+		#{noticefile_rename},
+		#{noticefile_size}
+	)
+   </insert>
+	
+	
+	<!-- 첨부파일 조회 -->
+<select id="selectFileList" parameterType="int" resultType="hashMap">
+	SELECT NOTICEFILE_NO,
+		   NOTICEFILE_NAME,
+		   ROUND(NOTICEFILE_SIZE/1024,1) AS FILE_SIZE
+	  FROM NOTICEFILE
+	 WHERE notice_no = #{notice_no}
+	AND NOTICEFILE_PATH = 'N'
+	ORDER BY NOTICEFILE_NO ASC
+</select>
+
+
+<!-- 첨부파일 다운 -->
+<select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
+	SELECT 
+		NOTICEFILE_RENAME,
+		NOTICEFILE_NAME
+	FROM NOTICEFILE
+	WHERE NOTICEFILE_NO = #{NOTICEFILE_NO}
+</select>
+
+<!-- 첨부파일 수정 삭제 -->
+    <update id="updateFile" parameterType="hashMap">
+    	UPDATE NOTICEFILE
+    	 SET NOTICEFILE_PATH = 'Y'
+    	WHERE NOTICEFILE_NO = #{NOTICEFILE_NO}
+    </update>	
+	
+<!-- 이전,다음글 1027추가 -->	
+<select id="movePage" parameterType="int" resultType="com.vo.NoticeVO">
+select * from(SELECT 
+			notice_no,
+         LEAD(notice_no,1,9999) OVER(ORDER BY notice_no) AS next,
+         LAG(notice_no,1,9999) OVER(ORDER BY notice_no) AS last,
+         notice_title,
+         LEAD(notice_title,1,9999) OVER(ORDER BY notice_no) AS nexttitle,
+         LAG(notice_title,1,9999) OVER(ORDER BY notice_no) AS lasttitle
+         
+		FROM notice
+        order by notice_no DESC) 
+        WHERE notice_no = #{notice_no}
+</select>
+	
+	
 </mapper>

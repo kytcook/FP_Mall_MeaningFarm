@@ -3,17 +3,11 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="cacheEnabled" value="false" />
-		<setting name="jdbcTypeForNull" value="NULL" />
-		<setting name="callSettersOnNulls" value="true" />
-		<setting name="defaultExecutorType" value="REUSE" />
-		<setting name="defaultStatementTimeout" value="300" />
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
-
-   <mappers>
-<mapper resource="com/mybatis/mapper/NoticeMapper.xml" />
-   </mappers>
-
+	<mappers>
+		<mapper resource="com/mybatis/mapper/NoticeMapper.xml"/>
+		<mapper resource="com/mybatis/mapper/QnaMapper.xml"/>
+		<mapper resource="com/mybatis/mapper/QnaReplyMapper.xml"/>
+	</mappers>
 </configuration>
-
