@@ -6,7 +6,7 @@
 	<select id="cartList" parameterType="java.util.Map" resultType="map">
 		SELECT 
 				c.cart_no, c.m_id,  c.cart_date, c.cart_amount, c.product_no
-		      	,p.product_name, p.product_price, p.product_dlvyfee, p.product_img
+		      	,p.product_name, p.product_price, p.product_dlvyfee
 		  FROM 
 		  	  	member m, cart c, product p
 		 WHERE 
@@ -32,9 +32,11 @@
 	
 	<!-- 04. 장바구니 확인 -->
 	<select id="cartCheck" parameterType="com.meaningfarm.mall.cart.CartVO" resultType="int">
-		SELECT * from cart 
-		 WHERE m_id = #{m_id} AND product_no = #{product_no}
-		 		
+		SELECT NVL((
+		       SELECT 1 from cart 
+		       WHERE m_id = #{m_id}  AND product_no = #{product_no} 
+		       ), 0) as "cartCheck"
+  		  FROM dual<!-- 속도때문에 / 가상테이블 -->
 	</select>
 
 </mapper>
