@@ -24,7 +24,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- 김민지 -->
+	<!-- 파일 -->
 	<beans:bean name="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760" />	
@@ -33,7 +33,16 @@
 	<context:component-scan base-package="com.meaningfarm.mall" />
 	<context:component-scan base-package="com.meaningfarm.mall.notice.controller" />
 	<context:component-scan base-package="com.meaningfarm.mall.memproduct.controller" />
+	<context:component-scan base-package="com.meaningfarm.mall.cart.controller" />
 	
-	
+	<!-- 인터셉터 -->
+<!-- 	<interceptors> -->
+		<!-- 장바구니 인터셉터 -->
+<!-- 		<interceptor> -->
+<!-- 		<mapping path="/cart/**"/> -->
+<!-- 		<exclude-mapping path="/cart/add"/> -->
+<!-- 		<beans:bean id="CartIntreceptor" class="com.meaningfarm.mall.interceptor.CartInterceptor"></beans:bean> -->
+<!-- 		</interceptor> -->
+<!-- 	</interceptors> -->
 	
 </beans:beans>

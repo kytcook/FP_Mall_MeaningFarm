@@ -10,15 +10,25 @@ import org.springframework.stereotype.Service;
 
 import com.meaningfarm.mall.memproduct.dao.MemProductDao;
 
-// 할 일 : 배송비에 음수 -> 양수 필터링 기능 추가
 @Service
 public class MemProductService {
 	Logger logger = LoggerFactory.getLogger(MemProductService.class);
 	@Autowired(required=false)
 	private MemProductDao productDao = null;
 	
+/////////////////////////////////////////////////////////////////////
+	/*-------------------------- 상품 목록 --------------------------*/
 	public List<Map<String, Object>> productList(Map<String, Object> pMap) {
-		logger.info("boardList 호출 성공");
+		logger.info("boardList 호출 성공"); // 최종에는 삭제
+		List<Map<String,Object>> productList = null;
+		productList = productDao.productList(pMap);
+		return productList;
+	}
+	
+/////////////////////////////////////////////////////////////////////
+	/*-------------------------- 상품 보기 --------------------------*/	
+	public List<Map<String, Object>> productView(Map<String, Object> pMap) {
+		logger.info("boardList 호출 성공"); // 최종에는 삭제
 		List<Map<String,Object>> productList = null;
 		productList = productDao.productList(pMap);
 		return productList;

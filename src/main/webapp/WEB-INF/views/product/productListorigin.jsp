@@ -17,7 +17,7 @@
 		$(".card").dblclick(function() {
 			alert("상품눌리임");
 			let product_no = $(this).find(".PRODUCT_NO").text();
-			location.href = "productView.do?product_no="+product_no
+			location = "productView.do?product_no="+product_no
 		});
 	})
 </script>  
@@ -35,6 +35,7 @@
 	if(productList!=null){
 		size = productList.size();// 컬럼의 개수 변수에 담기
 	}
+	out.print(size);
 	/////////////////////////////////////////////////////
 	
 	/////////////////////////////////////////////////////
@@ -43,7 +44,7 @@
 	if(request.getParameter("isOk")!=null){
 		isOk = Boolean.parseBoolean(request.getParameter("isOk"));
 	}	
-	int numPerPage = 9; // 현재 페이지에 출력할 개수 설정
+	int numPerPage = 5;
 	int nowPage = 0;
 	if(request.getParameter("nowPage")!=null){
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
@@ -102,29 +103,15 @@
       <article class="container">
         <div class="list_product row row-cols-3">
       <!--================= 상품리스트 =================-->
-      <!-- 현재 페이지에서 보여지는 상품의 개수를 제어하면서 꺼내는 반복문 : 상품리스트, 페이징 처리 START -->
-<%
-	if(size==0){
-		if(isOk){	
-%> 	
-<script>
-	$.messager.alert('Info','조회결과가 없습니다.');
-</script>
-<%
-		}
-	}
-	else if(size>0){
-		for(int i=nowPage*numPerPage;i<(nowPage*numPerPage)+numPerPage;i++){
-			if(size == i) break;
-			Map<String,Object> rMap = productList.get(i);// 데이터 꺼내는 반복문/ 데이터 껀수만큼
-%>	    
+      
+	  <!-- var="임시변수" items="Model이 가지고 온 변수명" jstl문법 c:foreach => 자바의 for문 -->
+	   	<c:forEach var="list" items="${productList}">
           <!--===== 상품1 =====-->
           <div class="col mt-5 mb-4">
             <div class="card shadow-lg m-3">
                <!-- 상품이미지 -->
                <img
                  src="${path}/resources/images/apple.jpg"
-<%--                  src=<%rMap.get("PRODUCT_IMG");%> --%>
                  alt="apple.jpg"
                  onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
                  width="100%"
@@ -135,28 +122,39 @@
                <div class="card-body">
                   <ul class="card-text list-unstyled ps-4 pb-3">
                   	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
-                  	 <li class="PRODUCT_NO" style="display:none"><%=rMap.get("PRODUCT_NO")%></li>
-                    <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_NAME")%></li>
-                    <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_PRICE")%>원</li>
-                    <li class="text-muted"><%=rMap.get("PRODUCT_DETAIL")%></li>
+                  	 <li class="PRODUCT_NO" style="display:none"><c:out value="${list.PRODUCT_NO}"/></li>
+                    <li class="fs-5 fw-bold"><c:out value="${list.PRODUCT_NAME}"/></li>
+                    <li class="fs-5 fw-bold"><fmt:formatNumber value="${list.PRODUCT_PRICE}" pattern="###,###,###" /> 원</li>
+                    <li class="text-muted"><c:out value="${list.PRODUCT_DETAIL}"/>(1개/200g)</li>
                   </ul>
                </div>
             </div>
           </div>
         <!--===== 상품1 =====-->
-
-				<% // 반복문을 통해 상품데이터를 꺼냅니다.
-					}// end of for
-				}// end of if
-				%>
-      <!-- 현재 페이지에서 보여지는 상품의 개수를 제어하면서 꺼내는 반복문 : 상품리스트, 페이징 처리 END -->				
+  	 	</c:forEach>
        	</div>
       </article>
       <!--================= 상품리스트 =================-->
 
       <!--================ 페이지네이션 ================-->
       <footer class="container">
-			<div class="pagination justify-content-center">
+<!--           <ul class="pagination justify-content-center"> -->
+<!--             <li class="page-item"> -->
+<!--               <a class="page-link" href="#" aria-label="Previous"> -->
+<!--                 <span aria-hidden="true">&laquo;</span> -->
+<!--               </a> -->
+<!--             </li> -->
+<!--             <li class="page-item active" aria-current="page"><a class="page-link bg-success" href="#">1</a></li> -->
+<!--             <li class="page-item"><a class="page-link" href="#">2</a></li> -->
+<!--             <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!--             <li class="page-item"> -->
+<!--               <a class="page-link" href="#" aria-label="Next"> -->
+<!--                 <span aria-hidden="true">&raquo;</span> -->
+<!--               </a> -->
+<!--             </li> -->
+<!--           </ul> -->
+		<!-- 페이지 네이션 추가 시작 -->
+			<div style="display:table-cell;vertical-align:middle; width:800px; background:#efefef; height:30; border:1px solid #ccc;">
 		<%
 			String pagePath = "productList.do";
 			PageBar pb = new PageBar(numPerPage, size, nowPage, pagePath);

@@ -48,6 +48,5 @@
          <constructor-arg index="0" ref="sqlSessionFactory" />
       </bean>
       
-      <context:component-scan base-package="com.meaningfarm" />
       
 </beans>
