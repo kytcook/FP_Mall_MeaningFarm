@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mapper.QnaMapper">
+
+<select id="QnalistPage" resultType="com.vo.QnaVO" parameterType="com.vo.Criteria">
+       
+		SELECT  
+   		
+   				qna_no, 
+                qna_title,  
+                qna_content,
+        		qna_pw, 
+                m_id, 
+                qna_regdate, 
+                qna_state 
+                
+		 FROM ( 
+		        SELECT 
+		       	qna_no, 
+                qna_title,  
+                qna_content,
+        		qna_pw, 
+                m_id, 
+                qna_regdate, 
+                qna_state ,
+		          ROW_NUMBER() OVER(ORDER BY qna_no DESC) AS RNUM
+		         FROM qna 
+		         WHERE 1=1 
+	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY qna_no DESC 
+		
+
+	
+</select>
+
+
+<!-- 총갯수 -->
+<select id="qnaListCount"  parameterType="com.vo.SearchCriteria"  resultType="int">
+<![CDATA[
+
+		SELECT COUNT(qna_no)
+		  FROM qna 
+		  WHERE 1=1
+ ]]>
+		<include refid="search"></include>	
+		
+	<![CDATA[
+		 AND qna_no > 0
+	]]>
+	
+</select>
+
+<!-- sql문 검색조건 -->
+<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND qna_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND qna_content LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND qna_pw LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (qna_title LIKE '%' || #{keyword} || '%') or (qna_content LIKE '%' || #{keyword} || '%')</if>
+		</if>
+		
+</sql>
+
+
+
+
+
+
+<!-- 글 작성 작성 댓글수 1이상이면 n->y로 업데이트해주기-->
+	<insert id="qnaWrite" parameterType="com.vo.QnaVO" useGeneratedKeys="true" keyProperty="qna_no">
+	    <selectKey keyProperty="qna_no" resultType="int" order="BEFORE">
+	   	select seq_qna_no.nextval from dual
+	   	</selectKey>
+		insert into qna
+		(qna_pw, qna_no, qna_title, m_id, qna_content)
+		values
+		(#{qna_pw}, #{qna_no}, #{qna_title}, #{m_id}, #{qna_content})
+	</insert>
+
+<!-- 상세조회 -->
+	<select id="qnaRead" parameterType="int" resultType="com.vo.QnaVO">
+		SELECT
+		qna_no, qna_pw, qna_title, m_id, qna_content
+		FROM qna
+		WHERE qna_no = #{qna_no}
+	</select>
+	
+<!-- 수정 -->
+	<update id="qnaUpdate" parameterType="com.vo.QnaVO">
+		UPDATE qna
+		SET qna_title = #{qna_title},
+		qna_content = #{qna_content}
+		WHERE qna_no = #{qna_no}
+	</update>
+
+<!--삭제 -->
+	<delete id="qnaDelete" parameterType="int">
+		DELETE
+		FROM qna
+		WHERE qna_no = #{qna_no}
+	</delete>
+
+
+
+<!-- 좋아요 부분 매퍼 추가 221031  -->
+<!-- 좋아요 체크 0 또는 1-->
+	<select id="findLike" resultType="int">
+		select count(*) 
+		from qnalike 
+		where qna_no = #{qna_no} and m_id = #{m_id}
+	</select>
+	
+<!-- 좋아요 불러오기 -->  
+	  <select id="getLike" resultType="int">
+	  	select count(*) 
+	  	from qnalike 
+	  	where qna_no = #{qna_no} and likenum = #{likenum}
+	  </select>	
+	  
+<!-- 좋아요 업  -->
+	<insert id="likeUp"  parameterType="com.vo.LikeVO">
+<!-- 		insert into qnalike 
+		(qnalike_no , qna_no , m_id, likenum)
+		values
+		(seq_qnalike_no.nextval, #{qna_no},#{m_id},1) -->
+			insert into qnalike 
+			(qnalike_no ,qna_no , m_id, likenum)
+		values( seq_qnalike_no.nextval, #{qna_no},#{m_id},1)
+		
+	</insert>
+<!--좋아요 다운  -->
+	<delete id="likeDown">
+	  	delete from qnalike 
+	  	where qna_no = #{qna_no} and m_id = #{m_id} 
+	 </delete>
+	  
+	  
+	  
+</mapper>

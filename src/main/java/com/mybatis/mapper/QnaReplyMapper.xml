@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mapper.QnaReplyMapper">
+
+
+	<!-- 댓글 조회 -->
+	<select id="readReply" resultType="com.vo.QnaReplyVO">
+		SELECT
+		qnareply_no, qnareply_content, admin_name, qnareply_date
+		FROM qnareply
+		WHERE qna_no = #{qna_no}
+	</select>
+
+
+
+<insert id="writeReply">
+		INSERT INTO qnareply(
+		qna_no
+		, qnareply_no
+		, qnareply_content
+		, admin_name
+		)
+		VALUES( 
+		#{qna_no}
+		, seq_qnareply_no.nextval
+		, #{qnareply_content}
+		, #{admin_name} )
+</insert>
+
+
+<!-- 특정 댓글 조회 -->
+<select id="readReplySelect" resultType="com.vo.QnaReplyVO">
+ select
+     qna_no, qnareply_no, qnareply_content, admin_name, qnareply_date
+ from qnareply
+     where qnareply_no = #{qnareply_no}
+</select>
+
+
+
+<!-- 댓글 수정 -->
+<update id="replyUpdate" parameterType="com.vo.QnaReplyVO">
+ update qnareply
+     set
+         qnareply_content = #{qnareply_content}
+     where qnareply_no = #{qnareply_no}
+</update>
+
+<!-- 댓글 삭제 -->
+<delete id="replyDelete" parameterType="com.vo.QnaReplyVO">
+ delete from qnareply
+  where qnareply_no = #{qnareply_no}
+</delete>
+
+
+
+
+
+</mapper>
