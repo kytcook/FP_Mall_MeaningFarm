@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.member.xml">
+	<!-- 
+	
+		<insert | delete | update | select 속성="값" 속성="값 ~~>
+			- id 속성 : DAO에서 설정한 값 ▶ session.insert("memberInsert", dto);
+			- parameterType 속성 : 매개 변수 타입(클래스타입, 기본데이터타입) : 생략 가능
+			- 입력 값 표기 : dto.getIrum() → #{dto 內 속성명} ▶ #{irum}
+			- SQL 문장의 마지막에 세미콜론(;)은 입력하지 않는다. 
+			- resultType 속성 : select 쿼리를 수행했을 때 결과 타입
+		</insert | delete | update | select>
+	 -->
+	 
+    <!-- ########## [[ 회원 목록 ]] ########## -->
+    <select id="memberListAll" resultType="com.vo.MemberVO">
+    	SELECT * FROM member
+    </select>
+    
+    <!-- ########## [[ 일반 회원가입 ]] ########## -->
+   <insert id="register" parameterType="map">
+		INSERT INTO MEMBER (m_id, auth_id, m_pw, m_name, m_phone, m_email
+						  , m_zipcode, m_address, m_address2, m_registedate
+						  , m_type, m_stop, m_point, m_exitstatus, m_exitdate
+						  , m_status, m_birth)
+			VALUES (#{m_id}, #{auth_id}, #{m_pw}, #{m_name}, #{m_phone}, #{m_email}
+						  , #{m_zipcode}, #{m_address}, #{m_address2}, to_char(sysdate, 'YYYY-MM-DD')
+						  , #{m_type}, 'N', 0, 'N', #{m_exitdate}
+						  , 'N', #{m_birth})
+	</insert>
+	
+    <!-- ########## [[ 판매자 회원가입 !!!!!!!!!!!!!!!!!!! 다시 할것 ㅠㅠㅠㅠㅠ ]] ########## -->
+   <!--
+   <insert id="sregister" parameterType="map">
+		INSERT INTO seller (m_id, auth_id, m_pw, m_name, m_phone, m_email
+						  , m_zipcode, m_address, m_address2, m_registedate
+						  , m_type, m_stop, m_point, m_exitstatus, m_exitdate
+						  , m_status, m_birth)
+			VALUES (#{m_id}, #{auth_id}, #{m_pw}, #{m_name}, #{m_phone}, #{m_email}
+						  , #{m_zipcode}, #{m_address}, #{m_address2}, to_char(sysdate, 'YYYY-MM-DD')
+						  , #{m_type}, 'N', 0, 'N', #{m_exitdate}
+						  , 'N', #{m_birth})
+	</insert> 
+	-->
+	
+   <insert id="sregister" parameterType="map">
+		INSERT INTO seller (m_id, auth_id, m_pw, seller_owner, m_phone, seller_email
+						  , seller_zipcode, seller_address, seller_address2, seller_date
+						  , seller_regino, seller_storename, seller_bank, seller_banknum, seller_bankowner
+						  , m_birth)
+			VALUES (#{m_id}, #{auth_id}, #{m_pw}, #{seller_owner}, #{m_phone}, #{seller_email}
+						  , #{seller_zipcode}, #{seller_address}, #{seller_address2}, to_char(sysdate, 'YYYY-MM-DD')
+						  , #{seller_regino}, #{seller_storename}, #{seller_bank}, #{seller_banknum}, #{seller_bankowner}
+						  , #{m_birth})
+	</insert> 
+
+    <!-- ########## [[ 로그인 ]] ########## 
+	<select id="login" resultType="com.vo.MemberVO">
+		SELECT m_id, m_pw
+		 FROM member
+		<where>
+			<if test="m_id!=null">
+				AND m_id = #{m_id}
+			</if>
+			<if test="m_pw!=nul">
+				AND m_pw = #{m_pw}
+			</if>
+		</where>
+	</select>
+	-->
+	<select id="login" resultType="com.vo.MemberVO">
+		SELECT * FROM member
+		 WHERE m_id = #{m_id} AND m_pw = #{m_pw}
+	</select>
+	
+	
+	<!-- ########## [[ id 중복 검사 ]] ########## -->
+	<select id="checkIdDup" resultType="int">
+		SELECT COUNT(*) FROM member
+		 WHERE m_id = #{m_id}
+	</select>
+	
+	
+	
+	<!-- ########## [[ id 찾기 ]] ########## -->	
+	<select id="findId" resultType="int">
+		SELECT m_id FROM member
+		  WHERE m_name = #{m_name}
+		    AND m_phone = #{m_phone}
+		    AND m_email = #{m_email}
+	</select>
+	
+	
+	<!-- ########## [[ 로그인 유효성 검사 - ajax ]] ########## -->
+	<select id="getUserById" resultType="com.vo.MemberVO">
+		SELECT * FROM member 
+		  WHERE m_id = #{m_id}
+		  AND m_pw = #{m_pw}
+	</select>
+	
+	
+	<!-- ########## [[ 회원 탈퇴 - memberDelete ]] ########## -->
+	<delete id="memberDelete">
+		DELETE FROM member 
+		 WHERE m_id = #{m_id}
+		  AND m_pw = #{m_pw}
+	</delete>
+	
+    <!-- ########## [[ 회원 목록 ]] ########## -->
+</mapper>
+
+<!--   전화번호가 없네
+  seller_regino       
+  seller_storename    
+  seller_owner        
+  seller_regiapproval ㅇㅇ
+  seller_date         ㅇㅇ
+  seller_zipcode      
+  seller_address      
+  seller_address2     
+  seller_email        
+  seller_bank         
+  seller_banknum      
+  seller_bankowner    
+  m_id 
+-->               
