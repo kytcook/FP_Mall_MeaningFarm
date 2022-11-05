@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Criteria {
-	
+
 	private int page;
 	private int perPageNum;
 	private int rowStart;
@@ -57,6 +57,7 @@ public class Criteria {
 	public String toString() {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", rowStart=" + rowStart + ", rowEnd=" + rowEnd
 				+ "]";
+
 	}
 
 }

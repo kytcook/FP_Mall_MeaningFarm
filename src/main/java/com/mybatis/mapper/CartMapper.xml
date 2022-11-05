@@ -32,6 +32,7 @@
 	
 	<!-- 04. 장바구니 확인 -->
 	<select id="cartCheck" parameterType="com.meaningfarm.mall.cart.CartVO" resultType="int">
+		<!-- 아이디와 상품이 있으면 1, 없으면 0 반환  -->
 		SELECT NVL((
 		       SELECT 1 from cart 
 		       WHERE m_id = #{m_id}  AND product_no = #{product_no} 
