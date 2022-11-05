@@ -20,6 +20,8 @@
 	<mappers>
 		<mapper resource="com/mybatis/mapper/recipeMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/recipeReplyMapper.xml"/>
+		<mapper resource="com/mybatis/mapper/categorytype.xml"/>
+		<mapper resource="com/mybatis/mapper/categorylocal.xml"/>
 		<mapper resource="com/meaningfarm/mapper/product.xml" />
 		<mapper resource="com/meaningfarm/mapper/option.xml" />
 		<mapper resource="com/mybatis/mapper/NoticeMapper.xml" />
