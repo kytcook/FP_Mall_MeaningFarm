@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.coobird.thumbnailator.Thumbnails;
@@ -36,6 +37,7 @@ import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/product/*")
+@SessionAttributes({ "m_id", "m_pw" })
 public class ProductController {
 
 	Logger logger = LoggerFactory.getLogger(ProductController.class);
@@ -49,10 +51,10 @@ public class ProductController {
 //	}
 	// product 상품 목록 페이지 띄우기
 	@GetMapping("/productlisttest")
-	public String productList(Model model, HttpServletRequest request, @ModelAttribute("searchVO")SearchVO searchVO) {
-		HttpSession session = request.getSession();
-		String m_id = "1";
-		session.setAttribute("m_id", m_id);
+	public String productList(HttpSession session, Model model, HttpServletRequest request, @ModelAttribute("searchVO")SearchVO searchVO) {
+		String m_id = (String) session.getAttribute("m_id");
+//		String m_id = request.getParameter("m_id");
+		//session.setAttribute("m_id", m_id);
 		
 		searchVO.setM_id(m_id);
 		logger.info("ProductController productList " + searchVO);
@@ -61,7 +63,7 @@ public class ProductController {
 		
 		PageVO pageVO = new PageVO();
 		pageVO.setCri(searchVO);
-		pageVO.setTotalCount(productService.listCount(searchVO));
+		pageVO.setTotalCount(productService.productListCount(searchVO));
 		
 		model.addAttribute("pageVO", pageVO);
 		
@@ -92,6 +94,8 @@ public class ProductController {
 	public String productDetail(ProductVO productVO, Model model) {
 		logger.info("ProductController productDetail");
 		model.addAttribute("productSelectOne", productService.productDetail(productVO.getProduct_no()));
+		
+		System.out.println("디테일 널값 체크... " + productService.productDetail(productVO.getProduct_no()));
 		
 		List<CategoryTypeVO> CTList = null;
 		CTList = productService.CTList();
@@ -260,8 +264,28 @@ public class ProductController {
 	@PostMapping("/productfiledeleteone")
 	public ResponseEntity<String> productfileDeleteOne(@RequestParam(name="imgName") String imgName, @RequestParam(name="productfile_no")int productfile_no) {
 		
-		logger.info("ProductController productfileDeleteOne " + imgName);
-		logger.info("ProductController productfileDeleteOne " + productfile_no);
+		productService.productfileDeleteOne(productfile_no);
+		File file = null;
+
+		try {
+			// 썸네일 파일 삭제
+			System.out.println("썸네일 파일명 " + URLDecoder.decode(imgName, "UTF-8"));
+			file = new File("C:\\meaningFarm\\meaningFarm\\src\\main\\webapp\\resources\\image\\" + URLDecoder.decode(imgName, "UTF-8"));
+			file.delete();
+			// 원본 파일 삭제
+			String originImgName = file.getAbsolutePath().replaceFirst("s_", "");
+			logger.info("originImgName " + originImgName);
+			file = new File(originImgName);
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("fail", HttpStatus.NOT_IMPLEMENTED);
+		}
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
+	@PostMapping("/productfiledelete")
+	public ResponseEntity<String> productfileDelete(@RequestParam(name="imgName") String imgName, @RequestParam(name="product_no")int product_no) {
+		
 		File file = null;
 		try {
 			// 썸네일 파일 삭제
@@ -277,7 +301,7 @@ public class ProductController {
 			e.printStackTrace();
 			return new ResponseEntity<String>("fail", HttpStatus.NOT_IMPLEMENTED);
 		}
-		productService.productfileDeleteOne(productfile_no);
+		productService.productfileDelete(product_no);
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 	

@@ -13,64 +13,57 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
    		http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-
-		<!-- context 버전차이 -->
-		<!-- 
 		
-		 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd-->
-		
+<!-- 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd -->
 
-
-		
-   		
-
-   <!-- Root Context: defines shared resources visible to all other web components -->
-    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-         <property name="driverClassName">
-            <value>net.sf.log4jdbc.sql.jdbcapi.DriverSpy</value>
-         </property>
-         
-         <property name="jdbcUrl">
-            <value>jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:orcl11</value>
-         </property>
-         
-         <property name="username">
-            <value>MEANINGFARM</value>
-            
-         </property>
-         <property name="password">
-            <value>tiger</value>
-         </property>
-  </bean>
-      
-      <!-- 커넥션 풀 설정 -->
-      <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
-            <constructor-arg ref="hikariConfig"/>
-      </bean>
-      
-      <!-- ====================== [[ Spring & MyBatis 시작 ]] ====================== -->
-      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-         <property name="configLocation" value="classpath:/mapper/mybatis-config.xml" />
-         <property name="dataSource" ref="dataSource" />
-      </bean>
-      
-      <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-         <constructor-arg index="0" ref="sqlSessionFactory" />
-      </bean>
-      
-      
-      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	 <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	      <property name="driverClassName">
+	         <value>net.sf.log4jdbc.sql.jdbcapi.DriverSpy</value>
+	      </property>
+	      <property name="jdbcUrl">
+	         <value>jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:orcl11</value>
+	      </property>
+	      <property name="username">
+	      <!--    <value>meaningFarm</value>   --> 
+	         <value>meaningfarm</value>
+	      </property>
+	      <property name="password">
+	         <value>tiger</value>
+	      </property>
+	   </bean>
+	   <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+	   		<constructor-arg ref="hikariConfig"/>
+	   </bean>
+	   <!-- ====================== [[ Spring & MyBatis 시작 ]] ====================== -->
+	   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	      <property name="configLocation" value="classpath:/mapper/mybatis-config.xml" />
+	      <property name="dataSource" ref="dataSource" />
+	   </bean>
+	   <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	      <constructor-arg index="0" ref="sqlSessionFactory" />
+	   </bean>
+	   
+   	   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     	<property name="dataSource" ref="dataSource"></property>
-	</bean>
+		</bean>
+		
+  		  <tx:annotation-driven transaction-manager="transactionManager" /> 
+	      <!-- scan -->
+	    <context:component-scan base-package="com.meaningfarm.mall.notice.service"></context:component-scan>
+	    <context:component-scan base-package="com.meaningfarm.mall.qna.service"></context:component-scan>
+	    <context:component-scan base-package="com.meaningfarm.mall.qna.dao"></context:component-scan>
+	    <context:component-scan base-package="com.meaningfarm.mall.notice.dao"></context:component-scan>
+ 		<context:component-scan base-package="com.meaningfarm.mall.recipe.dao" />
+  		<context:component-scan base-package="com.meaningfarm.mall.recipe.service" />
+	    <context:component-scan base-package="com.vo"></context:component-scan>
+	    <context:component-scan base-package="com.util"></context:component-scan>
+	   
+</beans>
 
-    <tx:annotation-driven transaction-manager="transactionManager" /> 
+      
 
-      <!--  scan -->
- 	<context:component-scan base-package="com.meaningfarm.mall.recipe.dao" />
-   	<context:component-scan base-package="com.meaningfarm.mall.recipe.service" />
-   	<context:component-scan base-package="com.vo" />
+
+
 
  
-
-
-</beans>

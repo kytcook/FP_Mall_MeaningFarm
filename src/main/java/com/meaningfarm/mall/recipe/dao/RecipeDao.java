@@ -7,11 +7,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.vo.Criteria;
 import com.vo.RecipeVO;
+import com.vo.SearchCriteria;
 
 public interface RecipeDao {
    // 목록조회
    public List<RecipeVO> list() throws Exception;
-   
+
 
    //게시글 작성
    public void write(RecipeVO recipeVO) throws Exception;
@@ -34,6 +35,12 @@ public interface RecipeDao {
    //첨부파일 업로드
    public void insertFile(Map<String,Object> map) throws Exception;
 
+   //게시물 총 갯수
+   public int listCount() throws Exception;
 
+   //게시물 목록 + 페이징
+   public List<RecipeVO> listPage(Criteria cri) throws Exception;
 
+   // 검색결과 갯수
+   //public int countSearch(SearchCriteria scri) throws Exception;
 }

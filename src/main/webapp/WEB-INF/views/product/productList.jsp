@@ -1,8 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, com.meaningfarm.util.PageBar" %>      
 <!--========= 헤드 =========-->
-<%@include file="../layout/head.jsp"%>
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
+
 <!--========= 헤드 =========-->
+
+<style type="text/css" >
+@charset "UTF-8";
+
+* {
+	/* border: 1px solid red; */
+	
+}
+/*--------header CSS---------*/
+.nav-pills>.nav-item>.nav-link {
+	color: rgb(18, 17, 17) !important;
+}
+
+.nav-pills>.nav-item>.active {
+	color: rgb(255, 255, 255) !important;
+	background-color: rgb(45, 197, 116) !important;
+}
+
+.nav-pills>.nav-item>.active:hover {
+	color: rgb(255, 255, 255) !important;
+	background-color: rgb(23, 97, 57) !important;
+}
+/*--------header CSS---------*/
+
+/* card 호버시 커지게  */
+.card:hover {
+	transform: scale(1.1);
+	transition: transform .3s;
+}
+</style>
+
 
 <!-- productList.js 추가하기 -->
 <script defer>
@@ -22,8 +57,8 @@
 	})
 </script>  
 
-<!-- productList.css 추가하기 -->
-<link href="${path}/css/product/productList.css" rel="stylesheet"/>
+<!-- productList.css 추가하기 
+<link href="${path}/css/product/productList.css" rel="stylesheet"/>-->
   
 <%
 	/////////////////////////////////////////////////////
@@ -103,6 +138,11 @@
         <div class="list_product row row-cols-3">
       <!--================= 상품리스트 =================-->
       <!-- 현재 페이지에서 보여지는 상품의 개수를 제어하면서 꺼내는 반복문 : 상품리스트, 페이징 처리 START -->
+      
+      
+
+
+      
 <%
 	if(size==0){
 		if(isOk){	
@@ -168,8 +208,10 @@
       <!--================ 페이지네이션 ================-->
     </section>
   <!----------------------- FOOTER START ---------------------->
+<!-- ########## [[ 푸터 시작 ]] ########## -->
+<%@include file="../../../resources/layout/footer.jsp"%>
+<!-- ########## [[ 푸터 끝 ]] ########## -->
   <!------------------------ FOOTER END ----------------------->  
 <!-- productList.js코드 추가 -->
-
 </body>
 </html>

@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+	String m_id = (String)session.getAttribute("m_id");
+//out.print(m_id2);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>write</title>
-<%@ include file="../../../common/common.jsp" %>
+<%@ include file="../../../resources/common/common.jsp" %>
 </head>
 <body>
 <style>
@@ -32,20 +36,29 @@ table {
 	text-align: center;
 }
 </style>
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
-<%@ include file="../../../layout/sidebar.jsp" %>
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="../../../resources/layout/sidebar.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
+
 <div id="piContainer">
 <h1>상품 등록</h1>
-<input type="text" value="${m_id}">
+<input type="text" value="<%=m_id%>" readonly>
 <form action="./productinsert" method="post" id="f_product" enctype="multipart/form-data"> <br/>
 <input type="text" class="form-control" name="product_name" id="product_name" placeholder="상품명"> <br/>
-<select class="form-select" id="s_category_local_no" name="category_local_no">
-	<option selected value="">카테고리-지역</option>
-</select><br/>
-<select class="form-select" id="s_category_type_no" name="category_type_no">
-	<option selected value="">카테고리-종류</option>
-</select><br/>
+<div class="row">
+	<div class="col">
+		<select class="form-select" id="s_category_local_no" name="category_local_no">
+			<option selected value="">카테고리-지역</option>
+		</select><br/>
+	</div>
+	<div class="col">
+		<select class="form-select" id="s_category_type_no" name="category_type_no">
+			<option selected value="">카테고리-종류</option>
+		</select><br/>
+	</div>
+</div>
 <input type="text" class="form-control" name="product_price" placeholder="상품 가격"> <br/>
 <input type="text" class="form-control" name="product_stock" placeholder="상품 재고"> <br/>
 <input type="file" class="form-control" name="product_img" id="product_img" accept="image/*" multiple> <br/>
@@ -67,7 +80,9 @@ table {
 <button id="b_submit" class="btn btn-warning">등록</button>
 <button type="button" class="btn btn-dark" onclick="location.href='./productlisttest'">취소</button>
 </div>
-<%@ include file="../../../layout/footer.jsp" %>
+<!-- ########## [[ 푸터 시작 ]] ########## -->
+<%@include file="../../../resources/layout/footer.jsp"%>
+<!-- ########## [[ 푸터 끝 ]] ########## -->
 <script type="text/javascript">
 $(document).ready(function() {
 	// 배송비 라디오버튼 클릭하면 텍스트박스 뜨는 코드 시작

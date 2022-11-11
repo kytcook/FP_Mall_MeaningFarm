@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+	String m_id = (String)session.getAttribute("m_id");
+//out.print(m_id2);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>detail</title>
-<%@ include file="../../../common/common.jsp" %>
+<%@ include file="../../../resources/common/common.jsp" %>
 </head>
 <body>
 <style>
@@ -32,20 +36,28 @@ table {
 	text-align: center;
 }
 </style>
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
-<%@ include file="../../../layout/sidebar.jsp" %>
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="../../../resources/layout/sidebar.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 <div id="pdContainer">
 <h1>상품 상세</h1>
 <form action="/mall/product/productdetail?product_no=${productSelectOne.product_no}" method="post" id="f_product"> <br/>
 <input type="hidden" name="product_no" id="product_no" value="${productSelectOne.product_no}">
 <input type="text" class="form-control" name="product_name" value="${productSelectOne.product_name}" placeholder="상품명"> <br/>
-<select class="form-select" id="s_category_local_no" name="category_local_no" value="${productSelectOne.category_local_no}">
-	<option selected value="">카테고리-지역</option>
-</select><br/>
-<select class="form-select" id="s_category_type_no" name="category_type_no" value="${productSelectOne.category_type_no}">
-	<option selected value="">카테고리-종류</option>
-</select><br/>
+<div class="row">
+	<div class="col">
+		<select class="form-select" id="s_category_local_no" name="category_local_no" value="${productSelectOne.category_local_no}">
+			<option selected value="">카테고리-지역</option>
+		</select><br/>
+	</div>
+	<div class="col">
+		<select class="form-select" id="s_category_type_no" name="category_type_no" value="${productSelectOne.category_type_no}">
+			<option selected value="">카테고리-종류</option>
+		</select><br/>
+	</div>
+</div>
 <input type="text" class="form-control" name="product_price" value="${productSelectOne.product_price}" placeholder="상품 가격"> <br/>
 <input type="text" class="form-control" name="product_stock"  value="${productSelectOne.product_stock}" placeholder="상품 재고"> <br/>
 <div class="form_section">
@@ -73,6 +85,9 @@ table {
 </form>
 
 </div>
+
+
+<%@include file="../../../resources/layout/footer.jsp"%>
 <script type="text/javascript">
 $(document).ready(function(){
 

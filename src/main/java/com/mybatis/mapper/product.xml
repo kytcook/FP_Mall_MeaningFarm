@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.mapper.ProductMapper">
+<select id="productSelectAll" resultType="com.meaningfarm.mall.product.ProductVO">
+	select * from product, category_type, category_local
+	where product.category_type_no = category_type.category_type_no
+	and product.category_local_no = category_local.category_local_no
+	order by product_no asc
+</select>
+<select id="productSelectOne" parameterType="int" resultType="com.meaningfarm.mall.product.ProductVO">
+	select product_no, product_name, product_price, product_detail,
+		   product_stock, product_dlvyfee, product_dlvylimit, category_local_no, category_type_no, m_id
+	from product
+	where product_no = #{product_no}
+</select>
+<insert id="productInsert">
+	<selectKey resultType="int" keyProperty="product_no" order="BEFORE">
+		select SEQ_PRODUCT_NO.nextval from dual
+	</selectKey>
+	insert into product(product_no, product_name, product_price, product_detail, product_stock,
+						product_dlvyfee, product_dlvylimit, category_local_no, category_type_no, m_id)
+	values(#{product_no}, #{product_name}, #{product_price}, #{product_detail}, #{product_stock},
+		   #{product_dlvyfee}, #{product_dlvylimit}, #{category_local_no}, #{category_type_no}, #{m_id})
+</insert>
+<update id="productUpdate" parameterType="com.meaningfarm.mall.product.ProductVO">
+	update product
+	   set product_name = #{product_name}
+		 , product_price = #{product_price}
+		 , product_detail = #{product_detail}
+		 , product_stock = #{product_stock}
+		 , product_dlvyfee = #{product_dlvyfee}
+		 , product_dlvylimit = #{product_dlvylimit}
+		 , category_local_no = #{category_local_no}
+		 , category_type_no = #{category_type_no}
+		 , m_id = #{m_id}
+	 where product_no = #{product_no}
+</update>
+<delete id="productDelete" parameterType="int">
+	delete from product
+	where product_no = #{product_no}
+</delete>
+
+
+<!-- productfile -->
+<select id="productfileList" parameterType="int" resultType="com.meaningfarm.mall.product.ProductFileVO">
+	select * from productfile
+	where product_no = #{product_no}
+</select>
+<insert id="productfileInsert" parameterType="com.meaningfarm.mall.product.ProductFileVO">
+	insert into productfile
+	values(seq_productfile_no.nextval, #{productfile_name}, #{productfile_sname}, #{productfile_path}, #{product_no})
+</insert>
+<delete id="productfileDelete" parameterType="int">
+	delete from productfile
+	where product_no = #{product_no}
+</delete>
+<delete id="productfileDeleteOne" parameterType="int">
+	delete from productfile
+	where productfile_no = #{productfile_no}
+</delete>
+
+
+
+<select id="productListCount" resultType="int">
+	select count(*) from product
+	where m_id = #{m_id}
+	<include refid="productSearch"></include>
+	and product_no > 0
+</select>
+<select id="productListPage" resultType="com.meaningfarm.mall.product.ProductVO">
+	select *
+	from (
+		select rownum rn, product_no, product_name, product_price, product_detail, product_stock, product_dlvyfee, m_id,
+    		   category_type_name, category_local_name
+		from (
+			select product_no, product_name, product_price, product_detail, product_stock, product_dlvyfee, m_id,
+				   P.category_type_no, P.category_local_no,
+				   CT.category_type_no, CT.category_type_name,
+				   CL.category_local_no, CL.category_local_name
+        	from product P, category_type CT, category_local CL
+        	where m_id = #{m_id}
+	        and P.category_type_no = CT.category_type_no
+	        and P.category_local_no = CL.category_local_no
+	        and 1=1
+	        <include refid="productSearch"></include>
+	        order by product_no desc
+		) A
+	)
+	where rn between #{rowStart} and #{rowEnd}
+</select>
+
+<sql id="productSearch">
+	<if test="searchType != null">
+		<if test="searchType == 't'.toString()">AND product_name LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType == 'w'.toString()">AND product_detail LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType == 'tc'.toString()">AND ((product_name LIKE '%' || #{keyword} || '%') or (product_detail LIKE '%' || #{keyword} || '%'))</if>
+	</if>
+</sql>
+</mapper>

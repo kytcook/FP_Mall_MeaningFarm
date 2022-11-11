@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ include file="../../../resources/common/common.jsp" %>
 <!--========= 헤드 =========-->
-<%@include file="../layout/head.jsp"%>
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
 <!--========= 헤드 =========-->
 
 <%

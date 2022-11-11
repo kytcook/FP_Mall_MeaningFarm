@@ -27,6 +27,11 @@
 
    
 	  <!-- 김민지 : 10.26 -->
+	  <dependency>
+		    <groupId>net.coobird</groupId>
+		    <artifactId>thumbnailator</artifactId>
+		    <version>0.4.13</version>
+	</dependency>
       <dependency>
           <groupId>net.sf.json-lib</groupId>
           <artifactId>json-lib</artifactId>

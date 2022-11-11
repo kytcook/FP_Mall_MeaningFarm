@@ -1,15 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+//	String m_id = (String)session.getAttribute("m_id");
+//	String m_id2 = (String)session.getAttribute("m_id");
+//out.print(m_id2);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>list</title>
-<%@ include file="../../../common/common.jsp" %>
+<%@ include file="../../../resources/common/common.jsp" %>
 </head>
 <body>
 
 <style>
+h1 {
+	margin: 20px;
+	margin-bottom: 40px;
+}
 .scontainer {
 	float: left;
 	margin-top: -40px;
@@ -35,23 +44,28 @@ table {
 }
 .pageDIV {
 	text-align: center;
+	margin: 0 auto;
 }
 .pageUL li {
 	list-style: none;
 	float: left;
 	padding: 6px;
+	margin: 0 auto;
 }
 .searchDIV {
 	text-align: center;
 }
 </style>
 
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
+
 <div id="spController">
-<%@ include file="../../../layout/sidebar.jsp" %>
+<%@ include file="../../../resources/layout/sidebar.jsp" %>
 <div id="productListContainer">
-<h1>게시판 목록</h1>
+<h1>상품 목록</h1>
 
 <table id="t_productList" class="table table-hover">
 	<th><input class="form-check-input" type="checkbox" name="cb_product_all"></th>
@@ -69,7 +83,7 @@ table {
 			</c:when>
 			<c:when test="${m_id eq list.m_id}">
 				<tr onClick="location.href='/mall/product/productdetail?product_no=${list.product_no}'">
-					<td><input class="form-check-input" type="checkbox" name="cb_product" value="${list.product_no}" ></td>
+					<td><input class="form-check-input" type="checkbox" name="cb_product" value="${list.product_no}"  onclick="event.cancelBubble=true"></td>
 					<td><c:out value="${list.product_name}" /></td>
 					<td><c:out value="${list.category_type_name}" /></td>
 					<td><c:out value="${list.category_local_name}" /></td>
@@ -77,6 +91,9 @@ table {
 					<td><c:out value="${list.product_dlvyfee}" /></td>
 				</tr>
 			</c:when>
+			<c:otherwise>
+				<input type="text" value="${m_id}">
+			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 </table>
@@ -99,18 +116,25 @@ table {
     </c:if> 
   </ul>
 </div>
+<br>
 <!-- end of page -->
 	
 <!-- start of search -->
-<div class="search">
-	<select name="searchType" class="form-select">
-		<option value="n"<c:out value="${searchVO.searchType == null ? 'selected' : ''}"/>>-----</option>
-		<option value="t"<c:out value="${searchVO.searchType eq 't' ? 'selected' : ''}"/>>상품명</option>
-		<option value="c"<c:out value="${searchVO.searchType eq 'c' ? 'selected' : ''}"/>>상품상세</option>
-		<option value="tc"<c:out value="${searchVO.searchType eq 'tc' ? 'selected' : ''}"/>>상품명+상품상세</option>
-	</select>
-	<input type="text" class="form-select" name="keyword" id="keywordInput" value="${searchVO.keyword}"/>
-	<button id="searchBtn" type="button" class="btn btn-warning">검색</button>
+<div class="search row g-3 align-items-center">
+	<div class="col-md-2">
+		<select name="searchType" class="form-select">
+			<option value="n"<c:out value="${searchVO.searchType == null ? 'selected' : ''}"/>>선택</option>
+			<option value="t"<c:out value="${searchVO.searchType eq 't' ? 'selected' : ''}"/>>상품명</option>
+			<option value="c"<c:out value="${searchVO.searchType eq 'c' ? 'selected' : ''}"/>>상품상세</option>
+			<option value="tc"<c:out value="${searchVO.searchType eq 'tc' ? 'selected' : ''}"/>>상품명+상품상세</option>
+		</select>
+	</div>
+	<div class="col-md-8">
+		<input type="text" class="form-control" name="keyword" id="keywordInput" value="${searchVO.keyword}" placeholder="검색"/>
+	</div>
+	<div class="col-sm">
+		<button id="searchBtn" type="button" class="btn btn-warning">검색</button>
+	</div>
 <script>
 	$(function(){
 		$('#searchBtn').click(function(e) {
@@ -127,8 +151,9 @@ table {
 
 </div>
 </div>
-
-<%@ include file="../../../layout/footer.jsp" %>
+<!-- ########## [[ 푸터 시작 ]] ########## -->
+<%@include file="../../../resources/layout/footer.jsp"%>
+<!-- ########## [[ 푸터 끝 ]] ########## -->
 
 <script type="text/javascript">
 // 체크박스 선택       

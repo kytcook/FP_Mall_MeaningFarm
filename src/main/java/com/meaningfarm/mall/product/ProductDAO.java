@@ -1,4 +1,3 @@
-
 package com.meaningfarm.mall.product;
 
 import java.util.List;
@@ -77,23 +76,24 @@ public class ProductDAO {
 	}
 
 	public void productfileDelete(int product_no) {
-		logger.info("ProductService productfileDelete " + product_no);
+		logger.info("ProductDAO productfileDelete " + product_no);
 		sst.delete("productfileDelete", product_no);
 	}
 	
 	public void productfileDeleteOne(int product_no) {
-		logger.info("ProductService productfileDeleteOne " + product_no);
+		logger.info("ProductDAO productfileDeleteOne " + product_no);
 		sst.delete("productfileDeleteOne", product_no);
 	}
 	
 	// 게시물 목록 조회
-	public List<ProductVO> list(SearchVO searchVO) {
-		return sst.selectList("listPage", searchVO);
+	public List<ProductVO> productListPage(SearchVO searchVO) {
+		logger.info("ProductDAO productListPage searchVO " + searchVO);
+		return sst.selectList("productListPage", searchVO);
 	}
 	
 	// 게시물 총 갯수
-	public int listCount(SearchVO searchVO) {
-		return sst.selectOne("listCount", searchVO);
+	public int productListCount(SearchVO searchVO) {
+		return sst.selectOne("productListCount", searchVO);
 	}
 	
 }

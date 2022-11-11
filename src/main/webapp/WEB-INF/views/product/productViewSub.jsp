@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
     <!--========================== 상품정보탭 ==========================-->
     <!--=== 상세정보 시작 ===-->
       <!-- 메뉴탭 -->
@@ -329,5 +328,7 @@
       </article>
       <!--=== 배송관련 끝 ===-->
     </section>
+
+    
     <!--========================== 상품정보탭 ==========================-->
 <script src="${path}/js/productViewSub.js" type="text/javascript"></script>

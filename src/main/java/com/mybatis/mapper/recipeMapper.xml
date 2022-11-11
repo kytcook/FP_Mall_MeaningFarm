@@ -1,127 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mybatis.mapper.recipeMapper">
-	<!--  레시피 리스트 받아오기 -->
-	<select id="list" resultType="com.vo.RecipeVO">
-        select rownum as rnum, A.*
+   <!--  레시피 리스트 받아오기 -->
+   <select id="recipelist" resultType="com.vo.RecipeVO">
+   
+       select rownum as rnum, A.*
             from (
                    select *
-                	from recipe
-                	order by recipe_no desc)A    	
+                   from recipe
+                   order by recipe_no desc)A        
 
-	</select>
-	
-	
-	<!-- 리스트 페이징 받아오기 -->
-	<select id="listPage" resultType="com.vo.RecipeVO" parameterType="com.vo.Criteria">
-		select  A.*
+   </select>
+   
+   
+   <!-- 리스트 페이징 받아오기 -->
+   <select id="recipelistPage" resultType="com.vo.RecipeVO" parameterType="com.vo.Criteria">
+   
+      select  A.*
             from (
-				select recipe_no,
-		               recipe_title,
-		               recipe_content,
-		               recipe_pwd,
-		               recipe_hit,
-		               recipe_like,
-		               recipe_date,
-		               m_id,
-               			row_number() over(order by recipe_no desc) as rnum
-          			from recipe
-                				) A
+            select recipe_no,
+                     recipe_title,
+                     recipe_content,
+                     recipe_pwd,
+                     recipe_hit,
+                     recipe_like,
+                     recipe_date,
+                     m_id,
+                        row_number() over(order by recipe_no desc) as rnum
+                   from recipe) A
                 
-              where rnum between 1 and 10
- 				order by recipe_no desc
-	</select>
-	<select id="listCount" resultType="int">
-		<![CDATA[
-			select count(recipe_no)
-			from recipe
-			where recipe_no >0			
-		]]>
-		
-	</select>
-	<!--  레시피 작성  -->
-	<insert id="write" parameterType="com.vo.RecipeVO" useGeneratedKeys="true" keyProperty="recipe_no">
-		<selectKey keyProperty="recipe_no" resultType="int" order="BEFORE">
-			select seq_recipe_no.nextval from dual
-		</selectKey>
-	 		insert into recipe ( recipe_no
-							, recipe_title
-							, recipe_content
-							, recipe_pwd
-							, m_id)						
-					values ( seq_recipe_no.nextval
-							, #{recipe_title}
-							, #{recipe_content}
-							, #{recipe_pwd}
-							, #{m_id})	
-		</insert>										
+              where rnum between #{rowStart} and #{rowEnd}
+             order by recipe_no desc 
+   </select>
+   <select id="recipelistCount"  resultType="int">
+      
+   <![CDATA[
+      SELECT COUNT(recipe_no)
+        FROM recipe
+        WHERE recipe_no>0
+    ]]>
 
-	<!--  게시물 상세조회 -->
-	<select id="read" parameterType="int" resultType="com.vo.RecipeVO">
-		select *
-		from recipe
-		where recipe_no = #{recipe_no}
-	</select>
+      
+   </select>
+   <!--  레시피 작성  -->
+   <insert id="recipewrite" parameterType="com.vo.RecipeVO" useGeneratedKeys="true" keyProperty="recipe_no">
+      <selectKey keyProperty="recipe_no" resultType="int" order="BEFORE">
+         select seq_recipe_no.nextval from dual
+      </selectKey>
+          insert into recipe ( recipe_no
+                     , recipe_title
+                     , recipe_content
+                     , recipe_pwd
+                     , m_id)                  
+               values ( seq_recipe_no.nextval
+                     , #{recipe_title}
+                     , #{recipe_content}
+                     , #{recipe_pwd}
+                     , #{m_id})   
+      </insert>                              
 
-	<!--  게시글 수정 -->
-	<update id="modify" parameterType="com.vo.RecipeVO">
-		update recipe
-		set recipe_title = #{recipe_title},
-		    recipe_content = #{recipe_content},
-		    recipe_pwd = #{recipe_pwd}
-		where recipe_no = #{recipe_no}
-	</update>
-	
-	<!-- 게시글 삭제 -->
-	<delete id="delete" parameterType="int">
-		delete 
-		 from recipe
-		 where recipe_no = #{recipe_no}
-	</delete>
-	
-	<!--  게시판 조회수 -->
-	<update id="recipe_hit" parameterType="int">
-		update recipe set 
-		recipe_hit = recipe_hit+1
-		where recipe_no = #{recipe_no}
-	</update>
-	
-	
+   <!--  게시물 상세조회 -->
+   <select id="reciperead" parameterType="int" resultType="com.vo.RecipeVO">
+      select *
+      from recipe
+      where recipe_no = #{recipe_no}
+   </select>
 
-	<!--  좋아요 추가  
-	<insert id="like_plus_save" parameterType="">
-		insert into recipe_like
-		values(seq_re_like_no.nextval, #{recipe_no}, #{m_id}, 1)
-	</insert>
-	<update id="like_plus_up" parameterType="">
-		update recipe set recipe_like=recipe_like+1
-		where recipe_no = #{recipe_no}
-	</update>
+   <!--  게시글 수정 -->
+   <update id="recipemodify" parameterType="com.vo.RecipeVO">
+      update recipe
+      set recipe_title = #{recipe_title},
+          recipe_content = #{recipe_content},
+          recipe_pwd = #{recipe_pwd}
+      where recipe_no = #{recipe_no}
+   </update>
+   
+   <!-- 게시글 삭제 -->
+   <delete id="recipedelete" parameterType="int">
+      delete 
+       from recipe
+       where recipe_no = #{recipe_no}
+   </delete>
+   
+   <!--  게시판 조회수 -->
+   <update id="recipe_hit" parameterType="int">
+      update recipe set 
+      recipe_hit = recipe_hit+1
+      where recipe_no = #{recipe_no}
+   </update>
+   
+   
+
+   <!--  좋아요 추가  
+   <insert id="like_plus_save" parameterType="">
+      insert into recipe_like
+      values(seq_re_like_no.nextval, #{recipe_no}, #{m_id}, 1)
+   </insert>
+   <update id="like_plus_up" parameterType="">
+      update recipe set recipe_like=recipe_like+1
+      where recipe_no = #{recipe_no}
+   </update>
 -->
 
 
-<!--  좋아요 -->
-<update id="recommend">
-	update recipe
-	set recipe_like = recipe_like+1
-	where recipe_no = #{recipe_no}
-</update>
+   <!--  좋아요 -->
+   <update id="reciperecommend">
+      update recipe
+      set recipe_like = recipe_like+1
+      where recipe_no = #{recipe_no}
+   </update>
 
 
-<!--  첨부파일 업로드-->
+   <!--  첨부파일 업로드-->
+   
+   <insert id="recipeinsertFile" parameterType="hashMap">
+      insert recipe_file (
+         recipefile_no,
+         recipe_no,
+         recipefile_name,
+         recipefile_size,
+      ) values (
+         seq_recipefile_no.nextval,
+         #{recipe_no},
+         #{recipefile_name},
+         #{recipefiel_size},
+      )
+   </insert>
+   
+   <!-- 검색 
+   <select id="recipe_listSearch" resultType="com.vo.RecipeVO">
+            select  A.*
+               from (
+               select recipe_no,
+                        recipe_title,
+                        recipe_content,
+                        recipe_pwd,
+                        recipe_hit,
+                        recipe_like,
+                        recipe_date,
+                        m_id,
+                           row_number() over(order by recipe_no desc) as rnum
+                      from recipe
+                      <include refid="recipe_search"></include>
+                            ) A
+                
+              where rnum between #{rowStart} and #{rowEnd}
+             order by recipe_no desc 
+   </select>
+   <sql id="search">
+      <if test="searchType !=null">
+         <if test="searchType == 't'.toString()">where reicpe_title '%' || #{keyword} || '%'</if>
+         <if test="searchType == 'c'.toString()">where reicpe_content '%' || #{keyword} || '%'</if>
+         <if test="searchType == 'w'.toString()">where m_id '%' || #{keyword} || '%'</if>
+         <if test="searchType == 'tc'.toString()">where (recipe_title '%' || #{keyword} || '%')
+                                          or (recipe_content '%' || #{keyword} || '%')</if>
+      </if>
+   </sql>-->
+   
+   <!-- 검색타입 
+   <select id="recipe_countSearch" resultType="int" parameterType="com.vo.SearchCriteria">
 
-<insert id="insertFile" parameterType="hashMap">
-	insert recipe_file (
-		recipefile_no,
-		recipe_no,
-		recipefile_name,
-		recipefile_size,
-	) values (
-		seq_recipefile_no.nextval,
-		#{recipe_no},
-		#{recipefile_name},
-		#{recipefiel_size},
-	)
-</insert>
+       select count(recipe_no)
+        from recipe
+            <include refid="recipe_search"></include>
+             <![CDATA[
+            and recipe_no > 0
+         ]]>
+   </select>-->
 </mapper>

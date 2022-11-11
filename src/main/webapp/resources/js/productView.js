@@ -20,12 +20,12 @@ $(document).ready(function () {
 });
 
 // 서버로 전송할 데이터
-const form = {
+/*const form = {
   //m_id: '${M_ID}',
   product_no: '${PRODUCT_NO}',
   cart_amount: '',
 };
-
+*/
 // 장바구니 버튼
 $("#cart").on("click", function (e) {
   console.log("장바구니 담기 눌림");

@@ -1,12 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %> 
-<!--========= 헤드 =========-->
-<%@include file="../layout/head.jsp"%>
-<!--========= 헤드 =========-->
+<%@ include file="../../../resources/common/common.jsp" %>
+<!-- productContents.css 추가     
+<link href="${path}/css/product/productView.css" rel="stylesheet" type="text/css"/> -->
+<style type="text/css">
+@charset "UTF-8";
+/* --------------------- 상세내용 css-------------------- */
+* {
+	/* 레이아웃용 */
+	/* border: 1px solid red; */
+	
+}
 
-<!-- productContents.css 추가 -->    
-<link href="${path}/css/product/productView.css" rel="stylesheet" type="text/css"/> 
+/* input태그에 number타입의 화살표 항상 보이기 : 크롬에서만 적용됨 */
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
+	{
+	opacity: 1;
+}
 
+/* 당장 쓰지 않는 정보는 캡션으로 막아둡시다. 설명용 캡션은 table에서만 사용하는 설명용 */
+caption {
+	display: none;
+}
+
+article {
+	margin-bottom: 100px;
+}
+/* --------------------- 상세내용 css-------------------- */
+
+/* ---------------- 상세정보탭 테이블관련 css---------------- */
+table.extra-information {
+	background: #e0e0e0;
+	margin: 30px 0 60px;
+	width: 100% !important;
+}
+
+table.extra-information th {
+	width: 15%;
+	background: #f5f5f5;
+	color: #515151;
+}
+
+table.extra-information th, table.extra-information td {
+	font-weight: 400;
+	text-align: left;
+	padding-left: 15px;
+	background: #fff;
+	font-family: Dotum;
+	font-size: 11px;
+	height: 28px;
+	padding: 5px 0 5px 10px;
+	border-width: 1px;
+	line-height: 20px;
+}
+
+table.extra-information td {
+	width: 35%;
+	color: #666;
+}
+
+table.extra-information th {
+	width: 15%;
+	background: #f5f5f5;
+	color: #515151;
+}
+
+#qna_table, #review_table {
+	font-size: 10px;
+}
+
+#delivery_content {
+	font-size: 10px;
+}
+/* ----------------상세정보의 테이블관련 css---------------- */
+</style>
 <%
 	/////////////////////////////////////////////////////////////
 	String p_no 				= null;
@@ -41,7 +108,10 @@
 <!-- 본문 시작 -->
 <body>
 <!---------------------- HEADER START ---------------------->
-
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 <!----------------------- HEADER END ----------------------->
   <div class="container"><!-- section 영역 2개를 묶는 div -->
     <!-- 상단메인 -->
@@ -146,6 +216,9 @@
   </div><!-- section 영역 2개를 묶는 div -->
   <!-- 본문 끝 -->
   <!----------------------- FOOTER START ---------------------->
+  <!-- ########## [[ 푸터 시작 ]] ########## -->
+<%@include file="../../../resources/layout/footer.jsp"%>
+<!-- ########## [[ 푸터 끝 ]] ########## -->
   <!------------------------ FOOTER END ----------------------->
   
 <!-- productContents.js 추가 -->    

@@ -55,6 +55,9 @@ public class ProductService {
 		logger.info("ProductService productUpdate " + productVO);
 		int result = productDAO.productUpdate(productVO);
 		
+		System.out.println("첨부파일 result " + result);
+		System.out.println("첨부파일 productVO.getProductfileVO() " + productVO.getProductfileVO());
+		
 		if(result == 1 && productVO.getProductfileVO() != null && productVO.getProductfileVO().size() > 0) {
 			productDAO.productfileDelete(productVO.getProduct_no());
 			System.out.println(productVO.getProductfileVO().toString());
@@ -119,11 +122,11 @@ public class ProductService {
 	
 	// 페이지
 	public List<ProductVO> list(SearchVO searchVO) {
-		logger.info("ProductService list " + searchVO);
-		return productDAO.list(searchVO);
+		logger.info("ProductService productListPage " + searchVO);
+		return productDAO.productListPage(searchVO);
 	}
 	
-	public int listCount(SearchVO searchVO) {
-		return productDAO.listCount(searchVO);
+	public int productListCount(SearchVO searchVO) {
+		return productDAO.productListCount(searchVO);
 	}
 }

@@ -1,9 +1,11 @@
 package com.meaningfarm.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class PageBar {
-	Logger logger = Logger.getLogger(PageBar.class);
+	Logger logger = LoggerFactory.getLogger(PageBar.class);
 	
 	//전체레코드 갯수 - SELECT count(*) FROM board_master_t
 	// List<Map<String,Object>>.size() -> 전체 레코드 수

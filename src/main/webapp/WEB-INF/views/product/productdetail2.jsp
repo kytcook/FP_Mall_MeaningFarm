@@ -7,8 +7,11 @@
 <title>detail</title>
 </head>
 <body>
-<%@ include file="../../../common/common.jsp" %>
-
+<%@ include file="../../../resources/common/common.jsp" %>
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 <h1>상품 상세</h1>
 <form action="/mall/product/productdetail?product_no=${productSelectOne.product_no}" method="post" id="f_product"> <br/>
 <input type="hidden" name="product_no" value="${productSelectOne.product_no}">
@@ -53,6 +56,10 @@ m_id : <input type="textarea" name="m_id"  value="${productSelectOne.m_id}"> <br
 <button id="b_update" data-oper="modify">수정</button>
 <button id="b_delete" data-oper="remove">삭제</button>
 </form>
+
+<!-- ########## [[ 푸터 시작 ]] ########## -->
+<%@include file="../../../resources/layout/footer.jsp"%>
+<!-- ########## [[ 푸터 끝 ]] ########## -->
 
 <script type="text/javascript">
 $(document).ready(function(){
