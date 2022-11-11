@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.meaningfarm.mall.memproduct.service.MemProductService;
+import com.meaningfarm.mall.memproduct.vo.MemProductVO;
 
 
 @Controller
@@ -52,4 +53,20 @@ public class MemProductController {
 	}
 
 /////////////////////////////////////////////////////////////////////
+	
+	@GetMapping("/productct")
+	public String productCT(MemProductVO mVO, Model model) {
+		logger.info("MemProductController productCT");
+		model.addAttribute("ListCategoryType", productService.productCTList(mVO.getCategory_type_no()));
+		System.out.println("카테고리타입 널값 체크" + productService.productCTList(mVO.getCategory_type_no()));
+		return null;
+	}
+
+	@GetMapping("/productcl")
+	public String productCL(MemProductVO mVO, Model model) {
+		logger.info("MemProductController productCL");
+		model.addAttribute("ListCategoryLocal", productService.productCLList(mVO.getCategory_local_no()));
+		System.out.println("카테고리타입 널값 체크" + productService.productCLList(mVO.getCategory_local_no()));
+		return null;
+	}
 }//end of MemProductController.class

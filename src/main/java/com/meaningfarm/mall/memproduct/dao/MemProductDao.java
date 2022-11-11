@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.meaningfarm.mall.memproduct.vo.MemProductVO;
+
 @Service
 public class MemProductDao {
 	Logger logger = LoggerFactory.getLogger(MemProductDao.class);
@@ -33,6 +35,18 @@ public class MemProductDao {
 		}
 		return productList;
 
+	}
+
+	public List<MemProductVO> productCTList(int category_type_no) {
+		List<MemProductVO> CTList = null;
+		CTList = sql.selectList("ListCategoryType", category_type_no);
+		return CTList;
+	}
+
+	public List<MemProductVO> productCLList(int category_local_no) {
+		List<MemProductVO> CLList = null;
+		CLList = sql.selectList("ListCategoryLocal", category_local_no);
+		return CLList;
 	}
 
 }
