@@ -36,6 +36,16 @@ public class MemProductController {
 		return "product/productList";
 	}
 	
+//	@GetMapping("/")
+//	public String mainProductList(Model model,@RequestParam Map<String, Object> pMap) {
+//		logger.info("mainProductList 호출 성공");
+//		List<Map<String, Object>> mainProductList = null;
+//		mainProductList = productService.productList(pMap);
+//		model.addAttribute("mainProductList", mainProductList);
+//		return "forward:index.jsp";
+//	}
+	
+	
 /////////////////////////////////////////////////////////////////////
 	/*-------------------------- 상품 보기 --------------------------*/	
 	/* localhost/mall/product/productView.do	*/
