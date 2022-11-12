@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../../resources/common/common.jsp" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- forEach와 c:out를 쓰려면 -->
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> <!--  fmt날짜 포맷을 써주려면 -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <%@ include file="/resources/common/common.jsp" %>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +21,8 @@
 
 <body>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 
   <div id="contents-wrapper" class="recipe_detail">
@@ -69,7 +67,7 @@
 
   </div>
 <!-- ########## footer 시작 ##########-->
-<%@ include file="../../../resources/layout/footer.jsp" %>
+<%@ include file="/resources/layout/footer.jsp" %>
 <!-- ########## footer 끝 ##########-->
 </body>
 

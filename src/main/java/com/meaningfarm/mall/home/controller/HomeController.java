@@ -17,6 +17,7 @@ import com.meaningfarm.mall.home.service.MainProductService;
 
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
 	Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -26,13 +27,13 @@ public class HomeController {
 	/////////////////////////////////////////////////////////////////////
 	/*-------------------------- 상품 목록 --------------------------*/
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@GetMapping
 	public String mainProductList(Model model,@RequestParam Map<String, Object> pMap) {
 	logger.info("productList 호출 성공");
 	List<Map<String, Object>> mainProductList = null;
 	mainProductList = mproductService.mainProductList(pMap);
 	model.addAttribute("mainProductList", mainProductList);
-	return "redirect:/index.jsp";
+	return "/";
 	}
 	
 }

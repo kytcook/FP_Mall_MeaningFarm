@@ -325,11 +325,11 @@
 	
 </script>
 <!-- ########## 헤더 시작 ########## -->
-<%@ include file="../../../resources/layout/header.jsp" %>
-<%@ include file="../../../resources/layout/nav.jsp" %>
+<%@ include file="/resources/layout/header.jsp" %>
+<%@ include file="/resources/layout/nav.jsp" %>
 <!-- ########## 헤더 끝 ########## -->
 <div class="section">
-<%@ include file="../../../resources/layout/msidebar.jsp" %>
+<%@ include file="/resources/layout/msidebar.jsp" %>
 
 	<div class="seller_title">회원 상세</div>
 		<%-- 	<input type="hidden" name="storenum" value="${memberDetail.mVO}"/> --%>

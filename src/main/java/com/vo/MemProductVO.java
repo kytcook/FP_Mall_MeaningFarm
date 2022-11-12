@@ -1,3 +1,4 @@
+package com.vo;
 //package com.meaningfarm.mall.memproduct.vo;
 //
 //import lombok.Data;

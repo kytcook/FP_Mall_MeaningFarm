@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
 <!--========= 헤드 =========-->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!--========= 헤드 =========-->
 
 <%
 /////////////////////////////////////////////////////
 List<Map<String, Object>> cartList = (List<Map<String, Object>>) request.getAttribute("cartList");
 /* 데이터를 가져오는지 화면에서 확인해봅시다. */
-int size = cartList.size();
-out.print(size);
-out.print(cartList);
+// int size = cartList.size();
+// out.print(size);
+// out.print(cartList);
 %>
 <body>
 	<c:choose>
@@ -22,51 +22,54 @@ out.print(cartList);
 			장바구니가 비어있습니다.
 		</c:when>
 		<c:otherwise>
-			<form id="f_cartIns" method="post" enctype="multipart/form-data"
-				action="./cartInsert.do">
-				<table class="table border">
-					<thead>
-						<tr>
-							<td><input class="form-check-input" type="checkbox" name="cb_cartProduct_all" value="${row.cart_no}" /></td>
-							<th>이미지</th>
-							<th>상품이름</th>
-							<th>상품금액</th>
-							<th>수량</th>
-							<th>총 금액</th>
-							<th>배송비</th>
-						</tr>
-					</thead>
-					<c:set var="total" value="0" />
-					<c:forEach var="row" items="${cartList}" varStatus="status">
-						<c:set var="rowSum" value="0" />
-						<tr>
-							<!-- 상품체크박스 -->
-							<td><input class="form-check-input" type="checkbox" name="cb_cartProduct" value="${row.CART_NO}" /></td>
-							<!-- 상품그림 -->
-							<td>이미지.img</td>
-							<!-- 상품이름 -->
-							<td>${row.PRODUCT_NAME}</td>
-							<!-- 상품가격 -->
-							<td><fmt:formatNumber value="${row.PRODUCT_PRICE}"/></td>
-							<!-- 입력수량 -->
-							<td><input style="width: 55px" type="number" min="1"
-								max="99" value="${row.CART_AMOUNT}" /></td>
-							<!-- 상품합계 : 입력수량 * 상품합계 -->
-							<c:set var="rowSum"
-								value="${row.PRODUCT_PRICE * row.CART_AMOUNT}" />
-							<td><fmt:formatNumber value="${rowSum}" /></td>
-							<!-- 배송비 -->
-							<td><fmt:formatNumber value="${row.PRODUCT_DLVYFEE}" /></td>
-							<!-- 총 합계 : 총 상품합계 + 배송비 -->
-							<c:set var="total"
-								value="${total + rowSum + row.PRODUCT_DLVYFEE}" />
-						</tr>
-					</c:forEach>
+			<table class="table border">
+				<thead>
 					<tr>
-						<td>합계 <fmt:formatNumber value="${total}" /> 원</td>
+						<td><input class="form-check-input" type="checkbox" name="cb_cartProduct_all" value="${row.cart_no}" /></td>
+						<th>이미지</th>
+						<th>상품이름</th>
+						<th>상품금액</th>
+						<th>수량</th>
+						<th>총 금액</th>
+						<th>배송비</th>
 					</tr>
-				</table>
-			</form>
+				</thead>
+				<c:set var="total" value="0" />
+				<c:forEach var="row" items="${cartList}" varStatus="status">
+					<c:set var="rowSum" value="0" />
+					<tr>
+						<!-- 상품체크박스 -->
+						<td><input class="form-check-input" type="checkbox" name="cb_cartProduct" value="${row.CART_NO}" /></td>
+						<!-- 상품그림 -->
+						<td>이미지.img</td>
+						<!-- 상품이름 -->
+						<td>${row.PRODUCT_NAME}</td>
+						<!-- 상품가격 -->
+						<td><fmt:formatNumber value="${row.PRODUCT_PRICE}"/></td>
+						<!-- 입력수량 -->
+						<td>
+							<div>
+							<input class="cart_amount_input" type="text" style="width:55px" value="${row.CART_AMOUNT}" >개<!-- 상품수량 입력 -->
+                         			<button class="cart_amount_plus_btn">+</button>
+                         			<button class="cart_amount_minus_btn">-</button>
+                         		</div>	
+                         		<a class="cart_amount_update_btn" data-cart_no="${row.CART_NO}">변경</a>
+						</td>
+						<!-- 상품합계 : 입력수량 * 상품합계 -->
+						<c:set var="rowSum"
+							value="${row.PRODUCT_PRICE * row.CART_AMOUNT}" />
+						<td><fmt:formatNumber value="${rowSum}" /></td>
+						<!-- 배송비 -->
+						<td><fmt:formatNumber value="${row.PRODUCT_DLVYFEE}" /></td>
+						<!-- 총 합계 : 총 상품합계 + 배송비 -->
+						<c:set var="total"
+							value="${total + rowSum + row.PRODUCT_DLVYFEE}" />
+					</tr>
+				</c:forEach>
+				<tr>
+					<td>합계 <fmt:formatNumber value="${total}" /> 원</td>
+				</tr>
+			</table>
 		</c:otherwise>
 	</c:choose>
 	<div>
@@ -74,29 +77,48 @@ out.print(cartList);
 	<button type="button" id="btnList">상품목록</button>
 	</div>
 	
-	<form id="test" method="Get" enctype="multipart/form-data" action="./cartAdd">
-	    <input type="hidden" id="cart_amount" name="cart_amount" value=3>
-	    <input type="hidden" id="m_id" name="m_id" value="야호랑">
-	    <input type="hidden" id="product_no" name="product_no" value=6>
-	</form>
-	<a href="javascript:test()" class="easyui-linkbutton">저장</a>
-	
-	<script>
-	function test(){
-		$("#test").submit();
-	}
-	</script>
+<!-------------------- 장바구니 수량수정 : FORM START-------------------->
+<form action="cartUpdate.do" method="post" class="cart_amount_update_form">
+	<input type="hidden" name="cart_no" class="cart_no_update">
+	<input type="hidden" name="cart_amount" class="cart_amount">
+	<input type="hidden" name="m_id" value="야호랑">
+</form>
+<!-------------------- 장바구니 수량수정 : FORM END-------------------->
 	
 <script type="text/javascript">
-// 상품목록 페이지로 이동
-$(document).ready(function(){
-	$("#btnList").click(function(){
-		location.href="${path}/product/productList.do"
+/*------------------------- 수량수정 START -------------------------*/
+/* 수량증감버튼 */
+$(document).ready(function () {
+	// 증가버튼
+	$(".cart_amount_plus_btn").on("click", function(){
+		let cart_amount = $(this).parent("div").find("input").val();
+		$(this).parent("div").find("input").val(++cart_amount);
 	});
-});
+	
+	// 감소버튼
+	$(".cart_amount_minus_btn").on("click", function(){
+		let cart_amount = $(this).parent("div").find("input").val();
+		if(cart_amount > 1){
+			$(this).parent("div").find("input").val(--cart_amount);		
+		}
+	});
+	
+/* 수량 변경 버튼 */
+	// 장바구니 번호와 수량을 구해와서 <form>태그 내부에 작성된 <input>태그에 저장한 후, <form>태그를 서버로 전송/제출
+	$(".cart_amount_update_btn").on("click", function(){
+			let cart_no = $(this).data("cart_no");
+			let cart_amount = $(this).parent("td").find("input").val();
+			$(".cart_no_update").val(cart_no);
+			$(".cart_amount").val(cart_amount);
+			$(".cart_amount_update_form").submit();
+// 			alert("장바구니 번호 : "+cart_no +" / 장바구니 수량 : "+ cart_amount);
+		});
+		
+});// end of (document).ready
+/*-------------------------- 수량수정 END -------------------------*/
 
-/*------------------------- 체크박스 -------------------------*/
-//체크박스 선택       
+/*------------------------- 체크박스 START-------------------------*/
+/* 체크박스 선택 */
 $(document).ready(function(){
 	// 체크박스의 name을 가져와서 체크박스와 체크된 박스 개수만큼 dom을 구성
 	let cb_cartProduct = document.getElementsByName("cb_cartProduct");
@@ -121,10 +143,10 @@ $(document).ready(function(){
 		}
 	});
 });
-/*------------------------- 체크박스 -------------------------*/
+/*-------------------------- 체크박스 END--------------------------*/
 
-/*--------------------- 장바구니 상품 삭제 ----------------------*/
-// 삭제버튼 클릭 이벤트
+/*--------------------- 장바구니 상품 삭제 START ---------------------*/
+/* 삭제버튼 클릭 이벤트 */
 function remove() {
 	// 장바구니상품 체크박스에 쿼리를 모두 담아옴
 	let obj = document.querySelectorAll("input[name='cb_cartProduct']"); //체크 박스 -> class가 check
@@ -151,7 +173,15 @@ function remove() {
 		console.log("에러발생:" + JSON.stringify(error));
 	})
 }
-/*--------------------- 장바구니 상품 삭제 ----------------------*/
+/*---------------------- 장바구니 상품 삭제 END ----------------------*/
+
+/*-------------------- 상품목록 페이지로 이동 START--------------------*/
+$(document).ready(function(){
+	$("#btnList").click(function(){
+		location.href="${path}/product/productList.do"
+	});
+});
+/*--------------------- 상품목록 페이지로 이동 END --------------------*/
 </script>
 </body>
 </html>

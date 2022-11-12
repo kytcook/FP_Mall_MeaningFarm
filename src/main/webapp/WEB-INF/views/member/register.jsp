@@ -69,8 +69,8 @@
 <body>
 
 <!-- ########## 헤더 시작 ########## -->
-<%@ include file="../../../resources/layout/header.jsp" %>
-<%@ include file="../../../resources/layout/nav.jsp" %>
+<%@ include file="/resources/layout/header.jsp" %>
+<%@ include file="/resources/layout/nav.jsp" %>
 <!-- ########## 헤더 끝 ########## -->
 
 <!-- ########## 회원가입 폼 시작 ########## -->
@@ -114,7 +114,7 @@
 <!-- ########## 회원가입 폼 끝 ########## -->
 
    <!-- ########## footer start ##########-->
-<%@ include file="../../../resources/layout/footer.jsp" %>
+<%@ include file="/resources/layout/footer.jsp" %>
     <!-- footer end -->
 </body>
 </html>

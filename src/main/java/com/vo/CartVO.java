@@ -1,4 +1,4 @@
-package com.meaningfarm.mall.cart;
+package com.vo;
 
 import lombok.Data;
 

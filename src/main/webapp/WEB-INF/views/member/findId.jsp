@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +9,7 @@
 
 <title>아이디 찾기 폼</title>
 
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
 
 <style type="text/css">
 
@@ -168,8 +167,8 @@ h4 {
 <body>
 
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 
 <!-- ########## [[ 아이디 찾기 폼 시작 ]] ########## -->

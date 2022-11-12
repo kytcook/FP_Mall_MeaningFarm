@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>list</title>
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
 </head>
 <body>
 
@@ -58,12 +58,12 @@ table {
 </style>
 
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 
 <div id="spController">
-<%@ include file="../../../resources/layout/sidebar.jsp" %>
+<%@ include file="/resources/layout/sidebar.jsp" %>
 <div id="productListContainer">
 <h1>상품 목록</h1>
 
@@ -152,7 +152,7 @@ table {
 </div>
 </div>
 <!-- ########## [[ 푸터 시작 ]] ########## -->
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
 <!-- ########## [[ 푸터 끝 ]] ########## -->
 
 <script type="text/javascript">

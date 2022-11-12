@@ -1,4 +1,4 @@
-package com.meaningfarm.mall.cart;
+package com.meaningfarm.mall.cart.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.meaningfarm.mall.memproduct.dao.MemProductDao;
+import com.vo.CartVO;
 
 @Service
 public class CartDao {
@@ -36,25 +37,6 @@ public class CartDao {
 
 	}// end of cartList.method
 
-///////////////////////////////////////////////////////////////////////////
-	/*---------------------------- 장바구니 삭제 ----------------------------*/
-	public int cartDelete(int cart_no) {
-		int result = 0;
-		try {
-			result = sql.delete("cartDelete",cart_no);
-			logger.info("result: "+ result);
-		} catch (Exception e) {
-			logger.info("Exception : " + e.toString());
-		}
-		return result;
-	}// end of cartDelete.method
-
-///////////////////////////////////////////////////////////////////////////
-	/*-------------------------- 장바구니 번호채번 ---------------------------*/
-//	public int cartNo() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
 
 ///////////////////////////////////////////////////////////////////////////
 	/*--------------------------- 장바구니 추가 -----------------------------*/
@@ -63,7 +45,7 @@ public class CartDao {
 		int result = 0;
 		try {// 등록
 			result = sql.insert("cartAdd",cartVO);
-			logger.info("등록성공 : "+ result);
+			logger.info("등록성공 : " + result);
 		} catch (Exception e) {
 			logger.info("등록실패 : " + e.toString());
 		}
@@ -74,8 +56,9 @@ public class CartDao {
 ///////////////////////////////////////////////////////////////////////////
 	/*--------------------------- 장바구니 확인 -----------------------------*/
 	public int cartCheck(CartVO cartVO) {// 회원정보와 상품 정보를 넘겨 해당하는 row가 있나 확인
-		logger.info("cartCheck 호출 성공"+cartVO.getM_id() + cartVO.getProduct_no());
+		logger.info("cartCheck 호출 성공 : "+cartVO.getM_id() + cartVO.getProduct_no());
 		// 장바구니 데이터 체크
+		// 0 : 중복데이터 없음. 1: 중복 데이터 있음.
 		int cartCheck = 0;
 		try {
 			cartCheck = sql.selectOne("cartCheck",cartVO);
@@ -88,6 +71,30 @@ public class CartDao {
 		return cartCheck;
 
 	}// end of cartCheck.method
-	
+
+///////////////////////////////////////////////////////////////////////////
+	/*---------------------------- 장바구니 수정 ----------------------------*/
+	public int cartUpdate(Map<String, Object> pMap) {
+		int result = 0;
+		try {
+			result = sql.update("cartUpdate",pMap);
+			logger.info("result: "+ result);
+		} catch (Exception e) {
+			logger.info("Exception(수정실패) : " + e.toString());
+		}
+		return result;
+	}
+///////////////////////////////////////////////////////////////////////////
+	/*---------------------------- 장바구니 삭제 ----------------------------*/
+	public int cartDelete(int cart_no) {
+		int result = 0;
+		try {
+			result = sql.delete("cartDelete",cart_no);
+			logger.info("result: "+ result);
+		} catch (Exception e) {
+			logger.info("Exception : " + e.toString());
+		}
+		return result;
+	}// end of cartDelete.method
 
 }// end of CartDao.class

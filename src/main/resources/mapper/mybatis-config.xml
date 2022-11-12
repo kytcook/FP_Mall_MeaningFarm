@@ -16,7 +16,8 @@
 		<typeAlias alias="mVO" type="com.vo.MemberVO"/>
 		<typeAlias alias="recipeVO" type="com.vo.RecipeVO"/>
 		<typeAlias alias="productVO" type="com.meaningfarm.mall.product.ProductVO" />
-		<typeAlias alias="CartVO" type="com.meaningfarm.mall.cart.CartVO" />
+		<typeAlias alias="CartVO" type="com.vo.CartVO" />
+		<typeAlias alias="MemProductfileVO" type="com.vo.MemProductfileVO" />
 	</typeAliases>
 	
 	<mappers>

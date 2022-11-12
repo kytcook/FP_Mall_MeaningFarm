@@ -33,22 +33,22 @@
 <body>
 
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 
 
 
 
 <!-- ########## Main  시작 ########## -->
-<%@ include file="../../../layout/main.jsp" %>
+<%@ include file="resources/layout/main.jsp" %>
 <!-- ########## Main  끝 ########## -->
 
 
    
 
 <!-- ########## footer 시작 ##########-->
-<%@ include file="../../../resources/layout/footer.jsp" %>
+<%@ include file="/resources/layout/footer.jsp" %>
 <!-- ########## footer 끝 ##########-->
 
 

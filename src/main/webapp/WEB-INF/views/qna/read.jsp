@@ -1,21 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../../../resources/common/common.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@ include file="/resources/common/common.jsp" %>
 
 <title>MEANINGFARM-qna상세보기</title>
 </head>
 <body>
 	<!---------------------- 헤더시작 -------------------->
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 	<!---------------------- 헤더끝-------------------- -->
 
@@ -175,7 +173,7 @@
 	<!-- 댓글 쓰기 폼설정 끝-->
 
 <!-- ########## [[ 푸터 시작 ]] ########## -->
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
 <!-- ########## [[ 푸터 끝 ]] ########## -->
 
 

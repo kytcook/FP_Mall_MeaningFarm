@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.vo.MemProductfileVO;
+
 @Service
 public class MemProductDao {
 	Logger logger = LoggerFactory.getLogger(MemProductDao.class);
@@ -35,4 +37,18 @@ public class MemProductDao {
 
 	}
 
-}
+/////////////////////////////////////////////////////////////////////
+	/*--------------------------- 상품이미지 -------------------------*/
+	public List<MemProductfileVO> memProductfileList(int product_no) {
+		logger.info("ProductDAO : " + product_no);
+		List<MemProductfileVO> memProductfileList = null;
+		try {
+			memProductfileList = sql.selectList("memProductfileList", product_no);
+			logger.info(memProductfileList.toString());
+		} catch (DataAccessException e) {
+			logger.info("Exception : " + e.toString());
+		}
+		return memProductfileList;
+	}	
+	
+}// end of MemProductDao.class

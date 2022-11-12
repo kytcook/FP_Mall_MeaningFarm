@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보</title>
-<%@ include file="../../../common/common.jsp" %>
+<%@ include file="/common/common.jsp" %>
 
 <style type="text/css">
 .m_title01 cboth {
@@ -810,8 +810,8 @@ $(function() {
 
 
 <!-- ########## 헤더 시작 ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## 헤더 끝 ########## -->
 
 <!-- ########## 회원 정보 폼 시작 ########## -->
@@ -1005,7 +1005,7 @@ $(function() {
  
 
    <!-- ########## footer start ########## -->
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
    <!-- ########## footer end ########## -->
 </body>
 </html>

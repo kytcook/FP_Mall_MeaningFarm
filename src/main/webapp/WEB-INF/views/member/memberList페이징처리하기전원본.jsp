@@ -75,11 +75,11 @@ body
 </head>
 <body>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 <!-- ########## sidebar 시작 ##########-->
-<%@ include file="../../../resources/layout/sidebar.jsp"%>
+<%@ include file="/resources/layout/sidebar.jsp"%>
 <!-- ########## sidebar 끝 ##########-->
 	<!-- ########## 회원 리스트 시작 ########## -->
 <%--  [[ 내꺼 ]] 
@@ -184,7 +184,7 @@ body
 <!--  <a  href="${contextPath}/member/registerForm"><h1 style="text-align:center">회원가입</h1></a> -->
 
 <!-- ########## [[ footer 시작 ]] ##########-->
-<%@ include file="../../../resources/layout/footer.jsp" %>
+<%@ include file="/resources/layout/footer.jsp" %>
 <!-- ########## [[ footer 끝 ]] ##########-->
 </body>
 

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %> 
 <!--========= 헤드 =========-->
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 <!--========= 헤드 =========-->
 
@@ -142,7 +142,7 @@
   </div><!-- section 영역 2개를 묶는 div -->
   <!-- 본문 끝 -->
   <!----------------------- FOOTER START ---------------------->
-  <%@include file="../../../resources/layout/footer.jsp"%>
+  <%@include file="/resources/layout/footer.jsp"%>
   <!------------------------ FOOTER END ----------------------->
   
 <!-- productContents.js 추가 -->    

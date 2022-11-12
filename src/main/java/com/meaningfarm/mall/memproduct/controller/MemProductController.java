@@ -1,20 +1,29 @@
 // 일반회원 상품관리
 package com.meaningfarm.mall.memproduct.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.meaningfarm.mall.memproduct.service.MemProductService;
+import com.vo.MemProductfileVO;
 
 
 @Controller
@@ -27,7 +36,7 @@ public class MemProductController {
 /////////////////////////////////////////////////////////////////////
 	/*-------------------------- 상품 목록 --------------------------*/
 	/* localhost/mall/product/productList.do */
-	@GetMapping("productList.do")
+	@GetMapping("productList")
 	public String productList(Model model,@RequestParam Map<String, Object> pMap) {
 		logger.info("productList 호출 성공");
 		List<Map<String, Object>> productList = null;
@@ -60,6 +69,31 @@ public class MemProductController {
 		model.addAttribute("productView", productList);
 		return "product/productView";
 	}
+
+/////////////////////////////////////////////////////////////////////
+	/*-------------------------- 상품 이미지 -------------------------*/
+//	@GetMapping("/display")
+//	public ResponseEntity<byte[]> getImage(String fileName){
+//	logger.info("ProductController imagedetail " + fileName);
+//	File file = new File("D:\\java_study\\Project\\finalProject-220930\\workspace_meaningFarm\\meaningfarm\\src\\main\\webapp\\resources\\image\\" + fileName);
+//	ResponseEntity<byte[]> result = null;
+//	try {
+//	HttpHeaders header = new HttpHeaders();
+//	header.add("Content-type", Files.probeContentType(file.toPath()));
+//	result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+//	}catch (IOException e) {
+//	e.printStackTrace();
+//	}
+//	
+//	return result;
+//	}
+//	
+//	// produces 속성 : 반환해주는 데이터를 JSON형식이 되도록 지정해준다.
+//	@GetMapping(value="/memProductfileList", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public ResponseEntity<List<MemProductfileVO>> memProductfileList(int product_no) {
+//	logger.info("memProductfileList : ");
+//	return new ResponseEntity<List<MemProductfileVO>>(productService.memProductfileList(product_no), HttpStatus.OK);
+//	}	
 
 /////////////////////////////////////////////////////////////////////
 }//end of MemProductController.class

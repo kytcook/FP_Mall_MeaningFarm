@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입완료창</title>
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
 
 <style type="text/css">
 
@@ -161,8 +160,8 @@ input:focus, input:not(:placeholder-shown){
 
 
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 
 	<div class="container result">
@@ -181,7 +180,7 @@ input:focus, input:not(:placeholder-shown){
 			</div>
 			<br><br><br><br><br><br><br><br><br>
    <!-- ########## footer start ##########-->
-	<%@ include file="../../../resources/layout/footer.jsp" %>
+	<%@ include file="/resources/layout/footer.jsp" %>
    <!-- ########## footer end ##########-->
 </body>
 </html>

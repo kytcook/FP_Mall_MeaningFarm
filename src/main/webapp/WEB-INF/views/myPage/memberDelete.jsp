@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
  <%
 	String m_id = (String)session.getAttribute("m_id");
 	String m_pw = (String)session.getAttribute("m_pw");
@@ -168,9 +168,9 @@
 	});
 </script>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
-<%@ include file="../../../resources/layout/msidebar.jsp" %>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
+<%@ include file="/resources/layout/msidebar.jsp" %>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 <div class="containter">
 
@@ -204,5 +204,5 @@
 </div>
 
 <!-- ########## 푸터 시작 ########## -->
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
 <!-- ########## 푸터 끝 ########## -->

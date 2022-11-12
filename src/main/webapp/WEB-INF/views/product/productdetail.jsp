@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>detail</title>
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
 </head>
 <body>
 <style>
@@ -37,9 +37,9 @@ table {
 }
 </style>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
-<%@include file="../../../resources/layout/sidebar.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/sidebar.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 <div id="pdContainer">
 <h1>상품 상세</h1>
@@ -87,7 +87,7 @@ table {
 </div>
 
 
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
 <script type="text/javascript">
 $(document).ready(function(){
 

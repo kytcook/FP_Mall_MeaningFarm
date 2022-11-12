@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Main 페이지</title>
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
 <style type="text/css">
 
 /* ########## 캐러셀 ~ 동그라미 ~ 네모칸 &줄 시작 ########## */
@@ -138,7 +138,9 @@
 <%
 	/////////////////////////////////////////////////////
 	/* 데이터를 가져오는지 화면에서 확인해봅시다. */
-// 	out.print(mainProductList);
+	List<Map<String,Object>> mainProductList = //유지의문제 - DB를 경유해야한다 ->servlet
+	(List<Map<String,Object>>)request.getAttribute("mainProductList");//sql문을 넘겨넘겨 받아서 가지고옴
+	out.print(mainProductList);
 	
 %>
 

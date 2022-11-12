@@ -5,13 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>write</title>
+<%@ include file="/resources/common/common.jsp" %>
 </head>
 <body>
-<%@ include file="../../../resources/common/common.jsp" %>
 <h1>상품 등록</h1>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 <form action="./productinsert" method="post" id="f_product" enctype="multipart/form-data"> <br/>
 상품명 : <input type="text" name="product_name" id="product_name"> <br/>
@@ -47,7 +47,7 @@ m_id : <input type="textarea" name="m_id"> <br/>
 
 
 <!-- ########## [[ 푸터 시작 ]] ########## -->
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
 <!-- ########## [[ 푸터 끝 ]] ########## -->
 
 <script type="text/javascript">

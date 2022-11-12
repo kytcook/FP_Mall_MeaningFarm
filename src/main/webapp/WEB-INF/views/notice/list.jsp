@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- forEach와 c:out를 쓰려면 -->
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!--  fmt날짜 포맷을 써주려면 -->
 <!DOCTYPE html>
-<%@ include file="../../../resources/common/common.jsp" %>
 <html lang="en">
   <head>
     <title></title>
+    
+	<%@ include file="/resources/common/common.jsp" %>
 
     <meta charset="UTF-8" />
 
@@ -26,8 +23,8 @@
   	 	
   </head>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 
 <br>
@@ -139,7 +136,7 @@
 <br>
 <br>
 <!-- ########## 푸터 시작 ########## -->
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
 <!-- ########## 푸터 끝 ########## -->
 <!-------------------------------------- 스크립트------------------------->
 <script type="text/javascript">

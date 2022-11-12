@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<html>
+    
 <style type="text/css">
  /* common.css : header, footer 메인 페이지 */
 
@@ -890,7 +890,6 @@ textarea::placeholder, input::placeholder{
     overflow: hidden;
 } 
 </style>
-<body>
 
 <!-- ########## FOOTER 시작 ########## -->
 <footer id="ffooter" class="py-3 border-top border-secondary col-12">
@@ -1044,5 +1043,3 @@ textarea::placeholder, input::placeholder{
 
 
 		<!-- ########## FOOTER 끝 ########## -->
-</body>
-</html>

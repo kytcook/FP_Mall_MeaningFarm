@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <%
    String m_name = (String)session.getAttribute("m_name");
    String m_id = (String)session.getAttribute("m_id");
@@ -20,6 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Main 페이지</title>
+<%@ include file="../common/common.jsp" %>
 <script>
 	const logout = () => {
 		window.location="./common/logout.jsp";
@@ -27,29 +26,28 @@
 
 </script>
 
-<%@ include file="../common/common.jsp" %>
 
 </head>
 <body>
 
 <!-- ########## Header 시작 ########## -->
 
-<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
 
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## Header 끝 ########## -->
 
 
 
 
 <!-- ########## Main  시작 ########## -->
-<%@include file="../../../resources/layout/main.jsp"%>
+<%@include file="/resources/layout/main.jsp"%>
 <!-- ########## Main  끝 ########## -->
 
 
    
    <!-- ########## footer 시작 ##########-->
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
    <!-- ########## footer 끝 #########r#-->
 
 <script>

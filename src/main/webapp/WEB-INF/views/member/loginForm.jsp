@@ -141,8 +141,8 @@ input:focus, input:not(:placeholder-shown){
 <body>
 
 <!-- ########## 헤더 시작 ########## -->
-<%@ include file="../../../resources/layout/header.jsp" %>
-<%@ include file="../../../resources/layout/nav.jsp" %>
+<%@ include file="/resources/layout/header.jsp" %>
+<%@ include file="/resources/layout/nav.jsp" %>
 <!-- ########## 헤더 끝 ########## -->
 
 <!-- ########## [[ 로그인폼 시작 ]] ########## -->
@@ -214,7 +214,7 @@ input:focus, input:not(:placeholder-shown){
 
 
    <!-- ########## footer start ##########-->
-<%@ include file="../../../resources/layout/footer.jsp" %>
+<%@ include file="/resources/layout/footer.jsp" %>
    <!-- ########## footer end ##########-->
     
 </body>

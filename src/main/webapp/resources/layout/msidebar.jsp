@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../../resources/common/common.jsp" %>
 <html>
 <style type="text/css">
 #menuContainer {
@@ -139,7 +138,6 @@ $(function(){
 //		location="/mall/myPage/memberDelete";
 //	}
 </script>
-<body>
 
 <!-- ########## [[ SideBar 시작 ]] ########## -->
 	<div class="scontainer">
@@ -200,10 +198,4 @@ $(function(){
 
 
 
-  </header>
 <!-- ########## [[ SideBar 끝 ]] ########## -->
-
-
-
-</body>
-</html>

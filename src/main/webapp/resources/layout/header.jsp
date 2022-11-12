@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../common/common.jsp" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <%
 	String m_id2 = (String)session.getAttribute("m_id");
 	String m_name2 = (String)session.getAttribute("m_name");
 	//out.print(m_id2);
 %>
-
-
-
 
 <!-- Login을 로그인되어있으면 LogOut으로, 로그인이 안되어있으면 Login으로 변경 
 <c:set var="logout" value="${sessionScope.m_id==null ? '' : '로그아웃'}"/>-->
@@ -33,7 +28,8 @@
 	}
 
 </script>
-<html>
+
+	
 <style type="text/css">
   .bd-placeholder-img {
         font-size: 1.125rem;
@@ -80,7 +76,6 @@
         -webkit-overflow-scrolling: touch;
       }
 </style>
-<body>
 
 <!-- ########## HEADER 시작 ########## -->
 <div class="container">
@@ -142,10 +137,6 @@
     
  </header>
 <!-- ########## HEADER 끝 ########## -->
-
-
-
-</body>
 <script>
    function needLogin(){
       alert("로그인 후 이용가능합니다.");
@@ -159,8 +150,4 @@
    function login(){
 	   location.href="/mall/member/login"
    }
-   
-
- 
 </script>
-</html>

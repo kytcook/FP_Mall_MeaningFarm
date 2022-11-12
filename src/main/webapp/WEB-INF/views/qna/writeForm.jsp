@@ -1,21 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
-<%@ include file="../../../resources/common/common.jsp" %>   
 <%
 	String m_id = (String)session.getAttribute("m_id"); //인클루드 jsp앞에 넣었을때 변수 선언해야함
 %>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/resources/common/common.jsp" %>   
 <meta charset="UTF-8">
 <title>qna 글입력</title>
 </head>
 <body>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 <!--글쓰기 화면 시작  -->
 	<div class="container">
@@ -70,7 +68,7 @@
 		</div>
 	</div>
 <!-- ########## [[ 푸터 시작 ]] ########## -->
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
 <!-- ########## [[ 푸터 끝 ]] ########## -->
 
 

@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>write</title>
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
 </head>
 <body>
 <style>
@@ -37,9 +37,9 @@ table {
 }
 </style>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
-<%@include file="../../../resources/layout/sidebar.jsp"%>
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/sidebar.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 
 <div id="piContainer">
@@ -81,7 +81,7 @@ table {
 <button type="button" class="btn btn-dark" onclick="location.href='./productlisttest'">취소</button>
 </div>
 <!-- ########## [[ 푸터 시작 ]] ########## -->
-<%@include file="../../../resources/layout/footer.jsp"%>
+<%@include file="/resources/layout/footer.jsp"%>
 <!-- ########## [[ 푸터 끝 ]] ########## -->
 <script type="text/javascript">
 $(document).ready(function() {

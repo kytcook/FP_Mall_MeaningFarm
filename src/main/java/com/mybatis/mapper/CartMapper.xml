@@ -16,7 +16,7 @@
 	</select> 
 	
 	<!-- 02. 장바구니 추가 -->
-	<insert id="cartAdd" parameterType="com.meaningfarm.mall.cart.CartVO">
+	<insert id="cartAdd" parameterType="CartVO">
 		INSERT INTO cart (
 		            cart_no,cart_amount,cart_date,m_id,product_no
 		        ) VALUES (
@@ -24,14 +24,21 @@
 		        )
 	</insert>
 
-	<!-- 03. 장바구니 삭제 -->
+	<!-- 03. 장바구니 수정 -->
+	<update id="cartUpdate" parameterType="map">
+		UPDATE cart 
+		   SET cart_amount = #{cart_amount}
+		 WHERE m_id = #{m_id} AND cart_no = #{cart_no}		 
+	</update>
+	
+	<!-- 04. 장바구니 삭제 -->
 	<delete id="cartDelete" parameterType="int">
 		DELETE from cart
 		 WHERE cart_no = #{cart_no}
 	</delete>
 	
-	<!-- 04. 장바구니 확인 -->
-	<select id="cartCheck" parameterType="com.meaningfarm.mall.cart.CartVO" resultType="int">
+	<!-- 05. 장바구니 확인 -->
+	<select id="cartCheck" parameterType="CartVO" resultType="int">
 		<!-- 아이디와 상품이 있으면 1, 없으면 0 반환  -->
 		SELECT NVL((
 		       SELECT 1 from cart 

@@ -1,65 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, com.meaningfarm.util.PageBar" %>      
-<!--========= 헤드 =========-->
-<!-- ########## [[ 헤더 시작 ]] ########## -->
-<%@include file="../../../resources/layout/header.jsp"%>
-<%@include file="../../../resources/layout/nav.jsp"%>
-<!-- ########## [[ 헤더 끝 ]] ########## -->
+<%@ page import="java.util.*, com.meaningfarm.util.PageBar" %>
 
-<!--========= 헤드 =========-->
-
-<style type="text/css" >
-@charset "UTF-8";
-
-* {
-	/* border: 1px solid red; */
+<!DOCTYPE html>
+<html>
+<title>상품리스트</title>   
+<head>
+	<%@ include file="/resources/common/common.jsp" %>
+	<!-- productList.css 추가하기 -->
+	<link href="${path}/css/product/productList.css" rel="stylesheet"/>
+	<!-- 맨 위로 버튼.css -->
+	<link href="${path}/css/static/moveTopButton.css" rel="stylesheet" type="text/css"/>
+	<!-- 맨 위로 버튼.js -->
+	<script src="${path}/js/moveTopButton.js" type="text/javascript"></script>
+</head>
+<body>
+	<!-- 맨 위로 버튼.html -->
+	<a id="MOVE_TOP_BTN" href="#" class="btn btn-warning">TOP</a>
 	
-}
-/*--------header CSS---------*/
-.nav-pills>.nav-item>.nav-link {
-	color: rgb(18, 17, 17) !important;
-}
+<!--========= 헤더 =========-->
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
+<!--========= 헤더 =========-->
 
-.nav-pills>.nav-item>.active {
-	color: rgb(255, 255, 255) !important;
-	background-color: rgb(45, 197, 116) !important;
-}
-
-.nav-pills>.nav-item>.active:hover {
-	color: rgb(255, 255, 255) !important;
-	background-color: rgb(23, 97, 57) !important;
-}
-/*--------header CSS---------*/
-
-/* card 호버시 커지게  */
-.card:hover {
-	transform: scale(1.1);
-	transition: transform .3s;
-}
-</style>
-
-
-<!-- productList.js 추가하기 -->
-<script defer>
-	$(document).ready(function(){
-		// 상품 한번 클릭시 상품번호 출력 : 나중에 페이지이동을 한번 클릭으로 옮기고 더블클릭 삭제할것.
-		$(".card").click(function() {
-			let product_no = $(this).find(".PRODUCT_NO").text();
-			console.log(product_no);
-		});
-		
-		// 상품 두 번 클릭시 페이지 이동
-		$(".card").dblclick(function() {
-			alert("상품눌리임");
-			let product_no = $(this).find(".PRODUCT_NO").text();
-			location.href = "productView.do?product_no="+product_no
-		});
-	})
-</script>  
-
-<!-- productList.css 추가하기 
-<link href="${path}/css/product/productList.css" rel="stylesheet"/>-->
-  
 <%
 	/////////////////////////////////////////////////////
 	List<Map<String,Object>> productList = //유지의문제 - DB를 경유해야한다 ->servlet
@@ -85,9 +47,6 @@
 	}
 	/////////////////////////////////////////////////////
 %>
-
-
-  <body>
     <header class="container">
       <div class="ico_cate">
           <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" id="goodsListIconView" alt="카테고리 아이콘"> </span>
@@ -127,9 +86,6 @@
         </div>
         <!-- 정렬 드랍다운 -->
       </div>
-      
-      <p class="border"></p>
-
     </header>
     
     
@@ -140,8 +96,6 @@
       <!-- 현재 페이지에서 보여지는 상품의 개수를 제어하면서 꺼내는 반복문 : 상품리스트, 페이징 처리 START -->
       
       
-
-
       
 <%
 	if(size==0){
@@ -158,24 +112,34 @@
 			if(size == i) break;
 			Map<String,Object> rMap = productList.get(i);// 데이터 꺼내는 반복문/ 데이터 껀수만큼
 %>	    
+
           <!--===== 상품1 =====-->
           <div class="col mt-5 mb-4">
             <div class="card shadow-lg m-3">
                <!-- 상품이미지 -->
-               <img
-                 src="${path}/resources/images/apple.jpg"
-<%--                  src=<%rMap.get("PRODUCT_IMG");%> --%>
-                 alt="apple.jpg"
-                 onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
-                 width="100%"
-                 height="300"
-                 class="pt-5"
-               />
+               <div id = "image">
+               		<div class="image_wrap" 
+<%--                			 data-product_no="${productList.PRODUCTFILE_NO}" --%>
+<%--                			 data-path="${productList.PRODUCTFILE_PATH}" --%>
+<%--                			 data-uuid="${productList.uuid} data-file" --%>
+               			 />
+               			<img>
+               		</div>
+<!--                <img -->
+<!--                  src="./display?fileName=apple.jpg" -->
+<!--                  alt="apple.jpg" -->
+<!--                  onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" -->
+<!--                  width="100%" -->
+<!--                  height="300" -->
+<!--                  class="pt-5" -->
+<!--                /> -->
+               </div>
                <!-- 상품설명 -->
                <div class="card-body">
                   <ul class="card-text list-unstyled ps-4 pb-3">
                   	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
-                  	 <li class="PRODUCT_NO" style="display:none"><%=rMap.get("PRODUCT_NO")%></li>
+            	 	<li class="product_no" style="display:none"><%=rMap.get("PRODUCT_NO")%></li>
+           			<input type="hidden" class="product_no" name="product_no" value="<%=rMap.get("PRODUCT_NO")%>"/>
                     <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_NAME")%></li>
                     <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_PRICE")%>원</li>
                     <li class="text-muted"><%=rMap.get("PRODUCT_DETAIL")%></li>
@@ -196,7 +160,7 @@
 
       <!--================ 페이지네이션 ================-->
       <footer class="container">
-			<div class="pagination justify-content-center">
+		<div class="pagination justify-content-center">
 		<%
 			String pagePath = "productList.do";
 			PageBar pb = new PageBar(numPerPage, size, nowPage, pagePath);
@@ -207,11 +171,26 @@
       </footer>
       <!--================ 페이지네이션 ================-->
     </section>
+    
   <!----------------------- FOOTER START ---------------------->
-<!-- ########## [[ 푸터 시작 ]] ########## -->
-<%@include file="../../../resources/layout/footer.jsp"%>
-<!-- ########## [[ 푸터 끝 ]] ########## -->
+<%@include file="/resources/layout/footer.jsp"%>
   <!------------------------ FOOTER END ----------------------->  
-<!-- productList.js코드 추가 -->
 </body>
+	<!-- productList.js 추가하기 -->
+	<script defer>
+		$(document).ready(function(){
+			// 상품 한번 클릭시 상품번호 출력 : 나중에 페이지이동을 한번 클릭으로 옮기고 더블클릭 삭제할것.
+			$(".card").click(function() {
+				let product_no = $(this).find(".product_no").text();
+				console.log(product_no);
+			});
+			
+			// 상품 두 번 클릭시 페이지 이동
+			$(".card").dblclick(function() {
+				alert("상품눌리임");
+				let product_no = $(this).find(".product_no").text();
+				location.href = "productView.do?product_no="+product_no
+			});
+		})
+	</script>  
 </html>

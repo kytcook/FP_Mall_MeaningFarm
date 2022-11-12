@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.meaningfarm.mall.memproduct.dao.MemProductDao;
+import com.vo.MemProductfileVO;
 
 @Service
 public class MemProductService {
@@ -33,5 +34,14 @@ public class MemProductService {
 		productList = productDao.productList(pMap);
 		return productList;
 	}
+	
+/////////////////////////////////////////////////////////////////////
+	/*------------------------- 상품이미지 출력 ------------------------*/
+	public List<MemProductfileVO> memProductfileList(int product_no){
+	logger.info("memProductfileList 호출 성공"); // 최종에는 삭제
+	List<MemProductfileVO> memProductfileList = productDao.memProductfileList(product_no);
+	return memProductfileList;
+
+}
 
 }
