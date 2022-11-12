@@ -117,7 +117,7 @@
           <div class="col mt-5 mb-4">
             <div class="card shadow-lg m-3">
                <!-- 상품이미지 -->
-               <div id = "image">
+               <div id = "imageGet">
                		<div class="image_wrap" 
 <%--                			 data-product_no="${productList.PRODUCTFILE_NO}" --%>
 <%--                			 data-path="${productList.PRODUCTFILE_PATH}" --%>
@@ -192,5 +192,32 @@
 				location.href = "productView.do?product_no="+product_no
 			});
 		})
+		
+	function showUploadImage(uploadResultArr) {
+		if(!uploadResultArr || uploadResultArr.length == 0) { alert("showUploadImage 오류"); return }
+		for(let i=0;i<uploadResultArr.length;i++) {
+			let imageGet = $("#imageGet");
+			let obj = uploadResultArr[i];
+			let str = "";
+		//	let imsi = obj.productfile_path.replace(/\\/g, '/').indexOf('resource');
+		//	let imsi2 = obj.productfile_path.replace(/\\/g, '/').slice(imsi);
+		//	let fileCallPath = imsi2 + "/s_" + obj.productfile_name;
+			let imsi = obj.productfile_path.replace(/\\/g, '/').indexOf('20');
+			let imsi2 = obj.productfile_path.replace(/\\/g, '/').slice(imsi);
+			let fileCallPath = imsi2 + "/s_" + obj.productfile_name;
+		//	let fileCallPath = obj.productfile_path.replace(/\\/g, '/') + "/s_" + obj.productfile_name;
+			console.log(fileCallPath)
+			
+			str += "<div id='result_card'>";
+			str += "<img src='productfiledetail?imgName=" + fileCallPath + "'>";
+		//	str += "<img src='/mall/" + fileCallPath + "'>";
+			str += "</div>"
+			str += "<input type='hidden' name='MemProductfileVO[" + i + "].productfile_name' value='"+ obj.productfile_name +"'>";
+			str += "<input type='hidden' name='MemProductfileVO[" + i + "].productfile_sname' value='"+ obj.productfile_sname +"'>";
+			str += "<input type='hidden' name='MemProductfileVO[" + i + "].productfile_path' value='"+ obj.productfile_path +"'>";
+			
+			imageGet.append(str);
+		} // end for for		
+		
 	</script>  
 </html>
