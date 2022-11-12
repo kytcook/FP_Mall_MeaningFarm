@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.vo.MemProductVO;
 import com.vo.MemProductfileVO;
 
 @Service
@@ -51,4 +52,18 @@ public class MemProductDao {
 		return memProductfileList;
 	}	
 	
+/////////////////////////////////////////////////////////////////////
+	/*------------------------- 상품 카테고리 -------------------------*/
+	public List<MemProductVO> productCTList(int category_type_no) {
+		List<MemProductVO> CTList = null;
+		CTList = sql.selectList("ListCategoryType", category_type_no);
+		return CTList;
+	}
+
+	public List<MemProductVO> productCLList(int category_local_no) {
+		List<MemProductVO> CLList = null;
+		CLList = sql.selectList("ListCategoryLocal", category_local_no);
+		return CLList;
+	}
+
 }// end of MemProductDao.class

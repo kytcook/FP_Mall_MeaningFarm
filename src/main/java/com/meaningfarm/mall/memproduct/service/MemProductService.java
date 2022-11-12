@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.meaningfarm.mall.memproduct.dao.MemProductDao;
+import com.vo.MemProductVO;
 import com.vo.MemProductfileVO;
 
 @Service
@@ -43,5 +44,21 @@ public class MemProductService {
 	return memProductfileList;
 
 }
+
+/////////////////////////////////////////////////////////////////////
+	/*------------------------- 상품 카테고리 -------------------------*/
+	public List<MemProductVO> productCTList(int category_type_no) {
+		List<MemProductVO> CTList = null;
+		CTList = productDao.productCTList(category_type_no);
+		logger.info("MemProductService productCTList" + CTList);
+		return CTList;
+	}
+
+	public List<MemProductVO> productCLList(int category_local_no) {
+		List<MemProductVO> CLList = null;
+		CLList = productDao.productCLList(category_local_no);
+		logger.info("MemProductService productCLList" + CLList);
+		return CLList;
+	}
 
 }
