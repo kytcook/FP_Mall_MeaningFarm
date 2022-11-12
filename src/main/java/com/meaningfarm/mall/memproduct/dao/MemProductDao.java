@@ -28,7 +28,7 @@ public class MemProductDao {
 		logger.info("productList 호출 성공");
 		List<Map<String, Object>> mainProductList = null;
 		try {
-			mainProductList = sql.selectList("memproductList", pMap);
+			mainProductList = sql.selectList("memProductList", pMap);
 			// insert here
 			logger.info(mainProductList.toString());
 		} catch (DataAccessException e) {
