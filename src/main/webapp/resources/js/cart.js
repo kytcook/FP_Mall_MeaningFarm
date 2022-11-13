@@ -2,13 +2,13 @@
 /* 수량증감버튼 */
 $(document).ready(function () {
 	// 증가버튼
-	$(".cart_amount_plus_btn").on("click", function(){
+	$(".plus_btn").on("click", function(){
 		let cart_amount = $(this).parent("div").find("input").val();
 		$(this).parent("div").find("input").val(++cart_amount);
 	});
 	
 	// 감소버튼
-	$(".cart_amount_minus_btn").on("click", function(){
+	$(".minus_btn").on("click", function(){
 		let cart_amount = $(this).parent("div").find("input").val();
 		if(cart_amount > 1){
 			$(this).parent("div").find("input").val(--cart_amount);		
