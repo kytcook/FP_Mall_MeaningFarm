@@ -3,9 +3,9 @@
 <%@ page import="java.util.*"%>
 <%
 /////////////////////////////////////////////////////
-List<Map<String, Object>> cartList = (List<Map<String, Object>>) request.getAttribute("cartList");
+// List<Map<String, Object>> cartList = (List<Map<String, Object>>) request.getAttribute("cartList");
 /* 데이터를 가져오는지 화면에서 확인해봅시다. */
-out.print(cartList);
+// out.print(cartList);
 // int size = cartList.size();
 // out.print(size);
 %>
@@ -109,15 +109,6 @@ ${M_ID}님 의 장바구니 입니다.
 <!-------------------- 장바구니 수량수정 : FORM END-------------------->
 
 </body>
+</html>
 <!-- productContents.js 추가 -->    
 <script src="${path}/js/cart.js" type="text/javascript"></script>
-<script>
-let totalPrice = 0;				// 총 가격
-let totalCount = 0;				// 총 갯수
-let totalKind = 0;				// 총 종류
-let totalPoint = 0;				// 총 마일리지
-let deliveryPrice = 0;			// 배송비
-let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
-	
-</script>
-</html>

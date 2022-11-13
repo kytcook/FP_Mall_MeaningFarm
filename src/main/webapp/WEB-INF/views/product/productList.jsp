@@ -118,28 +118,28 @@
             <div class="card shadow-lg m-3">
                <!-- 상품이미지 -->
                <div id = "imageGet">
-               		<div class="image_wrap" 
+<!--                		<div class="image_wrap"  -->
 <%--                			 data-product_no="${productList.PRODUCTFILE_NO}" --%>
 <%--                			 data-path="${productList.PRODUCTFILE_PATH}" --%>
 <%--                			 data-uuid="${productList.uuid} data-file" --%>
-               			 />
-               			<img>
-               		</div>
-<!--                <img -->
-<!--                  src="./display?fileName=apple.jpg" -->
-<!--                  alt="apple.jpg" -->
-<!--                  onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" -->
-<!--                  width="100%" -->
-<!--                  height="300" -->
-<!--                  class="pt-5" -->
-<!--                /> -->
+<!--                			 /> -->
+<!--                			<img> -->
+<!--                		</div> -->
+               <img
+                 src="./display?fileName=apple.jpg"
+                 alt="apple.jpg"
+                 onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
+                 width="100%"
+                 height="300"
+                 class="pt-5"
+               />
                </div>
                <!-- 상품설명 -->
                <div class="card-body">
                   <ul class="card-text list-unstyled ps-4 pb-3">
                   	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
             	 	<li class="product_no" style="display:none"><%=rMap.get("PRODUCT_NO")%></li>
-           			<input type="hidden" class="product_no" name="product_no" value="<%=rMap.get("PRODUCT_NO")%>"/>
+           			<li><input type="hidden" class="product_no" name="product_no" value="<%=rMap.get("PRODUCT_NO")%>"/></li>
                     <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_NAME")%></li>
                     <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_PRICE")%>원</li>
                     <li class="text-muted"><%=rMap.get("PRODUCT_DETAIL")%></li>
@@ -181,43 +181,44 @@
 		$(document).ready(function(){
 			// 상품 한번 클릭시 상품번호 출력 : 나중에 페이지이동을 한번 클릭으로 옮기고 더블클릭 삭제할것.
 			$(".card").click(function() {
+// 				console.log(product_no);
 				let product_no = $(this).find(".product_no").text();
-				console.log(product_no);
+// 				alert("상품눌리임");
+				location.href = "productView.do?product_no="+product_no
 			});
 			
 			// 상품 두 번 클릭시 페이지 이동
-			$(".card").dblclick(function() {
-				alert("상품눌리임");
-				let product_no = $(this).find(".product_no").text();
-				location.href = "productView.do?product_no="+product_no
-			});
+// 			$(".card").dblclick(function() {
+// 				let product_no = $(this).find(".product_no").text();
+// 				location.href = "productView.do?product_no="+product_no
+// 			});
 		})
 		
-	function showUploadImage(uploadResultArr) {
-		if(!uploadResultArr || uploadResultArr.length == 0) { alert("showUploadImage 오류"); return }
-		for(let i=0;i<uploadResultArr.length;i++) {
-			let imageGet = $("#imageGet");
-			let obj = uploadResultArr[i];
-			let str = "";
-		//	let imsi = obj.productfile_path.replace(/\\/g, '/').indexOf('resource');
-		//	let imsi2 = obj.productfile_path.replace(/\\/g, '/').slice(imsi);
-		//	let fileCallPath = imsi2 + "/s_" + obj.productfile_name;
-			let imsi = obj.productfile_path.replace(/\\/g, '/').indexOf('20');
-			let imsi2 = obj.productfile_path.replace(/\\/g, '/').slice(imsi);
-			let fileCallPath = imsi2 + "/s_" + obj.productfile_name;
-		//	let fileCallPath = obj.productfile_path.replace(/\\/g, '/') + "/s_" + obj.productfile_name;
-			console.log(fileCallPath)
+// 	function showUploadImage(uploadResultArr) {
+// 		if(!uploadResultArr || uploadResultArr.length == 0) { alert("showUploadImage 오류"); return }
+// 		for(let i=0;i<uploadResultArr.length;i++) {
+// 			let imageGet = $("#imageGet");
+// 			let obj = uploadResultArr[i];
+// 			let str = "";
+// 		//	let imsi = obj.productfile_path.replace(/\\/g, '/').indexOf('resource');
+// 		//	let imsi2 = obj.productfile_path.replace(/\\/g, '/').slice(imsi);
+// 		//	let fileCallPath = imsi2 + "/s_" + obj.productfile_name;
+// 			let imsi = obj.productfile_path.replace(/\\/g, '/').indexOf('20');
+// 			let imsi2 = obj.productfile_path.replace(/\\/g, '/').slice(imsi);
+// 			let fileCallPath = imsi2 + "/s_" + obj.productfile_name;
+// 		//	let fileCallPath = obj.productfile_path.replace(/\\/g, '/') + "/s_" + obj.productfile_name;
+// 			console.log(fileCallPath)
 			
-			str += "<div id='result_card'>";
-			str += "<img src='productfiledetail?imgName=" + fileCallPath + "'>";
-		//	str += "<img src='/mall/" + fileCallPath + "'>";
-			str += "</div>"
-			str += "<input type='hidden' name='MemProductfileVO[" + i + "].productfile_name' value='"+ obj.productfile_name +"'>";
-			str += "<input type='hidden' name='MemProductfileVO[" + i + "].productfile_sname' value='"+ obj.productfile_sname +"'>";
-			str += "<input type='hidden' name='MemProductfileVO[" + i + "].productfile_path' value='"+ obj.productfile_path +"'>";
+// 			str += "<div id='result_card'>";
+// 			str += "<img src='productfiledetail?imgName=" + fileCallPath + "'>";
+// 		//	str += "<img src='/mall/" + fileCallPath + "'>";
+// 			str += "</div>"
+// 			str += "<input type='hidden' name='MemProductfileVO[" + i + "].productfile_name' value='"+ obj.productfile_name +"'>";
+// 			str += "<input type='hidden' name='MemProductfileVO[" + i + "].productfile_sname' value='"+ obj.productfile_sname +"'>";
+// 			str += "<input type='hidden' name='MemProductfileVO[" + i + "].productfile_path' value='"+ obj.productfile_path +"'>";
 			
-			imageGet.append(str);
-		} // end for for		
+// 			imageGet.append(str);
+// 		} // end for for		
 		
 	</script>  
 </html>

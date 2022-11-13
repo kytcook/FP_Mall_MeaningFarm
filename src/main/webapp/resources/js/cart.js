@@ -90,7 +90,7 @@ function remove() {
 /*-------------------- 상품목록 페이지로 이동 START--------------------*/
 $(document).ready(function(){
 	$("#btnList").click(function(){
-		location.href="${path}/product/productList.do"
+		location.href="/mall/product/productList"
 	});
 });
 /*--------------------- 상품목록 페이지로 이동 END --------------------*/

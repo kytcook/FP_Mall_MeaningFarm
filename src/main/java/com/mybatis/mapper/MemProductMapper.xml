@@ -28,4 +28,16 @@
 		  FROM productfile 
 		 WHERE product_no = #{product_no}	
 	</select>
+	
+	<select id="ListCategoryType" resultType="MemProductVO">
+		select * from product
+		where category_type_no = #{category_type_no}
+		order by product_no desc
+	</select>
+	
+	<select id="ListCategoryLocal" resultType="MemProductVO">
+		select * from product
+		where category_local_no = #{category_local_no}
+		order by product_no
+	</select>
 </mapper>

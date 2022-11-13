@@ -71,22 +71,22 @@ public class MemProductController {
 
 /////////////////////////////////////////////////////////////////////
 	/*-------------------------- 상품 이미지 -------------------------*/
-//	@GetMapping("/display")
-//	public ResponseEntity<byte[]> getImage(String fileName){
-//	logger.info("ProductController imagedetail " + fileName);
-//	File file = new File("D:\\java_study\\Project\\finalProject-220930\\workspace_meaningFarm\\meaningfarm\\src\\main\\webapp\\resources\\image\\" + fileName);
-//	ResponseEntity<byte[]> result = null;
-//	try {
-//	HttpHeaders header = new HttpHeaders();
-//	header.add("Content-type", Files.probeContentType(file.toPath()));
-//	result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-//	}catch (IOException e) {
-//	e.printStackTrace();
-//	}
-//	
-//	return result;
-//	}
-//	
+	@GetMapping("/display")
+	public ResponseEntity<byte[]> getImage(String fileName){
+	logger.info("ProductController imagedetail " + fileName);
+	File file = new File("D:\\java_study\\Project\\finalProject-220930\\workspace_meaningFarm\\meaningfarm\\src\\main\\webapp\\resources\\image\\" + fileName);
+	ResponseEntity<byte[]> result = null;
+	try {
+	HttpHeaders header = new HttpHeaders();
+	header.add("Content-type", Files.probeContentType(file.toPath()));
+	result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+	}catch (IOException e) {
+	e.printStackTrace();
+	}
+	
+	return result;
+	}
+	
 //	// produces 속성 : 반환해주는 데이터를 JSON형식이 되도록 지정해준다.
 //	@GetMapping(value="/memProductfileList", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 //	public ResponseEntity<List<MemProductfileVO>> memProductfileList(int product_no) {

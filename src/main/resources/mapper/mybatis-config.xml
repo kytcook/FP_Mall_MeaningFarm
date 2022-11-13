@@ -17,6 +17,7 @@
 		<typeAlias alias="recipeVO" type="com.vo.RecipeVO"/>
 		<typeAlias alias="productVO" type="com.meaningfarm.mall.product.ProductVO" />
 		<typeAlias alias="CartVO" type="com.vo.CartVO" />
+		<typeAlias alias="MemProductVO" type="com.vo.MemProductVO" />
 		<typeAlias alias="MemProductfileVO" type="com.vo.MemProductfileVO" />
 	</typeAliases>
 	
