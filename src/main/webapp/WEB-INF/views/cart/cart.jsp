@@ -26,8 +26,8 @@
 <!--========= 헤더 =========-->
 <%out.print(m_id2); %>
 <section class="container">
-<div class="h2 fw-bold">
-<%=m_id2%>님 의 장바구니 입니다.
+<div class="h3">
+<b><%=m_id2%></b> 님의 장바구니
 </div>
 	<c:choose>
 		<%-- if 장바구니가 비어있으면 문구 출력 else 장바구니 리스트 출력 --%>

@@ -27,7 +27,6 @@
 			category_type_no 	= productView.get(0).get("CATEGORY_TYPE_NO").toString();
 		}
 // 	out.print(productView);
-// 	out.print(p_name);
 	/////////////////////////////////////////////////////////////
 %>
 <!DOCTYPE html>

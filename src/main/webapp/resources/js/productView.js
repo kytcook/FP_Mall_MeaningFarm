@@ -20,7 +20,6 @@ $(document).ready(function () {
 });
 
 // 서버로 전송할 데이터 객체
-  //m_id: '${m_id}',
   let form = {
   m_id: '',// 여기에 로그인 세션 id를 담아줘야 합니다.(현재는 상수값)
   product_no: '',
@@ -33,7 +32,7 @@ $("#cart").on("click", function (e) {
 	form.cart_amount = $(".amount_input").val();
 	form.product_no = $(".product_no").val();
 	m_id = $(".m_id").val();
-	form.m_id
+	form.m_id = m_id;
 			if(confirm("장바구니로 이동할까요?") == true){
 				location.href = "/mall/cart/cartList?m_id=" + m_id
 			}
