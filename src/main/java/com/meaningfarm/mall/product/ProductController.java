@@ -83,6 +83,7 @@ public class ProductController {
 	@PostMapping("/productinsert")
 	public String productInsert(ProductVO productVO, HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		
 		String m_id = (String)session.getAttribute("m_id");
 		System.out.println("세션 " + m_id);
 		logger.info("글 작성 버튼 누름 ProductVO " + productVO);

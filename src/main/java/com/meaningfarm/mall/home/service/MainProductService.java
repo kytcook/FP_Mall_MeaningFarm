@@ -6,11 +6,12 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.meaningfarm.mall.home.dao.MainProductDao;
 import com.meaningfarm.mall.memproduct.dao.MemProductDao;
 import com.meaningfarm.mall.memproduct.service.MemProductService;
-
+@Service
 public class MainProductService {
 
 		Logger logger = LoggerFactory.getLogger(MainProductService.class);

@@ -96,7 +96,7 @@
                         <td>${p.PRODUCT_NAME} (30개)</td>
                         <td> 
                           <input class="amount_input" type="text" style="width:55px" value="1" >개<!-- 상품수량 입력 -->
-                          <input type="hidden" name="m_id" class="m_id">
+                          <input type="hidden" name="m_id" class="m_id" value=<%=m_id2%>>
                           <input type="hidden" name="product_no" class="product_no" value="${p.PRODUCT_NO}">
                           <span>
                           	<button class="plus_btn">+</button>

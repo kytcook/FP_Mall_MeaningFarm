@@ -54,6 +54,11 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+      
+	  .card:hover {
+		transform: scale(1.1);
+		transition: transform .3s;
+	  }
 /* ########## 캐러셀 ~ 동그라미 ~ 네모칸 &줄 끝 ########## */
 
 
@@ -108,39 +113,23 @@
 
 /* ########## 아이콘 들어갈 자리 끝 ########## */
 
-/* ########## 상품리스트 시작 ########## */<!--11.11 추가-->
+/* ########## 상품리스트 시작 ########## *//* 11.11 추가 */
 /* card 호버시 커지게  */
-.card:hover {
+.productCard:hover {
 	transform: scale(1.1);
 	transition: transform .3s;
 }
 /* ########### 상품리스트 끝 ########## */
 </style>
 
-<script defer><!--11.11 추가-->
-	/* 상품리스트 클릭시 이동 */
-	$(document).ready(function(){
-		// 상품 한번 클릭시 상품번호 출력 : 나중에 페이지이동을 한번 클릭으로 옮기고 더블클릭 삭제할것.
-		$(".card").click(function() {
-			let product_no = $(this).find(".PRODUCT_NO").text();
-			console.log(product_no);
-		});
-		
-		// 상품 두 번 클릭시 페이지 이동
-		$(".card").dblclick(function() {
-			alert("상품눌리임");
-			let product_no = $(this).find(".PRODUCT_NO").text();
-			location.href = "productView.do?product_no="+product_no
-		});
-	})
-</script>  
+
 
 <%
 	/////////////////////////////////////////////////////
 	/* 데이터를 가져오는지 화면에서 확인해봅시다. */
-	List<Map<String,Object>> mainProductList = //유지의문제 - DB를 경유해야한다 ->servlet
-	(List<Map<String,Object>>)request.getAttribute("mainProductList");//sql문을 넘겨넘겨 받아서 가지고옴
-	out.print(mainProductList);
+// 	List<Map<String,Object>> mainProductList = //유지의문제 - DB를 경유해야한다 ->servlet
+// 	(List<Map<String,Object>>)request.getAttribute("mainProductList");//sql문을 넘겨넘겨 받아서 가지고옴
+// 	out.print(mainProductList);
 	
 %>
 
@@ -253,39 +242,51 @@
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
+<hr />
 
 <!-- 상품리스트 -->
- 	<article class="container">
-     <div class="list_product row row-cols-4">       
-       <!--===== 상품1 =====-->
-       <div class="col mt-5 mb-4">
-         <div class="card shadow-lg m-3">
-            <!-- 상품이미지 -->
-            <img
-              src="./resources/images/apple.jpg"
-<%--                  src=<%rMap.get("PRODUCT_IMG");%> --%>
-              alt="apple.jpg"
-              onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
-              width="100%"
-              height="300"
-              class="pt-5"
-            />
-            <!-- 상품설명 -->
-            <div class="card-body">
-               <ul class="card-text list-unstyled ps-4 pb-3">
-               	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
-<%--                	 <li class="PRODUCT_NO" style="display:none"><%=rMap.get("PRODUCT_NO")%></li> --%>
-<%--                  <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_NAME")%></li> --%>
-<%--                  <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_PRICE")%>원</li> --%>
-<%--                  <li class="text-muted"><%=rMap.get("PRODUCT_DETAIL")%></li> --%>
-               </ul>
-            </div>
-         </div>
-       </div>
-     <!--===== 상품1 =====-->	
-     </div>
-   </article>       
+<section>
+	<article class="container">
+	    <div class="list_product row row-cols-4">
+	   		<c:choose>   
+	   			<c:when test="${mainProductList eq null}">
+	   				이미지를 불러오지 못 하고 있습니다.
+	   			</c:when>
+	   			<c:otherwise>
+				<c:forEach var="p" items="${mainProductList}" begin="0" end="3">
+			      <!--===== 상품1 =====-->
+			      <div class="col mt-5 mb-4">
+			        <div class="card shadow-lg m-3 productCard">
+			           <!-- 상품이미지 -->
+			           <img
+			             src="./display?fileName=apple.jpg"
+			             alt="apple.jpg"
+			             onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
+			             width="100%"
+			             height="300"
+			             class="pt-5"
+			           />
+			           <!-- 상품설명 -->
+			           <div class="card-body">
+			              <ul class="card-text list-unstyled ps-4 pb-3">
+			              	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
+			              	 <li class="PRODUCT_NO" style="display:none">${p.PRODUCT_NO}</li>
+			                <li class="fs-5 fw-bold">${p.PRODUCT_NAME}</li>
+			                <li class="fs-5 fw-bold">${p.PRODUCT_PRICE}원</li>
+			                <li class="text-muted">${p.PRODUCT_DETAIL}</li>
+			              </ul>
+			           </div>
+			        </div>
+			      </div>
+			    <!--===== 상품1 =====-->	
+				</c:forEach>  
+			</c:otherwise>
+			</c:choose> 
+   	 	</div>
+	</article>
+</section>    
 <!-- 상품리스트 -->
+
 
     <!-- START THE FEATURETTES -->
 	<br>
@@ -384,4 +385,15 @@
 
 
 </body>
+
+<script defer><!--11.11 추가-->
+	/* 상품리스트 클릭시 이동 */
+	$(document).ready(function(){
+		// 상품 한번 클릭시 상품번호 출력 : 나중에 페이지이동을 한번 클릭으로 옮기고 더블클릭 삭제할것.
+		$(".productCard").click(function() {
+			let product_no = $(this).find(".PRODUCT_NO").text();
+			location.href = "product/productView.do?product_no="+product_no
+		});
+	})
+</script>  
 </html>

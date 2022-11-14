@@ -26,14 +26,14 @@ public class HomeController {
 	
 	/////////////////////////////////////////////////////////////////////
 	/*-------------------------- 상품 목록 --------------------------*/
-	
-	@GetMapping
+	@GetMapping("/index")
+//	@RequestMapping(value="/", method={RequestMethod.GET})
 	public String mainProductList(Model model,@RequestParam Map<String, Object> pMap) {
 	logger.info("productList 호출 성공");
 	List<Map<String, Object>> mainProductList = null;
 	mainProductList = mproductService.mainProductList(pMap);
 	model.addAttribute("mainProductList", mainProductList);
-	return "/";
+//	return "forward:/resources/layout/main.jsp";
+	return "forward:./index.jsp";
 	}
-	
 }

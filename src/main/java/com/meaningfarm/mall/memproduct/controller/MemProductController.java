@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,9 +60,10 @@ public class MemProductController {
 	/*-------------------------- 상품 보기 --------------------------*/	
 	/* localhost/mall/product/productView.do	*/
 	@GetMapping("productView.do")
-	public String productView(Model model
-							,@RequestParam Map<String, Object> pMap
-							,@CookieValue(value="product_no",required=false) String cookie){
+	public String productView(Model model, @RequestParam Map<String, Object> pMap, HttpSession session){
+//		session.setAttribute("m_id", "바나나");
+//		String m_id = (String) session.getAttribute("m_id");
+//		Map.put("m_id",m_id);
 		logger.info("ProductView 호출 성공");
 		List<Map<String, Object>> productList = null;
 		productList = productService.productView(pMap);

@@ -8,7 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-
+import org.springframework.stereotype.Service;
+@Service
 public class MainProductDao {
 	Logger logger = LoggerFactory.getLogger(MainProductDao.class);
 
@@ -21,7 +22,7 @@ public class MainProductDao {
 		logger.info("mainProductList 호출 성공");
 		List<Map<String, Object>> mainProductList = null;
 		try {
-			mainProductList = sql.selectList("memproductList", pMap);
+			mainProductList = sql.selectList("memProductList", pMap);
 			// insert here
 			logger.info(mainProductList.toString());
 		} catch (DataAccessException e) {

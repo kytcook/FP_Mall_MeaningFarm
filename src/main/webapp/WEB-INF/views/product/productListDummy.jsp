@@ -125,16 +125,14 @@
 <!--                			 /> -->
 <!--                			<img> -->
 <!--                		</div> -->
-
-			<!-- src="./display?fileName=apple.jpg" -->
-               <img
-                 src="${path}/resources/image/apple.jpg"
-                 alt="apple.jpg"
-                 onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
-                 width="100%"
-                 height="300"
-                 class="pt-5"
-               />
+<!--                <img -->
+<!--                  src="./display?fileName=apple.jpg" -->
+<!--                  alt="apple.jpg" -->
+<!--                  onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" -->
+<!--                  width="100%" -->
+<!--                  height="300" -->
+<!--                  class="pt-5" -->
+<!--                /> -->
                </div>
                <!-- 상품설명 -->
                <div class="card-body">
@@ -195,5 +193,41 @@
 // 				location.href = "productView.do?product_no="+product_no
 // 			});
 		})
+		
+/*		
+	// 기존 이미지 출력 시작
+		let product_no = "${productList.product_no}"
+		console.log("출력")
+		$.getJSON("productfilelist", {product_no : product_no}, function(obj) {
+			console.log(obj);
+			
+			let str = "";
+			
+			$(obj).each(function(i, obj) {
+				if(obj.productfile_name) { // ? 괄호 안 무슨 뜻인지
+					let fileCallPath = encodeURIComponent(obj.productfile_sname);
+					str += "<li style='cursor:pointer' data-name='" + obj.productfile_name+"'>";
+					str += "<span> " + obj.productfile_name + " </span>";
+					str += " <button type='button' class='imgDeleteBtn' data-name='"+obj.productfile_name+"'>x</button>"
+					str += "<div>";
+					str += "<img src='productfiledetail?imgName=" + fileCallPath + "'>";
+					str += "</div>";
+					str += "</li>";
+				} else {
+					let fileCallPath = encodeURIComponent(obj.productfile_name);
+					let fileLink = fileCallPath.repalce(new RegExp(/\\/g), "/");
+					str += "<li style='cursor:pointer' data-name='" + obj.productfile_name+"'>";
+					str += "<span> " + obj.productfile_name + " </span>";
+					str += " <button type='button' class='imgDeleteBtn' data-name='"+obj.productfile_name+"'>x</button>"
+					str += "<div>";
+					str += "<img src='/resources/image/logo.png'>";
+					str += "</div>";
+					str += "</li>";
+				}
+			})
+		$("#uploadResult ul").html(str);
+		}) // end of getJSON
+	// 기존 이미지 출력 끝	
+*/	
 	</script>  
 </html>

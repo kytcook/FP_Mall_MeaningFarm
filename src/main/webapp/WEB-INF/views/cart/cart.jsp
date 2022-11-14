@@ -24,9 +24,10 @@
 <%@include file="/resources/layout/header.jsp"%>
 <%@include file="/resources/layout/nav.jsp"%>
 <!--========= 헤더 =========-->
+<%out.print(m_id2); %>
 <section class="container">
 <div class="h2 fw-bold">
-${M_ID}님 의 장바구니 입니다.
+<%=m_id2%>님 의 장바구니 입니다.
 </div>
 	<c:choose>
 		<%-- if 장바구니가 비어있으면 문구 출력 else 장바구니 리스트 출력 --%>
@@ -104,7 +105,7 @@ ${M_ID}님 의 장바구니 입니다.
 <form action="cartUpdate.do" method="post" class="cart_amount_update_form">
 	<input type="hidden" name="cart_no" class="cart_no_update">
 	<input type="hidden" name="cart_amount" class="cart_amount">
-	<input type="hidden" name="m_id" value="야호랑">
+	<input type="hidden" name="m_id" value=<%=m_id2%>><!-- 여기여기 세션값 담아주기 -->
 </form>
 <!-------------------- 장바구니 수량수정 : FORM END-------------------->
 
