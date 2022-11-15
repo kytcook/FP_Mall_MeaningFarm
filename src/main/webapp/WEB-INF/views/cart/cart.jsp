@@ -96,15 +96,15 @@
 		</c:otherwise>
 	</c:choose>
 </section>
+<div>
+	<button type="button" value="selectDelete" class="btn btn-dark" onclick="remove()">삭제</button>
+	<button type="button" id="btnList">상품목록</button>
+</div>
 
 <!----------------------- FOOTER START ---------------------->
 <%@include file="/resources/layout/footer.jsp"%>
 <!------------------------ FOOTER END ----------------------->
   
-	<div>
-	<button type="button" value="selectDelete" class="btn btn-dark" onclick="remove()">삭제</button>
-	<button type="button" id="btnList">상품목록</button>
-	</div>
 	
 <!-------------------- 장바구니 수량수정 : FORM START-------------------->
 <form action="cartUpdate.do" method="post" class="cart_amount_update_form">
