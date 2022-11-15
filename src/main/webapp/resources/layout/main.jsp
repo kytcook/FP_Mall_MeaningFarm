@@ -133,8 +133,6 @@
 	
 %>
 
-<body>
-
 
 <!-- ########## Main 홈페이지 시작 ########## -->
 <main>
@@ -263,7 +261,7 @@
 			             alt="apple.jpg"
 			             onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
 			             width="100%"
-			             height="300"
+			             height="260"
 			             class="pt-5"
 			           />
 			           <!-- 상품설명 -->
@@ -271,8 +269,8 @@
 			              <ul class="card-text list-unstyled ps-4 pb-3">
 			              	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
 			              	 <li class="PRODUCT_NO" style="display:none">${p.PRODUCT_NO}</li>
-			                <li class="fs-5 fw-bold">${p.PRODUCT_NAME}</li>
-			                <li class="fs-5 fw-bold">${p.PRODUCT_PRICE}원</li>
+			                <li class="fs-6 fw-bold">${p.PRODUCT_NAME}</li>
+			                <li class="fs-6 fw-bold">${p.PRODUCT_PRICE}원</li>
 			                <li class="text-muted">${p.PRODUCT_DETAIL}</li>
 			              </ul>
 			           </div>
@@ -384,7 +382,6 @@
 
 
 
-</body>
 
 <script defer><!--11.11 추가-->
 	/* 상품리스트 클릭시 이동 */

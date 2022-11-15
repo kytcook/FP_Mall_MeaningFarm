@@ -26,7 +26,7 @@ public class HomeController {
 	
 	/////////////////////////////////////////////////////////////////////
 	/*-------------------------- 상품 목록 --------------------------*/
-	@GetMapping("/index")
+	@GetMapping("/main")
 //	@RequestMapping(value="/", method={RequestMethod.GET})
 	public String mainProductList(Model model,@RequestParam Map<String, Object> pMap) {
 	logger.info("productList 호출 성공");

@@ -90,7 +90,7 @@
 		</where>
 	</select>
 	-->
-	<select id="login" resultType="com.vo.MemberVO">
+	<select id="login" resultType="mVO">
 		SELECT * FROM member
 		 WHERE m_id = #{m_id} AND m_pw = #{m_pw}
 	</select>
@@ -114,7 +114,7 @@
 	
 	
 	<!-- ########## [[ 로그인 유효성 검사 - ajax ]] ########## -->
-	<select id="getUserById" resultType="com.vo.MemberVO">
+	<select id="getUserById" resultType="mVO">
 		SELECT * FROM member 
 		  WHERE m_id = #{m_id}
 		  AND m_pw = #{m_pw}
@@ -122,14 +122,14 @@
 	
 	
 	<!-- ########## [[ 회원 탈퇴 - memberDelete ]] ########## -->
-	<delete id="memberDelete" parameterType="com.vo.MemberVO">
+	<delete id="memberDelete" parameterType="mVO">
 		DELETE FROM member 
 		 WHERE m_id = #{m_id}
 	</delete>
 	
 	<!-- ########## [[ 모든 회원 상세보기- memberDetail ]]  ########## -->
 	
-	<select id="memberDetail" parameterType="map" resultType="com.vo.MemberVO">
+	<select id="memberDetail" parameterType="map" resultType="mVO">
 		select auth_id, m_id, m_name, m_email, m_birth, m_registedate, m_type
 		 from member
 	</select>

@@ -28,17 +28,11 @@ $(document).ready(function () {
 
 // 장바구니 버튼
 $("#cart").on("click", function (e) {
-	if(confirm("장바구니에 담으시겠습니까?") == true){
 	form.cart_amount = $(".amount_input").val();
 	form.product_no = $(".product_no").val();
 	m_id = $(".m_id").val();
 	form.m_id = m_id;
-			if(confirm("장바구니로 이동할까요?") == true){
-				location.href = "/mall/cart/cartList?m_id=" + m_id
-			}
-		} else {
-			return false;
-		}
+
 	
 	$.ajax({
 		  url: '/mall/cart/cartAdd.do', // 호출할 url, 전송페이지
@@ -60,9 +54,13 @@ $("#cart").on("click", function (e) {
 	    if (result == '0') {
 	      alert("장바구니에 추가를 하지 못하였습니다.");
 	    } else if (result == '1') {
-	      alert("장바구니에 추가되었습니다.");
+		      if(confirm("추가되었습니다. 장바구니로 이동할까요?") == true){
+				location.href = "/mall/cart/cartList?m_id=" + m_id
+				}
 	    } else if (result == '2') {
-	      alert("이미 장바구니에 있는 상품입니다.");
+		      if(confirm("이미 상품이 존재합니다. 장바구니로 이동할까요?") == true){
+				location.href = "/mall/cart/cartList?m_id=" + m_id
+				}
 	    } else if (result == '5') {
 	      alert("로그인이 필요합니다.");
 		}

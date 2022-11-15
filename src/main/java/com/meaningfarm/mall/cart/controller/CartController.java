@@ -73,14 +73,14 @@ public class CartController {
 		logger.info("carAdd.do 호출 성공");
 		logger.info("CartVO - m_id : " + cartVO.getM_id() + "product_no : " + cartVO.getProduct_no() + "cart_amount : " + cartVO.getCart_amount());
 		// 로그인 체크
-//		HttpSession session = request.getSession();
-//		String m_id = (String)session.getAttribute("m_id");
-//		session.setAttribute("m_id", m_id);
-//		
-//		logger.info("로그인체크" + m_id);
-//		if(m_id == null) {
-//				return "5";
-//		}
+		HttpSession session = request.getSession();
+		String m_id = (String)session.getAttribute("m_id");
+		session.setAttribute("m_id", m_id);
+		
+		logger.info("로그인체크" + m_id);
+		if(m_id == null) {
+				return "5";
+		}
 		
 		// 장바구니 추가
 		int result = 0;

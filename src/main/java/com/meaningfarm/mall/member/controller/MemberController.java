@@ -78,7 +78,7 @@ public class MemberController {
 			session.setAttribute("m_pw", mVO.getM_pw());
 			session.setAttribute("m_name", mVO.getM_name());
 		}
-		return "redirect:/";
+		return "redirect:/main";
 	}
 
 	/* ########## [[ 로그인 유효성 검사 - ajax .... 우선 보류]] ########## */
