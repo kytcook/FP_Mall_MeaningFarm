@@ -24,7 +24,7 @@
 <%@include file="/resources/layout/header.jsp"%>
 <%@include file="/resources/layout/nav.jsp"%>
 <!--========= 헤더 =========-->
-<%out.print(m_id2); %>
+
 <section class="container">
 <div class="h3">
 <b><%=m_id2%></b> 님의 장바구니
@@ -96,6 +96,11 @@
 		</c:otherwise>
 	</c:choose>
 </section>
+
+<!----------------------- FOOTER START ---------------------->
+<%@include file="/resources/layout/footer.jsp"%>
+<!------------------------ FOOTER END ----------------------->
+  
 	<div>
 	<button type="button" value="selectDelete" class="btn btn-dark" onclick="remove()">삭제</button>
 	<button type="button" id="btnList">상품목록</button>

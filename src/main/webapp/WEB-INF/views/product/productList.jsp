@@ -17,10 +17,10 @@
 	<!-- 맨 위로 버튼.html -->
 	<a id="MOVE_TOP_BTN" href="#" class="btn btn-warning">TOP</a>
 	
-<!--========= 헤더 =========-->
+<!------------------- header START ------------------->
 <%@include file="/resources/layout/header.jsp"%>
 <%@include file="/resources/layout/nav.jsp"%>
-<!--========= 헤더 =========-->
+<!-------------------- header END ------------------->
 
 <%
 	/////////////////////////////////////////////////////
@@ -40,7 +40,7 @@
 	if(request.getParameter("isOk")!=null){
 		isOk = Boolean.parseBoolean(request.getParameter("isOk"));
 	}	
-	int numPerPage = 9; // 현재 페이지에 출력할 개수 설정
+	int numPerPage = 3; // 현재 페이지에 출력할 개수 설정
 	int nowPage = 0;
 	if(request.getParameter("nowPage")!=null){
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
@@ -164,7 +164,7 @@
       <footer class="container">
 		<div class="pagination justify-content-center">
 		<%
-			String pagePath = "productList.do";
+			String pagePath = "productList";
 			PageBar pb = new PageBar(numPerPage, size, nowPage, pagePath);
 			out.print(pb.getPageBar());
 		%>
@@ -174,9 +174,9 @@
       <!--================ 페이지네이션 ================-->
     </section>
     
-  <!----------------------- FOOTER START ---------------------->
+<!----------------------- FOOTER START ---------------------->
 <%@include file="/resources/layout/footer.jsp"%>
-  <!------------------------ FOOTER END ----------------------->  
+<!------------------------ FOOTER END ----------------------->  
 </body>
 	<!-- productList.js 추가하기 -->
 	<script defer>

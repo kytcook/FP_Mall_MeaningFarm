@@ -82,7 +82,7 @@
   <header class="blog-header lh-1 py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-4 pt-1">
-        <a class="link-secondary" href="/mall/main">
+        <a class="link-secondary" href="/mall/home">
       		<img alt="" src="${pageContext.request.contextPath}/resources/img/main/meaningfarm2.png" width="300" height="200" left="20px">  
         </a>
       </div>
