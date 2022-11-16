@@ -25,9 +25,6 @@
     - 
 
 
-  ![image](https://user-images.githubusercontent.com/98031858/202089076-010de576-b836-42c4-94f3-0018393822b7.png)
-
-
 - 담당 업무
   - 프로젝트 개발환경 구축 및 설계 참여
   - 상품 목록 페이지
