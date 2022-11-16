@@ -40,7 +40,7 @@
 	if(request.getParameter("isOk")!=null){
 		isOk = Boolean.parseBoolean(request.getParameter("isOk"));
 	}	
-	int numPerPage = 3; // 현재 페이지에 출력할 개수 설정
+	int numPerPage = 6; // 현재 페이지에 출력할 개수 설정
 	int nowPage = 0;
 	if(request.getParameter("nowPage")!=null){
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
