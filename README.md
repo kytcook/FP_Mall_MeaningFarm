@@ -4,7 +4,10 @@
 ## Description
 - 개발 기간 : 2022.10.03 ~ 22.11.16 (약 6주)
 - 참여 인원 : 5명
-- 사용 기술 : 
+- 개발 환경 
+  - Spring 4.0, Apache Tomcat 9.0.43, BootStrap 5.2.2, Mybatis
+  - Java, Ajax, Jquery, Git, MVC Pttern
+  - Oracle 11.5.0.56 DataBase
 
   ![image](https://user-images.githubusercontent.com/98031858/202089076-010de576-b836-42c4-94f3-0018393822b7.png)
 
@@ -24,3 +27,4 @@
 
 #### 장바구니
 
+## 
