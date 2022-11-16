@@ -14,9 +14,16 @@
 #### 사용 기술
   - 백앤드 
     - Java 11.0.10
+    - Spring 4.0 
+    - Maven
     - Oracle DB
     - Ajax
-  - 
+    
+  - 프론트앤드  
+    - Vanilla JS
+    - BootStrap 5.2.2
+    - 
+
 
   ![image](https://user-images.githubusercontent.com/98031858/202089076-010de576-b836-42c4-94f3-0018393822b7.png)
 
@@ -36,4 +43,5 @@
 
 #### 장바구니
 
-## 
+#### ERD - erwin 
+![meaningfarm_ERD-1](https://user-images.githubusercontent.com/98031858/202101104-4220689c-729f-407b-842d-cb42da264720.png)
