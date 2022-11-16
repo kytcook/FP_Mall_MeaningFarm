@@ -41,6 +41,7 @@
 #### 장바구니
 
 #### ERD - erwin 
-![meaningfarm_ERD-1](https://user-images.githubusercontent.com/98031858/202108522-dc32c220-2222-4d7e-9dda-d3ab33cd1284.png)
+
+![Meaning Farm](https://user-images.githubusercontent.com/98031858/202108666-c7389c85-ce1d-427c-8e0e-ab38d89e7bcb.jpg)
 
 
