@@ -32,12 +32,10 @@
 </head>
 <body>
 
-<!-- ########## Header 시작 ########## -->
-
-<%@ include file="./layout/header.jsp" %>
-
-<%@ include file="../../../layout/nav.jsp" %>
-<!-- ########## Header 끝 ########## -->
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 
 
 
@@ -48,9 +46,11 @@
 
 
    
-   <!-- ########## footer 시작 ##########-->
-	<%@ include file="../../../layout/footer.jsp" %>
-   <!-- ########## footer 끝 #########r#-->
+
+<!-- ########## footer 시작 ##########-->
+<%@ include file="../../../resources/layout/footer.jsp" %>
+<!-- ########## footer 끝 ##########-->
+
 
 <script>
 	//alert("로그인 해야 합니다.");

@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
-<%@ include file="../../../common/common.jsp" %>
 <style type="text/css">
  #reg_btn {
 	colors : $indigo-100
@@ -38,15 +37,16 @@
 	}
 
 	div a:active, div a:visited, div a:hover, div a:link {
-		color:black;
+		color:white;
+		font-size:13pt; 
 		text-decoration: none;
 	}
 	#costomerbutton, #sellerbutton{
 		width:150px;
 		height:50px;
 		line-height:50px;
-		background-color:#1dc0a1;
-		color:white;
+		background-color:#568A35;
+		color:#fff;
 		margin:auto;
 		cursor:pointer;
 	}
@@ -69,8 +69,8 @@
 <body>
 
 <!-- ########## 헤더 시작 ########## -->
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
+<%@ include file="../../../resources/layout/header.jsp" %>
+<%@ include file="../../../resources/layout/nav.jsp" %>
 <!-- ########## 헤더 끝 ########## -->
 
 <!-- ########## 회원가입 폼 시작 ########## -->
@@ -87,7 +87,7 @@
 
 	<div id="user_type">
 		<div id="costomer">
-			<img "src='/resources/img/member/sellser.png'" style="height:300px;width:300px" class="regiImg"/>
+			<img  src="${pageContext.request.contextPath}/resources/img/member/user.png"  style="height:300px;width:300px" class="regiImg"/>
 			<div class="regiLink">
 			<div id="costomerbutton"class="radiusClass" >
 				<a href="/mall/member/registerForm">일반회원 가입</a>
@@ -96,7 +96,7 @@
 		</div>
 		<div id="seller">
 		<!--	<img src="../../../img/member/dentrepreneur.png" style="height:300px;width:300px" class="regiImg"/>  -->
-			<img "src='../../../img/member/dentrepreneur.png'" style="height:300px;width:300px" class="regiImg"/>
+			<img src="${pageContext.request.contextPath}/resources/img/member/seller.png"  style="height:300px;width:300px" class="regiImg"/>
 			<div class="regiLink">
 			<!-- <div id="sellerbutton"class="radiusClass" href="#">판매자 회원가입</div></div> -->
 			<div id="sellerbutton"class="radiusClass">
@@ -114,7 +114,7 @@
 <!-- ########## 회원가입 폼 끝 ########## -->
 
    <!-- ########## footer start ##########-->
-	<%@ include file="../../../layout/footer.jsp" %>
+<%@ include file="../../../resources/layout/footer.jsp" %>
     <!-- footer end -->
 </body>
 </html>

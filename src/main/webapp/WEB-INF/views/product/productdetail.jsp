@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+	String m_id = (String)session.getAttribute("m_id");
+//out.print(m_id2);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>detail</title>
-<%@ include file="../../../common/common.jsp" %>
 </head>
 <body>
 <style>
@@ -31,21 +34,60 @@ a {
 table {
 	text-align: center;
 }
+#result_card {
+	margin-top: 10px;
+	margin-bottom: -10px;
+}
+.div_dlvy {
+	margin-bottom: 10px;
+}
+.div_dlvy_radio {
+	margin-bottom: 10px;
+}
+.tb_dlvy {
+	float: left;
+	display: inline;
+}
+.lb_dlvy {
+	float: right;
+	background-color: white;
+	font-weight: normal !important;
+	margin: 0 0 0 0 !important;
+	padding: 0 !important;
+}
+label:hover:not(.lb_dlvy){
+	background-color: white;
+	font-weight: normal;
+}
+.product_detail {
+	margin-top: 25px;
+}
+.tb_dlvy2 {
+	margin-bottom: 15px;
+}
 </style>
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
-<%@ include file="../../../layout/sidebar.jsp" %>
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<%@include file="../../../resources/layout/sidebar.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 <div id="pdContainer">
 <h1>상품 상세</h1>
 <form action="/mall/product/productdetail?product_no=${productSelectOne.product_no}" method="post" id="f_product"> <br/>
 <input type="hidden" name="product_no" id="product_no" value="${productSelectOne.product_no}">
 <input type="text" class="form-control" name="product_name" value="${productSelectOne.product_name}" placeholder="상품명"> <br/>
-<select class="form-select" id="s_category_local_no" name="category_local_no" value="${productSelectOne.category_local_no}">
-	<option selected value="">카테고리-지역</option>
-</select><br/>
-<select class="form-select" id="s_category_type_no" name="category_type_no" value="${productSelectOne.category_type_no}">
-	<option selected value="">카테고리-종류</option>
-</select><br/>
+<div class="row">
+	<div class="col">
+		<select class="form-select" id="s_category_local_no" name="category_local_no" value="${productSelectOne.category_local_no}">
+			<option selected value="">카테고리-지역</option>
+		</select><br/>
+	</div>
+	<div class="col">
+		<select class="form-select" id="s_category_type_no" name="category_type_no" value="${productSelectOne.category_type_no}">
+			<option selected value="">카테고리-종류</option>
+		</select><br/>
+	</div>
+</div>
 <input type="text" class="form-control" name="product_price" value="${productSelectOne.product_price}" placeholder="상품 가격"> <br/>
 <input type="text" class="form-control" name="product_stock"  value="${productSelectOne.product_stock}" placeholder="상품 재고"> <br/>
 <div class="form_section">
@@ -56,27 +98,45 @@ table {
 	</div>
 </div>
 <br/>
-<input type="radio" class="form-check-input" name="dlvyfee_radio" value="dlvyfee_x"> 무료
-<input type="radio" class="form-check-input" name="dlvyfee_radio" value="dlvyfee_s"> 조건부 무료
-<input type="radio" class="form-check-input" name="dlvyfee_radio" value="dlvyfee_o"> 유료 <br/>
-<div id="tb_dlvyfee_s" style="display:none;">
-	배송비 조건 <input type="text" class="form-control" name="product_dlvylimit"  value="${productSelectOne.product_dlvylimit}"> 원 이상 무료 <br/>
-	기본 배송비 <input type="text" class="form-control" id="" name="product_dlvyfee" value="${productSelectOne.product_dlvyfee}"> 원
+<div class="div_dlvy">
+	<div class="div_dlvy_radio">
+		<input type="radio" class="form-check-input" name="dlvyfee_radio" value="dlvyfee_x"> 무료
+		<input type="radio" class="form-check-input" name="dlvyfee_radio" value="dlvyfee_s"> 조건부 무료
+		<input type="radio" class="form-check-input" name="dlvyfee_radio" value="dlvyfee_o"> 유료 <br/>
+	</div>
+	<div id="tb_dlvyfee_s" class="row g-4" style="display:none;">
+		<div class="col-sm-4">
+			<input type="text" class="form-control tb_dlvy" name="product_dlvylimit"  value="${productSelectOne.product_dlvylimit}" placeholder="배송비 조건">
+		</div>
+		<label class="lb_dlvy col-sm-8 col-form-label">원 이상 무료</label>
+		<br/>
+		<div class="col-sm-4">
+			<input type="text" class="form-control tb_dlvy" name="product_dlvyfee" value="${productSelectOne.product_dlvyfee}" placeholder="기본 배송비">
+		</div>
+		<label class="lb_dlvy col-sm-8 col-form-label">원 기본 배송비</label>
+	</div>
+	</br>
+	<div id="tb_dlvyfee_o" style="display:none;">
+		<div class="col-sm-4">
+			<input type="text" class="form-control tb_dlvy tb_dlvy2" name="product_dlvyfee" value="${productSelectOne.product_dlvyfee}" placeholder="기본 배송비">
+		</div>
+		<label class="lb_dlvy col-sm-8 col-form-label">원 기본 배송비</label>
+	</div>
 </div>
-<div id="tb_dlvyfee_o" style="display:none;">
-	기본 배송비 <input type="text" class="form-control" id="" name="product_dlvyfee" value="${productSelectOne.product_dlvyfee}"> 원
-</div>
-<input type="textarea" class="form-control" name="product_detail" value="${productSelectOne.product_detail}" placeholder="상세 설명"> <br/>
+<input type="textarea" class="form-control product_detail" name="product_detail" value="${productSelectOne.product_detail}" placeholder="상세 설명"> <br/>
 <input type="hidden" name="m_id"  value="${productSelectOne.m_id}">
 <button id="b_update" class="btn btn-warning" data-oper="modify">수정</button>
 <button id="b_delete" class="btn btn-dark" data-oper="remove">삭제</button>
 </form>
 
 </div>
+
+
+<%@include file="../../../resources/layout/footer.jsp"%>
 <script type="text/javascript">
 $(document).ready(function(){
 
-let productForm = $("form[name='f_product']");
+let productForm = $("#f_product");
 	// 삭제
 	$("#b_delete").on("click", function(){
 		productForm.attr("action", "./productdelete");

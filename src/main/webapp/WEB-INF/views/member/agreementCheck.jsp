@@ -5,14 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>전체약관</title>
-<%@ include file="../../../common/common.jsp" %>
+<%@ include file="../../../resources/common/common.jsp" %>
 <style type="text/css">
 	
 </style>
 
 </head>
 <body>
-
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 
 <!-- ########## 전체약관 체크박스 시작 ########## -->
 <!--           <div class="form-check">

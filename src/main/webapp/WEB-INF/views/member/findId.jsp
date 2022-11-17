@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-<link rel="stylesheet" href="/resources/css/user/login.css"> 
-
 <title>아이디 찾기 폼</title>
-<%@ include file="../../../common/common.jsp" %>
-
 <style type="text/css">
 
 *:focus { outline:none; }
@@ -100,7 +94,7 @@ h4 {
 
 .form-head {
 	color:#333;
-	font-size: 14px;
+	font-size: 20x;
 	font-weight: 400;
 	margin-bottom: 8px;
 	display: flex;
@@ -110,6 +104,7 @@ h4 {
 }
 .form-id {
 	float: left;
+	margin-top:10px;
 }
 .required {
 	color:#ff5442;
@@ -127,7 +122,8 @@ h4 {
 }
 
 .re_pwd {
-	margin-top:.75rem;
+	/* margin-top:.75rem; */
+	margin-top:10px;
 }
 .form-noti {
 	color: #333;
@@ -144,13 +140,13 @@ h4 {
 	height: 46px;
 	border: 0;
 	border-radius: 3px;
-	background-color: #176719;
+	background-color: #567c32;
 	font-weight: 700;
     font-size: 1.125rem;
     line-height: 1.5;
 }
 .submit-btn:hover {
-	background-color: #567c32;
+	background-color: #176719;
 }
 
 
@@ -167,10 +163,10 @@ h4 {
 </head>
 <body>
 
-<!-- ########## 헤더 시작 ########## -->
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
-<!-- ########## 헤더 끝 ########## -->
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 
 <!-- ########## [[ 아이디 찾기 폼 시작 ]] ########## -->
 
@@ -187,6 +183,7 @@ h4 {
 					<h3><b>회원 정보를 입력해주세요.</b></h3>
 					<div class="content-body">
 						<form action="findId" method="post" onsubmit="return findId(this);">
+							
 							<div class="form-head">
 								이름&nbsp;
 								<span class="required">*</span>&nbsp;&nbsp;
@@ -194,13 +191,7 @@ h4 {
 							<div class="form-body">
 								<input name="m_name" id="findm_name" class="form-elem m_nameelem" type="text" maxlength="20" placeholder="한글 2자 이상 입력">
 							</div>
-							<div class="form-head">
-								전화번호&nbsp;
-								<span class="required">*</span>&nbsp;&nbsp;
-							</div>
-							<div class="form-body">
-								<input name="m_phone" id="findm_phone" class="form-elem m_phoneelem" type="text" maxlength="20" placeholder="한글 2자 이상 입력">
-							</div>
+							<br>
 							<div class="form-head form-head2">
 								이메일&nbsp;
 								<span class="required">*</span>&nbsp;&nbsp;
@@ -208,13 +199,6 @@ h4 {
 							<div class="form-body">
 								<input name="m_email" id="findm_email"class="form-elem m_emailelem" type="text" maxlength="50" placeholder="meaningfarm@naver.com">
 							</div>
-							<!-- 메시지 -->
-					        <div id="msg">
-							    <c:if test="${not empty param.msg}">
-								<i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg)}</i>            
-							    </c:if>        
-							</div>							
-							<!-- 메시지 -->
 							<button class="submit-btn" type="submit">아이디 찾기</button>
 						</form>
 					</div>
@@ -229,63 +213,40 @@ h4 {
 
 
    <!-- ########## footer start ##########-->
-	<%@ include file="../../../layout/footer.jsp" %>
+	<%@ include file="../../../resources/layout/footer.jsp" %>
    <!-- ########## footer end ##########-->
     
 </body>
 <script>
-
-		function findId(fi) {
-			let msg ='';
-			if (fi.m_name.value == "") {
-				alert("이름을 입력해 주세요.", fi_m_id);
-				fi.m_name.focus();
-				return;
-			}
-			if (fi.m_phone.value == "") {
-				alert("핸드폰번호를 입력해 주세요.");
-				fi.m_phone.focus();
-				return;
-			}
-			if (fi.m_email.value == "") {
-				alert("이메일 입력해 주세요.");
-				fi.m_email.focus();
-				return;
-			}
-			
-			var m_name =$("#findm_name").val();
-			var m_phone =$("#findm_Phone").val();
-			var m_email =$("#findm_email").val();
-			
-			var sendData="m_name="+m_name+'&m_phone='+m_phone+'&m_email='+m_email;
-			
+$(function() {
+	$('.submit-btn').click(function() {
+		var rtn = true;
+		var m_name = $(".m_nameelem");
+		var m_email = $(".m_emailelem");
 		$.ajax({
-			url : "http://localhost/mall/member/findId",
-			method : "post",
-			data : sendData,
-			dataType : "text",
-			success : function(text) {
-				if (text != null) {
-					$("#msg").html("아이디 = "+text);
-				} else {
-					$("#msg").html("해당정보가 없습니다.");
+			url : "dupfindId",
+			data : { "m_name" : m_name.val(), "m_email" : m_email.val() },
+			async: false,
+			success : function(result) {
+				if(m_name.val() == "") {
+					alert("이름을 입력해주세요")
+					rtn = false;
+				}else if(m_email.val() == ""){
+					alert("이메일을 입력해주세요")
+					rtn = false;
+				}else if(result == 0){
+					alert("이름 또는 이메일이 일치하지 않습니다. 다시 입력해주세요.");
+					rtn = false;
 				}
 			},
-			error : function(xhr) {
-				alert("에러코드 = " + xhr.status);
+			error : function() {
+				console.log("전송실패");
 			}
 		});
-	}
-	
-	
-	/* 메시지 */
-        function setMessage(msg, element){
-            document.getElementById("msg").innerHTML = ` ${'${msg}'}`;
+		return rtn;
+	});
+});
 
-            if(element) {
-                element.select();
-            }
-       }
 
 </script>
 

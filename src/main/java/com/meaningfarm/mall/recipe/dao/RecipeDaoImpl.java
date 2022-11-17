@@ -17,10 +17,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.vo.Criteria;
 import com.vo.RecipeVO;
+import com.vo.SearchCriteria;
 
 @Service
-@Repository
 public class RecipeDaoImpl implements RecipeDao {
 
    private Logger logger = LoggerFactory.getLogger(RecipeDaoImpl.class);   
@@ -33,70 +34,94 @@ public class RecipeDaoImpl implements RecipeDao {
     * // 매퍼 private static String namespace = "com.mybatis.mapper.RecipeMapper";
     */
 
-	@Override
-	public List<RecipeVO> list() throws Exception {
-	   logger.info("daoList 호출 성공");
-	   
-	  // logger.info("list 출력되나요?"+list);
-	   // TODO Auto-generated method stub
-	   return sql.selectList(NAMESPACE +".list");
-	}
-	
+   @Override
+   public List<RecipeVO> list() throws Exception {
+      logger.info("daoList 호출 성공");
+      
+     // logger.info("list 출력되나요?"+list);
+      // TODO Auto-generated method stub
+      return sql.selectList(NAMESPACE + ".recipelist");
+   }
+   
 
-	//게시글작성
-	@Override
-	public void write(RecipeVO recipeVO) throws Exception {
-		// TODO Auto-generated method stub
-		 sql.insert("write", recipeVO);
-	}
-	
-	//게시글 조회 
-	@Override
-	public RecipeVO read(int recipe_no) throws Exception {
-		return sql.selectOne("read", recipe_no);
-	}
+   //게시글작성
+   @Override
+   public void write(RecipeVO recipeVO) throws Exception {
+      // TODO Auto-generated method stub
+       sql.insert(NAMESPACE +".recipewrite", recipeVO);
+   }
+   
+   //게시글 조회 
+   @Override
+   public RecipeVO read(int recipe_no) throws Exception {
+      return sql.selectOne(NAMESPACE +".reciperead", recipe_no);
+   }
 
-	//게시글 수정
-	@Override
-	public void modify(RecipeVO recipeVO) throws Exception {
-		// TODO Auto-generated method stub
-		sql.update("modify", recipeVO);
-	}
-	
-	//게시글 삭제
-	@Override
-	public void delete(int recipe_no) throws Exception {
-		// TODO Auto-generated method stub
-		sql.delete("delete", recipe_no);
-	}
-	
-	//게시글 조회수
-	@Override
-	public void hit(int recipe_no) throws Exception {
-		// TODO Auto-generated method stub
-		sql.update("recipe_hit", recipe_no);
-	}
-	
-	//게시글 추천
-	@Override
-	public void recommend(int recipe_no) throws Exception {
-		// TODO Auto-generated method stub
-		sql.update("recommend", recipe_no);
-	}
-	
-	// 첨부파일 업로드
+   //게시글 수정
+   @Override
+   public void modify(RecipeVO recipeVO) throws Exception {
+      // TODO Auto-generated method stub
+      sql.update(NAMESPACE +".recipemodify", recipeVO);
+   }
+   
+   //게시글 삭제
+   @Override
+   public void delete(int recipe_no) throws Exception {
+      // TODO Auto-generated method stub
+      sql.delete(NAMESPACE +".recipedelete", recipe_no);
+   }
+   
+   //게시글 조회수
+   @Override
+   public void hit(int recipe_no) throws Exception {
+      // TODO Auto-generated method stub
+      sql.update(NAMESPACE +".recipe_hit", recipe_no);
+   }
+   
+   //게시글 추천
+   @Override
+   public void recommend(int recipe_no) throws Exception {
+      // TODO Auto-generated method stub
+      sql.update(NAMESPACE +".reciperecommend", recipe_no);
+   }
+   
+   // 첨부파일 업로드
 
-	@Override
-	public void insertFile(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		sql.insert("insertFile", map);
-	}
-
-
+   @Override
+   public void insertFile(Map<String, Object> map) throws Exception {
+      // TODO Auto-generated method stub
+      sql.insert(NAMESPACE +".recipeinsertFile", map);
+   }
 
 
+   //게시물 목록 + 페이징
+   @Override
+   public List<RecipeVO> listPage(SearchCriteria scri) throws Exception {
+      // TODO Auto-generated method stub
+      
+      return sql.selectList(NAMESPACE + ".recipelistPage", scri);
+      
+   }
 
-	
+   //게시물 총 갯수
+   @Override
+   public int listCount(SearchCriteria scri) throws Exception {
+      // TODO Auto-generated method stub
+      return sql.selectOne(NAMESPACE+".recipelistCount", scri);
+   }
+
+   //검색 결과갯수
+   //@Override
+   //public int countSearch(SearchCriteria scri) throws Exception {
+      // TODO Auto-generated method stub
+   //   return sql.selectOne(NAMESPACE + ".recipe_countSearch", scri);
+   //}
+
+
+
+
+
+   
   
 
 

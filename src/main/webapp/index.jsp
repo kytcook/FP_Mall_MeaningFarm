@@ -11,8 +11,8 @@
    //session = request.getSession();
    //out.println("m_id: "+session.getAttribute("m_id"));
     // m_id가 있니? 화면 보여주고 ,,, null이면 로그인을 하세요..
-   out.print(m_id);
-   out.print(m_name);
+ //  out.print(m_id);
+ //  out.print(m_name);
 %>
 
 <!DOCTYPE html>
@@ -27,29 +27,30 @@
 
 </script>
 
-<%@ include file="../common/common.jsp" %>
+<%-- <%@ include file="../common/common.jsp" %> --%>
 
 </head>
 <body>
 
 <!-- ########## Header 시작 ########## -->
 
-<%@ include file="./layout/header.jsp" %>
+<%@include file="../../../resources/layout/header.jsp"%>
 
-<%@ include file="./layout/nav.jsp" %>
+<%@include file="../../../resources/layout/nav.jsp"%>
 <!-- ########## Header 끝 ########## -->
 
 
 
 
 <!-- ########## Main  시작 ########## -->
-<%@ include file="./layout/main.jsp" %>
+<%@include file="../../../resources/layout/main.jsp"%>
+<!--  <%@include file="../../../resources/layout/recipe.jsp"%> -->
 <!-- ########## Main  끝 ########## -->
 
 
    
    <!-- ########## footer 시작 ##########-->
-	<%@ include file="./layout/footer.jsp" %>
+<%@include file="../../../resources/layout/footer.jsp"%>
    <!-- ########## footer 끝 #########r#-->
 
 <script>

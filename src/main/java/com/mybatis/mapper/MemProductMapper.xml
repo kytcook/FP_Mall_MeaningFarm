@@ -2,11 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.MemProductMapper">
 	<!-- 01. 상품 전체목록 조회  -->
-	<select id="memproductList" parameterType="java.util.Map" resultType="map">
-		SELECT p.m_id,p.product_no, p.product_name, p.product_price, p.product_detail
-		     , p.product_stock, p.product_dlvyfee, p.option_no
-		     , p.category_local_no, p.category_type_no, pf.productfile_name
-		     , NVL(pf.productfile_size,0), pf.productfile_path
+	<select id="memProductList" parameterType="java.util.Map" resultType="map">
+		SELECT 
+		       p.m_id,p.product_no, p.product_name, p.product_price, p.product_detail
+		      ,p.product_stock, p.product_dlvyfee, p.option_no
+		      ,p.category_local_no, p.category_type_no
+		      ,pf.productfile_name, pf.productfile_path, pf.productfile_no
 		  FROM product p LEFT OUTER JOIN productfile pf
 		    ON p.product_no = pf.product_no
 		<where>
@@ -18,9 +19,25 @@
 			</if>
 		</where>  
 		ORDER BY p.product_no ASC
-		
 	</select> 
+
+	<select id="productfileList" resultType="MemProductfileVO">
+		SELECT 
+		       productfile_no, productfile_name
+		      ,productfile_path, product_no 
+		  FROM productfile 
+		 WHERE product_no = #{product_no}	
+	</select>
 	
-
-
+	<select id="ListCategoryType" resultType="MemProductVO">
+		select * from product
+		where category_type_no = #{category_type_no}
+		order by product_no desc
+	</select>
+	
+	<select id="ListCategoryLocal" resultType="MemProductVO">
+		select * from product
+		where category_local_no = #{category_local_no}
+		order by product_no
+	</select>
 </mapper>

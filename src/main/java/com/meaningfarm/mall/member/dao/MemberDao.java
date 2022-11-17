@@ -1,5 +1,6 @@
 package com.meaningfarm.mall.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,15 +21,14 @@ Logger logger = LoggerFactory.getLogger(MemberDao.class);
 	@Autowired(required=false)
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	/* ########## [[ 회원 목록]]  ########## */
-	public List<MemberVO> memberList() {
-		List<MemberVO> memberList = null;
-		memberList = sqlSessionTemplate.selectList("memberListAll");
+	public List<Map<String,Object>> memberList(Map<String, Object> pMap) {
+		List<Map<String,Object>> memberList = null;
+		memberList = sqlSessionTemplate.selectList("memberList",pMap);
 		logger.info("MemberDao : memberList 호출 성공" +memberList );
+		logger.info(memberList.toString());
 		return memberList;
 	}
 	
-	/* ########## [[ 일반회원 회원가입 ]] ##########*/
 	public int register(Map<String, Object> pMap) {
 		logger.info("MemberDao : register 호출 성공");
 		int result = 0;
@@ -41,11 +41,9 @@ Logger logger = LoggerFactory.getLogger(MemberDao.class);
 		}catch(DataAccessException e) {
 				logger.info("Exception :"+e.toString());
 		}
-		//result = sqlSessionTemplate.insert("register",pMap);
 		return result;
 	}
 
-	/* ########## [[ 판매자 회원가입 ]] ##########*/
 	public int sregister(Map<String, Object> pMap) {
 		logger.info("MemberDao : sregister 호출 성공");
 		int result = 0;
@@ -58,10 +56,8 @@ Logger logger = LoggerFactory.getLogger(MemberDao.class);
 		}catch(DataAccessException e) {
 				logger.info("Exception :"+e.toString());
 		}
-		//result = sqlSessionTemplate.insert("register",pMap);
 		return result;
 	}
-	/* ########## [[ 로그인 요청 ]] ########## */
 	public MemberVO login(@RequestParam Map<String,Object> pMap) {
 		logger.info("MemberDao : login 호출 성공");
 		MemberVO mVO = null;
@@ -69,27 +65,80 @@ Logger logger = LoggerFactory.getLogger(MemberDao.class);
 		
 		return mVO;
 	}
-	/* ########## [[ 아이디 중복검사]]  ########## */
 	public int checkIdDup(Map<String, Object> pMap) {
 		logger.info("MemberDao : checkIdDup 호출 성공");
 		int result = sqlSessionTemplate.selectOne("checkIdDup", pMap);
 		return result;
 	}
 
-	/* ########## [[ 로그인 유효성 검사 - ajax ]] ########## */
 	public MemberVO getUserById(String m_id, String m_pw) {
 		logger.info("MemberDao : getUserById 호출 성공");
 		return sqlSessionTemplate.selectOne("getUserById", m_id);
 	}
 	
-	/* ########## [[ 회원 탈퇴 - memberDelete ]]  ########## */
-	public int memberDelete(Map<String, Object> pMap) {
+	public String findId(HashMap<String, String> map) {
+		logger.info("MemberDao : findId 호출 성공");
+		return sqlSessionTemplate.selectOne("findId",map);
+		
+	}
+	
+	public int dupId(HashMap<String, String> map) {
+		logger.info("MemberDao : dupId 호출 성공");
+		
+		return sqlSessionTemplate.selectOne("dupId", map);
+	}
+	
+	public int memberDelete(MemberVO mVO) {
 		logger.info("MemberDao : memberDelete 호출 성공");
 		int result = 0;
-		result = sqlSessionTemplate.delete("memberDelete", pMap);
-		
+		result = sqlSessionTemplate.delete("memberDelete", mVO);
 		return result;
 	}
+
+	public int deleteId(String m_id) {
+		logger.info("MemberDao : deleteId 호출 성공");
+		return sqlSessionTemplate.delete("memberDelete",m_id);
+	}
+
+	public int selectId(String m_id, String m_pw) {
+		logger.info("MemberDao : selectId 호출 성공");
+		int result = 0;
+		result = sqlSessionTemplate.delete("memberDelete", m_id);   
+		return result;
+	}
+
+	public int passCeck(MemberVO mVO) {
+		logger.info("MemberDao : passCeck 호출 성공");
+		int result = 0;
+		result = sqlSessionTemplate.delete("passCheck",mVO);
+		return 0;
+	}
+
+	
+	public int countSocialUser(String socialId) {
+		logger.info("MemberDao : countSocialUser 호출 성공");
+		return sqlSessionTemplate.selectOne("countSocialUser", socialId);
+	}
+
+	public int insertSocialUser(HashMap<String, String> map) {
+		logger.info("MemberDao : insertSocialUser 호출 성공");
+		return  sqlSessionTemplate.insert("insertSocialUser", map);
+	}
+	
+	public int findPwCheck(HashMap<String, String> map) {
+		logger.info("MemberDao : findPwCheck 호출 성공");
+		return sqlSessionTemplate.selectOne("findPw", map);
+	}
+	//11.14추가함... 세션담을때 ID에 정보가...
+	public MemberVO getUserById(String m_id) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("getUserById", m_id);
+	}
+
+	
+	
+	
+
 
 
 	

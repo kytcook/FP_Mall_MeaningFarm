@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입완료창</title>
-<%@ include file="../../../common/common.jsp" %>
+<%@ include file="../../../resources/common/common.jsp" %>
+
 <style type="text/css">
 
 .result {
@@ -31,6 +32,8 @@
 	height:inherit;
 	margin:0 auto;
 	/* background-color:yellow; */
+	margin-left: 400px;
+	
 }
 .height-fixed {
 	width: 100%;
@@ -145,7 +148,7 @@ input:focus, input:not(:placeholder-shown){
 	width: 100%;
 	height: 40px;
 	margin-top: 20px;
-	background-color:#1dc0a1;
+	background-color:#568A35;
 	color: #fff;
 	border:0;
 	font-size: 16px;
@@ -157,11 +160,10 @@ input:focus, input:not(:placeholder-shown){
 <body>
 
 
-<!-- ########## 헤더 시작 ########## -->
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
-<!-- ########## 헤더 끝 ########## -->
-
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 
 	<div class="container result">
 	<br>
@@ -171,7 +173,7 @@ input:focus, input:not(:placeholder-shown){
 				<h2>회원가입 완료되었습니다.</h2>
 				<div class="left-inner-box">
 				<br><br><br><br><br><br><br><br>
-					<input type="submit" id="left-login-bt" name="login" location="mall/member/login" value="로그인으로 이동하기"> 
+					<input type="submit" id="left-login-bt" name="login" onclick="location.href='/mall/member/login'" value="로그인으로 이동하기"> 
 				</div>
 			</div>
 			</div>
@@ -179,7 +181,7 @@ input:focus, input:not(:placeholder-shown){
 			</div>
 			<br><br><br><br><br><br><br><br><br>
    <!-- ########## footer start ##########-->
-	<%@ include file="../../../layout/footer.jsp" %>
+	<%@ include file="../../../resources/layout/footer.jsp" %>
    <!-- ########## footer end ##########-->
 </body>
 </html>

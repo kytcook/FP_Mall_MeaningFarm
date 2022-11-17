@@ -2,15 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../../../common/common.jsp" %>
+<%@ include file="../../../resources/common/common.jsp" %>
 <%
 	//String admin_name = mVO.login("admin_name");
 	String m_id = (String)session.getAttribute("m_id"); //인클루드 jsp앞에 넣었을때 변수 선언해야함
 	String admin_name = (String)session.getAttribute("admin_name"); 
 	String m_email = (String)session.getAttribute("m_email"); 
-   out.print(m_id); // ok
-   out.print(admin_name); // no
-   out.print(m_email);  // no
+ //  out.print(m_id); // ok
+//   out.print(admin_name); // no
+//   out.print(m_email);  // no
 	//if(s_name != null){//인증 되었을 때 보여줄 페이지 출력  < 로그인 성공>
 %>
 <!DOCTYPE html>
@@ -28,13 +28,17 @@
 <title>MEANINGFARM-글작성</title>
 </head>
 <body>
-	<!-- ########## 헤더 시작 ########## -->
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
-<!-- ########## 헤더 끝 ########## -->
-
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
+<br>
+<br>
+<br>
+<br>
 	<!--글쓰기 화면 시작  -->
-	<div class="container">
+	<div class="container" >
+	
 		<div class="row">
 			<form action="/notice/write" method="post" name="write"  enctype="multipart/form-data">
 				<table class="table table-striped"
@@ -79,8 +83,16 @@
 
 		</div>
 	</div>
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- ########## [[ 푸터 시작 ]] ########## -->
+<%@include file="../../../resources/layout/footer.jsp"%>
+<!-- ########## [[ 푸터 끝 ]] ########## -->
 <!-- 스크립트 -->
 <!--리스트 버튼을 눌렀을떄 리스트페이지로 이동하기  -->
 	<script type="text/javascript">

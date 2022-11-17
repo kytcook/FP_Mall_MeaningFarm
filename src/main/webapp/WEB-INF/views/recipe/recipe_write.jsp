@@ -1,6 +1,8 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String m_id = (String)session.getAttribute("m_id"); //인클루드 jsp앞에 넣었을때 변수 선언해야함
+%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- forEach와 c:out를 쓰려면 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> <!--  fmt날짜 포맷을 써주려면 -->
 <!DOCTYPE html>
@@ -11,11 +13,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MY RECIPE</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
-  rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
   crossorigin="anonymous"></script>
@@ -27,6 +24,11 @@
 
 
 <body>
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
+
   <div id="contents-wrapper" class="recipe_detail">
     <div class="xans-element- xans-product xans-product-additional detail_input">
       <div class="detail">
@@ -50,7 +52,7 @@
           placeholder="제목을 입력해주세요." required
           >
           <input type="text" name="m_id" class="form-control mt-4 mb-2"
-          placeholder="작성자" required
+          value="<%=m_id %>" required readOnly
           >
           <div class="form-group">
             <textarea class="form-control" rows="10" name="recipe_content"
@@ -68,6 +70,9 @@
     </div>
 
   </div>
+<!-- ########## footer 시작 ##########-->
+<%@ include file="../../../resources/layout/footer.jsp" %>
+<!-- ########## footer 끝 ##########-->
 </body>
 
 <style>

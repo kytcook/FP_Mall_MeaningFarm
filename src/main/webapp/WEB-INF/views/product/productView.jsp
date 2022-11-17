@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %> 
-<!--========= 헤드 =========-->
-<%@include file="../layout/head.jsp"%>
-<!--========= 헤드 =========-->
-
-<!-- productContents.css 추가 -->    
-<link href="${path}/css/product/productView.css" rel="stylesheet" type="text/css"/> 
-
+<%@ page import="java.util.*" %>
 <%
 	/////////////////////////////////////////////////////////////
 	String p_no 				= null;
@@ -33,16 +26,96 @@
 			category_local_no	= productView.get(0).get("CATEGORY_LOCAL_NO").toString();
 			category_type_no 	= productView.get(0).get("CATEGORY_TYPE_NO").toString();
 		}
-	out.print(productView);
-	out.print(p_name);
+// 	out.print(productView);
+// 	out.print(p_name);
 	/////////////////////////////////////////////////////////////
 %>
+<!DOCTYPE html>
+<html>
+<head>
+<%@ include file="/resources/common/common.jsp" %>
+<!-- productContents.css 추가 -->
+<style>
+@charset "UTF-8";
+/* --------------------- 상세내용 css-------------------- */
+* {
+	/* 레이아웃용 */
+	/* border: 1px solid red; */
+	
+}
+
+/* input태그에 number타입의 화살표 항상 보이기 : 크롬에서만 적용됨 */
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
+	{
+	opacity: 1;
+}
+
+/* 당장 쓰지 않는 정보는 캡션으로 막아둡시다. 설명용 캡션은 table에서만 사용하는 설명용 */
+caption {
+	display: none;
+}
+
+article {
+	margin-bottom: 100px;
+}
+/* --------------------- 상세내용 css-------------------- */
+
+/* ---------------- 상세정보탭 테이블관련 css---------------- */
+table.extra-information {
+	background: #e0e0e0;
+	margin: 30px 0 60px;
+	width: 100% !important;
+}
+
+table.extra-information th {
+	width: 15%;
+	background: #f5f5f5;
+	color: #515151;
+}
+
+table.extra-information th, table.extra-information td {
+	font-weight: 400;
+	text-align: left;
+	padding-left: 15px;
+	background: #fff;
+	font-family: Dotum;
+	font-size: 11px;
+	height: 28px;
+	padding: 5px 0 5px 10px;
+	border-width: 1px;
+	line-height: 20px;
+}
+
+table.extra-information td {
+	width: 35%;
+	color: #666;
+}
+
+table.extra-information th {
+	width: 15%;
+	background: #f5f5f5;
+	color: #515151;
+}
+
+#qna_table, #review_table {
+	font-size: 10px;
+}
+
+#delivery_content {
+	font-size: 10px;
+}
+/* ----------------상세정보의 테이블관련 css---------------- */
+</style>
+</head>
 
 <!-- 본문 시작 -->
 <body>
-<!---------------------- HEADER START ---------------------->
 
+<!---------------------- HEADER START ---------------------->
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
 <!----------------------- HEADER END ----------------------->
+
   <div class="container"><!-- section 영역 2개를 묶는 div -->
     <!-- 상단메인 -->
     <section class="container mt-3 mb-3">
@@ -66,12 +139,8 @@
                   <tbody>
                     <tr>
                       <th><b>판매가</b></th>
-                      <td><b>${p.PRODUCT_PRICE} 원 </b></td>
+                      <td><b><fmt:formatNumber value="${p.PRODUCT_PRICE}" pattern="###,###,###"/> 원 </b></td>
                     </tr>
-                     <tr>
-                   		<td>ㅁㄴㅇ</td>
-                   		<fmt:formatNumber value="${product.PORDUCT_PRICE}" pattern="###,###,###"/>
-                     </tr>
                   </tbody>
                 </table>
                 <br />
@@ -97,13 +166,15 @@
                         <td>${p.PRODUCT_NAME} (30개)</td>
                         <td> 
                           <input class="amount_input" type="text" style="width:55px" value="1" >개<!-- 상품수량 입력 -->
+                          <input type="hidden" name="m_id" class="m_id" value=<%=m_id2%>>
+                          <input type="hidden" name="product_no" class="product_no" value="${p.PRODUCT_NO}">
                           <span>
                           	<button class="plus_btn">+</button>
                           	<button class="minus_btn">-</button>
                           </span>
                         </td>
                         <td class="right">
-                          ${p.PRODUCT_PRICE} 원
+                          <fmt:formatNumber value="${p.PRODUCT_PRICE}" pattern="###,###,###"/>(총가격계산) 원
                         </td>
                       </tr>
                     </tbody>
@@ -145,10 +216,83 @@
     <!--========================== 상품정보탭 ==========================-->
   </div><!-- section 영역 2개를 묶는 div -->
   <!-- 본문 끝 -->
-  <!----------------------- FOOTER START ---------------------->
-  <!------------------------ FOOTER END ----------------------->
+  
+	<!----------------------- FOOTER START ---------------------->
+	<%@include file="/resources/layout/footer.jsp"%>
+	<!------------------------ FOOTER END ----------------------->
   
 <!-- productContents.js 추가 -->    
-<script src="${path}/js/productView.js" type="text/javascript"></script>
+<script>
+/*********************************************
+ * 상품뷰 js
+ ********************************************/
+// 상품 추가•빼기 버튼
+$(document).ready(function () {
+  let amount = $(".amount_input").val();
+  $(".plus_btn").on("click", function () {
+    console.log("플러스눌림");
+    $(".amount_input").val(++amount);
+  });
+
+  $(".minus_btn").on("click", function () {
+    console.log("마이너스눌림");
+    if (amount > 1) {
+      $(".amount_input").val(--amount);
+    } else {
+      alert("1개 미만은 담을 수 없습니다.");
+    }
+  });
+});
+
+// 서버로 전송할 데이터 객체
+  let form = {
+  m_id: '',// 여기에 로그인 세션 id를 담아줘야 합니다.(현재는 상수값)
+  product_no: '',
+  cart_amount: '',
+};
+
+// 장바구니 버튼
+$("#cart").on("click", function (e) {
+	if(confirm("장바구니에 담으시겠습니까?") == true){
+	form.cart_amount = $(".amount_input").val();
+	form.product_no = $(".product_no").val();
+	m_id = $(".m_id").val();
+	form.m_id = m_id;
+		} else {
+			return false;
+		}
+	
+	$.ajax({
+		  url: '/mall/cart/cartAdd.do', // 호출할 url, 전송페이지
+		  type: 'GET', // 전송방식
+		  data: form, // 서버로 전송할 데이터
+		  contentType: "application/json; charset=utf-8",// 데이터포맷 json
+		  success: function (result) {
+		  			console.log(JSON.stringify(form));
+		  			cartAlert(result);// a.
+				},
+		  error: function(){
+					console.log("전송실패");
+				}
+		  })
+	});
+	
+	// a.서버가 요청을 성공적으로 수행했을 때 수행될 메소드, 파라미터는 서버가 반환한 값
+	   function cartAlert(result) {
+	       if (result == '0') {
+	         alert("장바구니에 추가를 하지 못하였습니다.");
+	       } else if (result == '1') {
+	            if(confirm("추가되었습니다. 장바구니로 이동할까요?") == true){
+	            location.href = "/mall/cart/cartList?m_id=" + m_id
+	            }
+	       } else if (result == '2') {
+	            if(confirm("이미 상품이 존재합니다. 장바구니로 이동할까요?") == true){
+	            location.href = "/mall/cart/cartList?m_id=" + m_id
+	            }
+	       } else if (result == '5') {
+	         alert("로그인이 필요합니다.");
+	      }
+	   }
+</script>
 </body>
 </html>

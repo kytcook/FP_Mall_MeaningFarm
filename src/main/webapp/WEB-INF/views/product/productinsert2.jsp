@@ -7,8 +7,12 @@
 <title>write</title>
 </head>
 <body>
-<%@ include file="../../../common/common.jsp" %>
+<%@ include file="../../../resources/common/common.jsp" %>
 <h1>상품 등록</h1>
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 <form action="./productinsert" method="post" id="f_product" enctype="multipart/form-data"> <br/>
 상품명 : <input type="text" name="product_name" id="product_name"> <br/>
 카테고리(지역) :
@@ -40,6 +44,11 @@
 m_id : <input type="textarea" name="m_id"> <br/>
 </form>
 <button id="b_submit">등록</button>
+
+
+<!-- ########## [[ 푸터 시작 ]] ########## -->
+<%@include file="../../../resources/layout/footer.jsp"%>
+<!-- ########## [[ 푸터 끝 ]] ########## -->
 
 <script type="text/javascript">
 $(document).ready(function() {

@@ -9,14 +9,16 @@
 		<setting name="callSettersOnNulls" value="true" />
 		<setting name="defaultExecutorType" value="REUSE" />
 		<setting name="defaultStatementTimeout" value="300" />
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	<!-- 	<setting name="mapUnderscoreToCamelCase" value="true"/> -->
     </settings>
     
 	<typeAliases>
 		<typeAlias alias="mVO" type="com.vo.MemberVO"/>
 		<typeAlias alias="recipeVO" type="com.vo.RecipeVO"/>
 		<typeAlias alias="productVO" type="com.meaningfarm.mall.product.ProductVO" />
-		<typeAlias alias="CartVO" type="com.meaningfarm.mall.cart.CartVO" />
+		<typeAlias alias="CartVO" type="com.vo.CartVO" />
+		<typeAlias alias="MemProductVO" type="com.vo.MemProductVO" />
+		<typeAlias alias="MemProductfileVO" type="com.vo.MemProductfileVO" />
 	</typeAliases>
 	
 	<mappers>
@@ -28,8 +30,7 @@
 		<mapper resource="com/mybatis/mapper/recipeReplyMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/categorytype.xml"/>
 		<mapper resource="com/mybatis/mapper/categorylocal.xml"/>
-		<mapper resource="com/meaningfarm/mapper/product.xml" />
-		<mapper resource="com/meaningfarm/mapper/option.xml" />
+		<mapper resource="com/mybatis/mapper/product.xml" />
 		<mapper resource="com/mybatis/mapper/NoticeMapper.xml" />
 		<mapper resource="com/mybatis/mapper/MemProductMapper.xml" />
 		<mapper resource="com/mybatis/mapper/CartMapper.xml" />

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="../../../common/common.jsp" %>
+<%@ include file="../../../resources/common/common.jsp" %>
 <title>에러페이지</title>
 <style type="text/css">
 *:focus { outline:none; }
@@ -163,10 +163,10 @@ h4 {
 </style>
 </head>
 <body>
-<!-- ########## Header 시작 ########## -->
-<%@ include file="../../../layout/header.jsp" %>
-<%@ include file="../../../layout/nav.jsp" %>
-<!-- ########## Header 끝 ########## -->
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 	<main>
    		<div id="main-title">에러페이지</div>
    		<div class="frame" >
@@ -187,10 +187,9 @@ h4 {
 	
 	 -->
 	
-	
-   <!-- ########## footer 시작 ##########-->
-	<%@ include file="../../../layout/footer.jsp" %>
-   <!-- ########## footer 끝 ##########-->
+<!-- ########## footer 시작 ##########-->
+<%@ include file="../../../resources/layout/footer.jsp" %>
+<!-- ########## footer 끝 ##########-->
 </body>
 <script>
 	function back() {

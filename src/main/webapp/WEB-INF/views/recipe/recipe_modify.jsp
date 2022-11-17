@@ -23,6 +23,10 @@
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
   crossorigin="anonymous"></script>
 </head>
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="../../../resources/layout/header.jsp"%>
+<%@include file="../../../resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
 <body>
   <div id="contents-wrapper" class="recipe_detail">
     <div class="xans-element- xans-product xans-product-additional detail_input">
@@ -53,8 +57,8 @@
              required> <c:out value="${modify.recipe_content}"/></textarea>
           </div>
           
-		<input type="text" id ="recipe_pwd" name="recipe_pwd" value="${modify.recipe_pwd}" class="form-control mt-4 mb-2" >
-			
+      <input type="text" id ="recipe_pwd" name="recipe_pwd" value="${modify.recipe_pwd}" class="form-control mt-4 mb-2" >
+         
 
           <hr>
 

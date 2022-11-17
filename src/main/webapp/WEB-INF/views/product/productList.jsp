@@ -1,30 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, com.meaningfarm.util.PageBar" %>      
-<!--========= 헤드 =========-->
-<%@include file="../layout/head.jsp"%>
-<!--========= 헤드 =========-->
+<%@ page import="java.util.*, com.meaningfarm.util.PageBar" %>
 
-<!-- productList.js 추가하기 -->
-<script defer>
-	$(document).ready(function(){
-		// 상품 한번 클릭시 상품번호 출력 : 나중에 페이지이동을 한번 클릭으로 옮기고 더블클릭 삭제할것.
-		$(".card").click(function() {
-			let product_no = $(this).find(".PRODUCT_NO").text();
-			console.log(product_no);
-		});
+<!DOCTYPE html>
+<html>
+<title>상품리스트</title>   
+<head>
+	<!-- productList.css 추가하기 -->
+	<link href="${path}/css/product/productList.css" rel="stylesheet"/>
+	<!-- 맨 위로 버튼.css -->
+	<link href="${path}/css/static/moveTopButton.css" rel="stylesheet" type="text/css"/>
+	<style>
+		* {
+			/* border: 1px solid red; */
+			
+		}
+		/*--------header CSS---------*/
+		.nav-pills>.nav-item>.nav-link {
+			color: rgb(18, 17, 17) !important;
+		}
 		
-		// 상품 두 번 클릭시 페이지 이동
-		$(".card").dblclick(function() {
-			alert("상품눌리임");
-			let product_no = $(this).find(".PRODUCT_NO").text();
-			location.href = "productView.do?product_no="+product_no
-		});
-	})
-</script>  
+		.nav-pills>.nav-item>.active {
+			color: rgb(255, 255, 255) !important;
+			background-color: rgb(45, 197, 116) !important;
+		}
+		
+		.nav-pills>.nav-item>.active:hover {
+			color: rgb(255, 255, 255) !important;
+			background-color: rgb(23, 97, 57) !important;
+		}
+		/*--------header CSS---------*/
+		
+		/* card 호버시 커지게  */
+		.card:hover {
+			transform: scale(1.1);
+			transition: transform .3s;
+		}
+		
+		  a#MOVE_TOP_BTN {
+		    /* TOP버튼관련 CSS */
+		    border-bottom: 10px solid rgb(71, 206, 53);
+		    color: white;
+		    position: fixed; /* 화면에 고정 */
+		    right: 5%; /* right, bottom 버튼의 위치 설정 */
+		    bottom: 80px;
+		    display: none; /* 화면에서 숨김  */
+		    z-index: 999; /* 다른 태그들보다 위로 오도록 설정(z-index 가 설정된 다른 태그가 있다면 그 태그보다 커야 함) */
+		  }		
+	</style>
+</head>
+<body>
+	<!-- 맨 위로 버튼.html -->
+	<a id="MOVE_TOP_BTN" href="#" class="btn btn-warning">TOP</a>
+	
+<!--========= 헤더 =========-->
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
+<!--========= 헤더 =========-->
 
-<!-- productList.css 추가하기 -->
-<link href="${path}/css/product/productList.css" rel="stylesheet"/>
-  
 <%
 	/////////////////////////////////////////////////////
 	List<Map<String,Object>> productList = //유지의문제 - DB를 경유해야한다 ->servlet
@@ -50,9 +82,6 @@
 	}
 	/////////////////////////////////////////////////////
 %>
-
-
-  <body>
     <header class="container">
       <div class="ico_cate">
           <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" id="goodsListIconView" alt="카테고리 아이콘"> </span>
@@ -92,9 +121,6 @@
         </div>
         <!-- 정렬 드랍다운 -->
       </div>
-      
-      <p class="border"></p>
-
     </header>
     
     
@@ -103,6 +129,9 @@
         <div class="list_product row row-cols-3">
       <!--================= 상품리스트 =================-->
       <!-- 현재 페이지에서 보여지는 상품의 개수를 제어하면서 꺼내는 반복문 : 상품리스트, 페이징 처리 START -->
+      
+      
+      
 <%
 	if(size==0){
 		if(isOk){	
@@ -118,24 +147,36 @@
 			if(size == i) break;
 			Map<String,Object> rMap = productList.get(i);// 데이터 꺼내는 반복문/ 데이터 껀수만큼
 %>	    
+
           <!--===== 상품1 =====-->
           <div class="col mt-5 mb-4">
             <div class="card shadow-lg m-3">
                <!-- 상품이미지 -->
+               <div id = "imageGet">
+<!--                		<div class="image_wrap"  -->
+<%--                			 data-product_no="${productList.PRODUCTFILE_NO}" --%>
+<%--                			 data-path="${productList.PRODUCTFILE_PATH}" --%>
+<%--                			 data-uuid="${productList.uuid} data-file" --%>
+<!--                			 /> -->
+<!--                			<img> -->
+<!--                		</div> -->
+
+			<!-- src="./display?fileName=apple.jpg" -->
                <img
-                 src="${path}/resources/images/apple.jpg"
-<%--                  src=<%rMap.get("PRODUCT_IMG");%> --%>
+                 src="${path}/resources/image/apple.jpg"
                  alt="apple.jpg"
                  onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
                  width="100%"
                  height="300"
                  class="pt-5"
                />
+               </div>
                <!-- 상품설명 -->
                <div class="card-body">
                   <ul class="card-text list-unstyled ps-4 pb-3">
                   	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
-                  	 <li class="PRODUCT_NO" style="display:none"><%=rMap.get("PRODUCT_NO")%></li>
+            	 	<li class="product_no" style="display:none"><%=rMap.get("PRODUCT_NO")%></li>
+           			<li><input type="hidden" class="product_no" name="product_no" value="<%=rMap.get("PRODUCT_NO")%>"/></li>
                     <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_NAME")%></li>
                     <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_PRICE")%>원</li>
                     <li class="text-muted"><%=rMap.get("PRODUCT_DETAIL")%></li>
@@ -156,7 +197,7 @@
 
       <!--================ 페이지네이션 ================-->
       <footer class="container">
-			<div class="pagination justify-content-center">
+		<div class="pagination justify-content-center">
 		<%
 			String pagePath = "productList.do";
 			PageBar pb = new PageBar(numPerPage, size, nowPage, pagePath);
@@ -167,9 +208,47 @@
       </footer>
       <!--================ 페이지네이션 ================-->
     </section>
+    
   <!----------------------- FOOTER START ---------------------->
+<%@include file="/resources/layout/footer.jsp"%>
   <!------------------------ FOOTER END ----------------------->  
-<!-- productList.js코드 추가 -->
-
 </body>
+	<!-- productList.js 추가하기 -->
+	<script defer>
+		$(document).ready(function(){
+			// 상품 한번 클릭시 상품번호 출력 : 나중에 페이지이동을 한번 클릭으로 옮기고 더블클릭 삭제할것.
+			$(".card").click(function() {
+// 				console.log(product_no);
+				let product_no = $(this).find(".product_no").text();
+// 				alert("상품눌리임");
+				location.href = "productView.do?product_no="+product_no
+			});
+			
+			// 상품 두 번 클릭시 페이지 이동
+// 			$(".card").dblclick(function() {
+// 				let product_no = $(this).find(".product_no").text();
+// 				location.href = "productView.do?product_no="+product_no
+// 			});
+		})
+		
+		
+		 $(function() {
+		/* 스크롤 위치에 따라 화면에서 맨위로 올라가는 버튼을 나타내고, 사라지도록 설정 */
+		    $(window).scroll(function() {
+		        if ($(this).scrollTop() > 500) {
+		            $('#MOVE_TOP_BTN').fadeIn();
+		        } else {
+		            $('#MOVE_TOP_BTN').fadeOut();
+		        }
+		    });
+		    /* 버튼 클릭 이벤트 */
+		    $("#MOVE_TOP_BTN").click(function() {
+		        $('html, body').animate({/* animation 을 걸어서 화면 맨위로 이동하도록 설정 */
+		            scrollTop : 0
+		        }, 300);
+		        return false;
+		    });
+		});  
+		
+	</script>  
 </html>
