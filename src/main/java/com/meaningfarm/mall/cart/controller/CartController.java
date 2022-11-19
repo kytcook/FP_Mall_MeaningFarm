@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,14 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.meaningfarm.mall.cart.service.CartService;
-import com.meaningfarm.mall.interceptor.MemberVO;
-import com.meaningfarm.mall.product.ProductVO;
 import com.vo.CartVO;
 
 @Controller
@@ -49,14 +45,14 @@ public class CartController {
 		return "cart/cart";
 	}
 	
-	@GetMapping("cartRef")
-	public String cartRef(Model model, @RequestParam Map<String, Object> pMap) {
-		logger.info("carList 호출 성공");
-		List<Map<String, Object>> cartList = null;
-		cartList = cartService.cartList(pMap);
-		model.addAttribute("cartList", cartList);
-		return "cart/cartRef";
-	}
+//	@GetMapping("cartRef")
+//	public String cartRef(Model model, @RequestParam Map<String, Object> pMap) {
+//		logger.info("carList 호출 성공");
+//		List<Map<String, Object>> cartList = null;
+//		cartList = cartService.cartList(pMap);
+//		model.addAttribute("cartList", cartList);
+//		return "cart/cartRef";
+//	}
 	
 ///////////////////////////////////////////////////////////////////////////
 	/*---------------------------- 장바구니 추가 ----------------------------*/
