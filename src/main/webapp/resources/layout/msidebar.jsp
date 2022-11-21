@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<html>
 <style type="text/css">
 #menuContainer {
 	margin: 0 auto;
@@ -148,7 +147,8 @@ $(function(){
 				</div>
 			</label> <input type="checkbox" id="menu_bar01" class="accordion" />
 			<ul id="links01">
-				<li><a href="mypage/myinfo">내 정보</a></li>
+			<!-- 	<li><a href="mypage/myinfo">내 정보</a></li> -->
+				<li><a href="myinfo">내 정보</a></li>
 				<li><a href="customerListA">정보 수정</a></li>
 				<!-- <li><a href="/mall/member/memberDelete">회원 탈퇴</a></li> -->
 				<li><a href="/mall/member/writepw">회원 탈퇴</a></li>
@@ -156,25 +156,25 @@ $(function(){
 			<label for="menu_bar02">장바구니</label> 
 			<input type="checkbox" id="menu_bar02" class="accordion" />
 			<ul id="links02">
-				<li><a href="productListA">장바구니 목록</a></li>
-				<li><a href="productListA">좋아요 목록</a></li>
+				<li><a href="addCart">장바구니 목록</a></li>
+				<li><a href="likeeee">좋아요 목록</a></li>
 			</ul>
 			<label for="menu_bar03">구매내역
 				<div id="tri">
 				</div>
 			</label> <input type="checkbox" id="menu_bar03" class="accordion" />
 			<ul id="links03">
-				<li><a href="salesAnalasysA">결제 내역</a></li>
-				<li><a href="salesCateAnalasysA">환불 내역</a></li>
-				<li><a href="salesListA">교횐/반품 내역</a></li>
+				<li><a href="">결제 내역</a></li>
+				<li><a href="">환불 내역</a></li>
+				<li><a href="">교횐/반품 내역</a></li>
 			</ul>
 			<label for="menu_bar04">마이포인트
 				<div id="tri">
 				</div>
 			</label> <input type="checkbox" id="menu_bar04" class="accordion" />
 			<ul id="links04">
-				<li><a href="settleMng">적립금</a></li>
-				<li><a href="settleMng">포인트</a></li>
+				<li><a href="">적립금</a></li>
+				<li><a href="">포인트</a></li>
 			</ul>
 			<label for="menu_bar05">내 게시글
 				<div id="tri">
@@ -183,19 +183,16 @@ $(function(){
 			<ul id="links05">
 				<li><a href="noticeBoardList">문의게시판 내역</a></li>
 				<li><a href="myRecipe">마이레시피 리뷰</a></li>
-				<li><a href="comment">후기 리뷰</a></li>
+				<li><a href="review">후기 리뷰</a></li>
 			</ul>
 			<label for="menu_bar06">1:1 채팅
 				<div id="tri">
 				</div>
 			</label> <input type="checkbox" id="menu_bar06" class="accordion" />
 			<ul id="links06">
-				<li><a href="csQuestionA">1:1 채팅</a></li>
+				<li><a href="chat">1:1 채팅</a></li>
 			</ul> 
 		</div>
 	</div>
  </div> 
-
-
-
 <!-- ########## [[ SideBar 끝 ]] ########## -->

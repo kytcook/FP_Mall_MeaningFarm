@@ -298,7 +298,7 @@
             <li><a class="dropdown-item" href="#">가격별</a></li>
           </ul>
         </li>        
-        <li><a href="#" class="nav-link px-2 link-dark">신상품</a></li>
+        <li><a href="/mall/product/productList" class="nav-link px-2 link-dark">신상품</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">베스트</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">할인상품</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">My recipe</a></li>

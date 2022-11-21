@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+     /* === Google Font Import - Poppins === */
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+   
+
+
+   
+   
+   .swiper-pagination{
+     position: absolute;
+   }
+   
+   .swiper-pagination-bullet{
+     height: 7px;
+     width: 26px;
+     border-radius: 25px;
+     background: #4a6f04;
+   }
+   
+   .swiper-button-next, .swiper-button-prev{
+     opacity: 0.7;
+     color: #4a6f04;
+     transition: all 0.3s ease;
+   }
+   .swiper-button-next:hover, .swiper-button-prev:hover{
+     opacity: 1;
+     color: #4a6f04;
+   }

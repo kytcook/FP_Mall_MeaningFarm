@@ -21,7 +21,6 @@
 <!-- ########## [[ 헤더 시작 ]] ########## -->
 <%@include file="/resources/layout/header.jsp"%>
 <%@include file="/resources/layout/nav.jsp"%>
-
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 <form action ="recipe_write" method="get">
 <body>

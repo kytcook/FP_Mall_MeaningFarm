@@ -35,10 +35,10 @@ h1 {
 #ffooter {
 	clear: both;
 }
-a {
+.pageLink {
 	text-decoration: none;
 	color: black;
-}
+}r
 table {
 	text-align: center;
 }
@@ -106,13 +106,13 @@ table {
 <div class="pageDIV">
   <ul class="pageUL">
     <c:if test="${pageVO.prev}">
-    	<li><a href="productlisttest${pageVO.makeSearch(pageVO.startPage - 1)}">&#60;</a></li>
+    	<li><a class="pageLink" href="productlisttest${pageVO.makeSearch(pageVO.startPage - 1)}">&#60;</a></li>
     </c:if> 
     <c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}" var="idx">
-    	<li><a href="productlisttest${pageVO.makeSearch(idx)}">${idx}</a></li>
+    	<li><a class="pageLink" href="productlisttest${pageVO.makeSearch(idx)}">${idx}</a></li>
     </c:forEach>
     <c:if test="${pageVO.next && pageVO.endPage > 0}">
-    	<li><a href="productlisttest${pageVO.makeSearch(pageVO.endPage + 1)}">&#62;</a></li>
+    	<li><a class="pageLink" href="productlisttest${pageVO.makeSearch(pageVO.endPage + 1)}">&#62;</a></li>
     </c:if> 
   </ul>
 </div>

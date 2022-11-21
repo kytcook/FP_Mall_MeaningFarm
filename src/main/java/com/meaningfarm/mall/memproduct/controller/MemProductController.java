@@ -64,6 +64,7 @@ public class MemProductController {
 //		session.setAttribute("m_id", "바나나");
 //		String m_id = (String) session.getAttribute("m_id");
 //		Map.put("m_id",m_id);
+		String m_id = (String) session.getAttribute("m_id");
 		logger.info("ProductView 호출 성공");
 		List<Map<String, Object>> productList = null;
 		productList = productService.productView(pMap);

@@ -1,35 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/common/common.jsp" %>
-<%@ page import="java.util.*, com.meaningfarm.util.PageBar" %>  
-<%@ page import="java.util.Map" %>
+<%@ include file="../../../common/common.jsp" %>
+<%@ page import="com.vo.MemberVO" %>
+<%@ page import="java.util.Map , java.util.List" %>
 <%
-	//Map<String, Object> pMap = (Map)request.getAttribute("pMap");
-//	String member_content = null;
-//	member_content = (String)pMap.get("member_content");
-	List<Map<String,Object>> memberList = 
-	(List<Map<String,Object>>)request.getAttribute("memberListAll");
+	List<Map<String,Object>> myinfo
+		= (List<Map<String,Object>>)request.getAttribute("myinfo");
 	
-			
-			
-   String m_name = (String)session.getAttribute("m_name");
-   String m_id = (String)session.getAttribute("m_id");
-   String m_phone = (String)session.getAttribute("m_phone");
-   String m_email = (String)session.getAttribute("m_email");
-   String m_birth = (String)session.getAttribute("m_birth");
-   String m_adress = (String)session.getAttribute("m_adress");
-   String m_adress2 = (String)session.getAttribute("m_adress2");
-   String m_bank = (String)session.getAttribute("m_bank");
-   String m_banknum = (String)session.getAttribute("m_banknum");
-   String m_bankowner = (String)session.getAttribute("m_bankowner");
-   
-   
-   //String m_id="test";
-   //String m_pw = (String)session.getAttribute("m_pw");
-   
-   //session = request.getSession();
-   //out.println("m_id: "+session.getAttribute("m_id"));
-    // m_id가 있니? 화면 보여주고 ,,, null이면 로그인을 하세요..
+	Map<String,Object> rmap = null;
+	
+	for(int i=0;i<myinfo.size();i++){
+		rmap = myinfo.get(i);
+	}
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +43,6 @@
 	}
 
 
-/**/
 /*---------- 본문 컨테이너 -----------*/
 #cMyPageLeft{
 	display: block;
@@ -115,9 +98,14 @@
 	border: 1px solid #ddd;
 	padding: 10px;
 }
+#farm_content{
+	width: 90%;
+	border: 1px solid #black;
+	padding: 10px;
+}
 #contact_content div{
 	overflow: auto;
-	margin-top: 5px;
+	margin-top: 25px;
 }
 #contact_content span{
 	width: 130px;
@@ -130,64 +118,59 @@
 
 </style>
 <script>
-
-
 	
 </script>
 </head>
-<body>
 <!-- ########## 헤더 시작 ########## -->
 <%@ include file="/resources/layout/header.jsp" %>
 <%@ include file="/resources/layout/nav.jsp" %>
 <%@ include file="/resources/layout/msidebar.jsp" %>
 <!-- ########## 헤더 끝 ########## -->
+<!-- 
+<script>
+Map<String,Object> rMap = myinfo.get(i);
+</script>
+ -->
 
 <div class="section">
 
 	<div class="seller_title">마이 페이지</div>
-			<input type="hidden" name="storenum" value="${member.m_id}"/>
+			<input type="hidden" name="" value=""/>
 			<!-- info 컨테이너 묶기 width:700px 고정 -->
 			<div id="info_container">
 				<hr/>
 				<div id="farm_info">
 					<div>INFO</div>
-					<p name="farmintro">${result.farmintro }</p>
+					<p name="intro"></p>
 				</div><!-- farm_info 종료 -->
-				<div id="farm_contact">
+				<div id="farm_contact" >
 					<div>CONTACT</div>
 					<div id="member_content">
 						<h3><b>내 정보</b></h3>
-						<!--  <div><span>ID :</span><p name="m_id">${member.m_id}</p></div> -->
-						<div><span>ID :</span><p name="m_id"><%=m_id %></p></div>
-						<div><span>이름 :</span><p name="m_name"><%=m_name %></p></div>
-						<div><span>전화번호 :</span><p name="m_phone"><%=m_phone %></p></div>
-						<div><span>E-Mail</span><p name="m_email"><%=m_email %></p></div>
-						<div><span>생일 :</span><p name="m_birth"></p><%=m_birth%></div>
-						<div><span>주소 :</span><p name="m_adress"><%=m_adress %> <%=m_adress2 %></p></div>
-						<div><span>은행명</span><p name="m_bank"><%=m_bank %></p></div>
-						<div><span>계좌번호</span><p name="m_banknum"><%=m_banknum %></p></div>
-						<div><span>예금주</span><p name="m_bankowner"><%=m_bankowner %></p></div>
+						<div><span><b>아이디 :</b> &nbsp;<%=rmap.get("M_ID")%></span></div>
+						<div><span><b>전화번호 :</b> &nbsp;<%=rmap.get("M_PHONE")%></span></div>
+						<div><span><b>E-Mail :</b>&nbsp;<%=rmap.get("M_EMAIL")%></span></div>
+					 	<div><span><b>생일 :</b>&nbsp; <%=rmap.get("M_BIRTH")%></span></div> 
+						<div><span><b>주소 :</b>&nbsp; <%=rmap.get("M_ADDRESS")%></span></div>
+						<div><span><b></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<%=rmap.get("M_ADDRESS2")%></span></div>
+					 	<div><span><b>은행명 :</b>&nbsp; <%=rmap.get("M_BANK")%></span></div> 
+						<div><span><b>계좌번호 :</b>&nbsp; <%=rmap.get("M_BANKNUM")%></span></div>
+						<div><span><b>회원등급 :</b>&nbsp; </span><%=rmap.get("M_TYPE")%></div>
 					</div>
 				</div><!-- member_content 종료 -->
-				<!-- 대표메뉴 -->
-				<div id="farm_repMenu">
-					<input type="hidden" name="productnum" value="${result.productnum }"/> 
-					<div>장바구니</div>
-					<div id="repMenu_content">
-						<img src="/sshj/resources/sellerProductImgs/${result.thumbimg}" name="thumbimg"/>
-						<div>
-							<div>${result.productname }</div>
-							<div>
-								<div>
-									<div>${ result1.saleprice }</div>
-									<div>${ result.productprice- result1.saleprice }</div>
-								</div>
-								<div>${ result.productprice }</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div><!-- info_container 종료 -->
+				
+			
+<%-- <!-- 
+<% 
+if(id != null){
+ if(id.equals("admin")){ %>
+  <input type="button" value="회원전체목록(관리자용)" class="btn" onclick="location.href='/member/memberList'">
+  <input type="button" value="상품전체목록(관리자용)" class="btn" onclick="location.href='/member/adminGoodsList'">
+  <input type="button" value="주문전체목록(관리자용)" class="btn" onclick="location.href='/member/adminOrderList'">  
+<%
+ }
+}
+%> 
+--> --%>
 </div>
-</body>
 </html>  

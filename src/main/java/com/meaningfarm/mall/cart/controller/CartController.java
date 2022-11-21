@@ -17,11 +17,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.meaningfarm.mall.cart.service.CartService;
+import com.meaningfarm.mall.product.ProductVO;
 import com.vo.CartVO;
 
 @Controller
@@ -68,6 +70,7 @@ public class CartController {
 	public String cartAdd(CartVO cartVO, HttpServletRequest request) {
 		logger.info("carAdd.do 호출 성공");
 		logger.info("CartVO - m_id : " + cartVO.getM_id() + "product_no : " + cartVO.getProduct_no() + "cart_amount : " + cartVO.getCart_amount());
+		
 		// 로그인 체크
 		HttpSession session = request.getSession();
 		String m_id = (String)session.getAttribute("m_id");

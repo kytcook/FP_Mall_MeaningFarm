@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/resources/common/common.jsp" %>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%@ include file="/resources/common/common.jsp" %>
-
 <title>MEANINGFARM-qna상세보기</title>
 </head>
 <body>

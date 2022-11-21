@@ -22,6 +22,11 @@
   crossorigin="anonymous"></script>
 </head>
 
+<!-- ########## [[ 헤더 시작 ]] ########## -->
+<%@include file="/resources/layout/header.jsp"%>
+<%@include file="/resources/layout/nav.jsp"%>
+<!-- ########## [[ 헤더 끝 ]] ########## -->
+	<!-- ########## 회원 리스트 시작 ########## -->
 
 <!-- body  시작 -->
 

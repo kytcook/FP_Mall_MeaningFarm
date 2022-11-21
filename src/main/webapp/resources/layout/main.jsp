@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%><!--11.11 추가-->
+<%@ page import="java.util.*, com.meaningfarm.util.PageBar" %>      
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Main 페이지</title>
-<%@ include file="/resources/common/common.jsp" %>
 <style type="text/css">
 
 /* ########## 캐러셀 ~ 동그라미 ~ 네모칸 &줄 시작 ########## */
@@ -54,11 +53,6 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
-      
-	  .card:hover {
-		transform: scale(1.1);
-		transition: transform .3s;
-	  }
 /* ########## 캐러셀 ~ 동그라미 ~ 네모칸 &줄 끝 ########## */
 
 
@@ -110,29 +104,19 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
-
 /* ########## 아이콘 들어갈 자리 끝 ########## */
 
-/* ########## 상품리스트 시작 ########## *//* 11.11 추가 */
+
+/* ########## 상품리스트 css 시작 ########## */
 /* card 호버시 커지게  */
 .productCard:hover {
 	transform: scale(1.1);
 	transition: transform .3s;
 }
-/* ########### 상품리스트 끝 ########## */
+/* ########### 상품리스트 css 끝 ########## */
+
+
 </style>
-
-
-
-<%
-	/////////////////////////////////////////////////////
-	/* 데이터를 가져오는지 화면에서 확인해봅시다. */
-// 	List<Map<String,Object>> mainProductList = //유지의문제 - DB를 경유해야한다 ->servlet
-// 	(List<Map<String,Object>>)request.getAttribute("mainProductList");//sql문을 넘겨넘겨 받아서 가지고옴
-// 	out.print(mainProductList);
-	
-%>
-
 
 <!-- ########## Main 홈페이지 시작 ########## -->
 <main>
@@ -142,10 +126,14 @@
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
     </div>
+    
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="bd-placeholder-img"  src="${pageContext.request.contextPath}/resources/img/main/carousel1.gif" width="100%" height="60%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <img class="bd-placeholder-img"  src="${pageContext.request.contextPath}/resources/img/main/carousel1.gif" width="100%" height="60%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
 
         <div class="container">
           <div class="carousel-caption text-start">
@@ -155,8 +143,11 @@
           </div>
         </div>
       </div>
+      
+      
+      
       <div class="carousel-item">
-        <img class="bd-placeholder-img"  src="${pageContext.request.contextPath}/resources/img/main/carousel.png" width="100%" height="60%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <img class="bd-placeholder-img"  src="${pageContext.request.contextPath}/resources/img/receipe/recipe_ban01.jpg"" width="100%" height="60%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
         <div class="container">
           <div class="carousel-caption">
         <!--    <h1>Another example headline.</h1>
@@ -165,8 +156,44 @@
           </div>
         </div>
       </div>
+      
       <div class="carousel-item">
-        <img class="bd-placeholder-img"  src="${pageContext.request.contextPath}/resources/img/main/egg.jpg" width="100%" height="60%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <img class="bd-placeholder-img"  src="${pageContext.request.contextPath}/resources/img/receipe/recipe_ban01.jpg" width="100%" height="60%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
+        <div class="container">
+          <div class="carousel-caption">
+        <!--    <h1>Another example headline.</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>	-->
+          </div>
+        </div>
+      </div>
+      
+      <div class="carousel-item">
+        <img class="bd-placeholder-img"  src="${pageContext.request.contextPath}/resources/img/receipe/recipe_ban02.jpg" width="100%" height="60%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
+        <div class="container">
+          <div class="carousel-caption">
+        <!--    <h1>Another example headline.</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>	-->
+          </div>
+        </div>
+      </div>
+      
+      <div class="carousel-item">
+        <img class="bd-placeholder-img"  src="${pageContext.request.contextPath}/resources/img/receipe/recipe_ban03.jpg" width="100%" height="60%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
+        <div class="container">
+          <div class="carousel-caption">
+        <!--    <h1>Another example headline.</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>	-->
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      <div class="carousel-item">
+        <img class="bd-placeholder-img"  src="${pageContext.request.contextPath}/resources/img/main/egg.jpg" width="100%" height="60%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
 
         <div class="container">
           <div class="carousel-caption text-end">
@@ -204,7 +231,7 @@
      <!--   <div class="col-lg-4 border border-info rounded">	-->
       <div class="col-lg-4 ">
         <img class="bd-placeholder-img rounded-circle" src="${pageContext.request.contextPath}/resources/img/main/savemoney.png" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placehㅐlder</title>
+        <title>Placeholder</title>
         <rect width="100%" height="100%" fill="#777" style=stroke:red/>
         <text x="50%" y="50%" fill="#777" dy=".3em"></text></img>
 
@@ -240,7 +267,9 @@
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
-<hr />
+
+<!-- ########## [[ 상품 불러오기 시작 ]] ########## -->
+
 
 <!-- 상품리스트 -->
 <section>
@@ -269,8 +298,8 @@
 			              <ul class="card-text list-unstyled ps-4 pb-3">
 			              	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
 			              	 <li class="PRODUCT_NO" style="display:none">${p.PRODUCT_NO}</li>
-			                <li class="fs-6 fw-bold">${p.PRODUCT_NAME}</li>
-			                <li class="fs-6 fw-bold">${p.PRODUCT_PRICE}원</li>
+			                <li class="fs-5 fw-bold">${p.PRODUCT_NAME}</li>
+			                <li class="fs-5 fw-bold">${p.PRODUCT_PRICE}원</li>
 			                <li class="text-muted">${p.PRODUCT_DETAIL}</li>
 			              </ul>
 			           </div>
@@ -285,34 +314,12 @@
 </section>    
 <!-- 상품리스트 -->
 
+<!-- ########## [[ 상품 불러오기 끝 ]] ########## -->
 
     <!-- START THE FEATURETTES -->
 	<br>
-    <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
 
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-      </div>
-    </div>
  <br><br>  
     <hr class="featurette-divider">
 <!--#########################################################  -->
@@ -373,14 +380,10 @@
 <!-- 아이콘 들어갈 자리 끝 -->
 
 
-
-
 <!--#########################################################  -->
 
 </main>
 <!-- ########## Main 홈페이지 끝 ########## -->
-
-
 
 
 <script defer><!--11.11 추가-->
@@ -393,4 +396,3 @@
 		});
 	})
 </script>  
-</html>

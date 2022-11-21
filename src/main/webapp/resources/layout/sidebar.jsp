@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
 <style type="text/css">
 #menuContainer {
 	margin: 0 auto;
@@ -143,7 +141,7 @@ $(function(){
 				</div>
 			</label> <input type="checkbox" id="menu_bar01" class="accordion" />
 			<ul id="links01">
-				<li><a href="customerListA">일반 회원</a></li>
+				<li><a href="/mall/member/memberList">일반 회원</a></li>
 				<li><a href="customerLeaveList">탈퇴 회원</a></li>
 				<li><a href="customerBlackList">정지 회원</a></li>
 			</ul>
@@ -152,7 +150,7 @@ $(function(){
 				</div>
 			</label> <input type="checkbox" id="menu_bar02" class="accordion" />
 			<ul id="links02">
-				<li><a href="productlisttest">상품 목록</a></li>
+				<li><a href="/mall/product/productlisttest">상품 목록</a></li>
 			</ul>
 			<label for="menu_bar03">매출 관리
 				<div id="tri">
@@ -199,8 +197,3 @@ $(function(){
 
   </header>
 <!-- ########## [[ SideBar 끝 ]] ########## -->
-
-
-
-</body>
-</html>

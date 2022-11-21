@@ -32,7 +32,6 @@ $("#cart").on("click", function (e) {
 	form.product_no = $(".product_no").val();
 	m_id = $(".m_id").val();
 	form.m_id = m_id;
-
 	
 	$.ajax({
 		  url: '/mall/cart/cartAdd.do', // 호출할 url, 전송페이지

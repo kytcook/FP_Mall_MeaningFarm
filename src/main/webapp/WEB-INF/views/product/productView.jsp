@@ -27,7 +27,6 @@
 			category_type_no 	= productView.get(0).get("CATEGORY_TYPE_NO").toString();
 		}
 // 	out.print(productView);
-	/////////////////////////////////////////////////////////////
 %>
 <!DOCTYPE html>
 <html>
@@ -150,7 +149,7 @@
 	<%@include file="/resources/layout/footer.jsp"%>
 	<!------------------------ FOOTER END ----------------------->
   
-<!-- productContents.js 추가 -->    
+<!-- productContents.js 추가 -->
 <script src="${path}/js/productView.js" type="text/javascript"></script>
 </body>
 </html>

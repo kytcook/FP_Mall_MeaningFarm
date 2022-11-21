@@ -28,4 +28,24 @@
       )
    </insert>
 
+   <!--  특정 댓글 조회 -->
+   <select id="recipereadReplySelect" resultType="com.vo.RecipeReplyVO">
+      select *
+      from recipe_reply
+      where recipe_re_no = #{recipe_re_no}
+   </select>
+   
+   <!-- 댓글 수정 -->
+   <update id="recipeupdateReply">
+      update recipe_reply
+      set recipe_re_content = #{recipe_re_content}
+      , recipe_re_pwd = #{recipe_re_pwd}
+      where recipe_re_no = #{recipe_re_no}
+   </update>
+   
+   <!--  댓글 삭제 -->
+   <delete id="recipedeleteReply">
+      delete from recipe_reply
+      where recipe_re_no = #{recipe_re_no}
+   </delete>
 </mapper>

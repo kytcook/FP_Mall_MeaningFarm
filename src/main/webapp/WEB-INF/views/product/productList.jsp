@@ -20,7 +20,7 @@
 <!------------------- header START ------------------->
 <%@include file="/resources/layout/header.jsp"%>
 <%@include file="/resources/layout/nav.jsp"%>
-<!-------------------- header END ------------------->
+<!-------------------- header END -------------------->
 
 <%
 	/////////////////////////////////////////////////////
@@ -142,8 +142,8 @@
                   	 <!-- 상품이름, 가격, 설명을 출력. / 가격은 3자리 단위마다 ,로 끊는다 -->
             	 	<li class="product_no" style="display:none"><%=rMap.get("PRODUCT_NO")%></li>
            			<li><input type="hidden" class="product_no" name="product_no" value="<%=rMap.get("PRODUCT_NO")%>"/></li>
-                    <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_NAME")%></li>
-                    <li class="fs-5 fw-bold"><%=rMap.get("PRODUCT_PRICE")%>원</li>
+                    <li class="fs-4 fw-bold"><%=rMap.get("PRODUCT_NAME")%></li>
+                    <li class="fs-5 fw-bold"><fmt:formatNumber value='<%=rMap.get("PRODUCT_PRICE")%>' pattern="###,###,###"/> 원</li>
                     <li class="text-muted"><%=rMap.get("PRODUCT_DETAIL")%></li>
                   </ul>
                </div>

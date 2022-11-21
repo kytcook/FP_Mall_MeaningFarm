@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.vo.MemberVO" %>
 <%@ page import="java.util.*" %>  
-
+<%@ include file="/resources/common/common.jsp" %>
 <%
  	String auth_id = null;
 	String m_id = null;
 	String m_email = null;
 	String m_phone = null;
 	String m_name = null;
+	String m_zipcode = null;
 	String m_address = null;
 	String m_address2 = null;
 	String m_registedate = null;
@@ -19,13 +20,14 @@
 	
 	
 	List<Map<String,Object>> memberList = 
-			(List<Map<String,Object>>)request.getAttribute("memberDetail");	
+			(List<Map<String,Object>>)request.getAttribute("memberList");	
 	if(memberList !=null && memberList.size()>0){
 		auth_id = memberList.get(0).get("AUTH_ID").toString();
 		m_id = memberList.get(0).get("M_ID").toString();
 		m_email = memberList.get(0).get("M_EMAIL").toString();
 		m_phone = memberList.get(0).get("M_PHONE").toString();
 		m_name = memberList.get(0).get("M_NAME").toString();
+		m_zipcode = memberList.get(0).get("M_ZIPCODE").toString();
 		m_address = memberList.get(0).get("M_ADDRESS").toString();
 		m_address2 = memberList.get(0).get("M_ADDRESS2").toString();
 		m_registedate = memberList.get(0).get("M_REGISTEDATE").toString();
@@ -38,6 +40,25 @@
 		//out.print(memberList);
 %>  
 <style>
+
+.scontainer {
+	float: left;
+	margin-top:  -40px;
+	margin-left: 150px;
+	margin-bottom: 50px;
+}
+#productListContainer {
+	width: 70%;
+	:A
+	margin: 0 auto;
+	float: right;
+	margin-right: 100px;
+	margin-bottom: 50px;
+}
+#ffooter {
+	clear: both;
+}
+
 	*{margin:0px; padding:0px; list-style-type :none; font-family: 'Nanum Gothic', sans-serif;}
 	.wordcut{
 		overflow: hidden;
@@ -327,9 +348,10 @@
 <!-- ########## 헤더 시작 ########## -->
 <%@ include file="/resources/layout/header.jsp" %>
 <%@ include file="/resources/layout/nav.jsp" %>
+<%@ include file="/resources/layout/sidebar.jsp"%>
 <!-- ########## 헤더 끝 ########## -->
 <div class="section">
-<%@ include file="/resources/layout/msidebar.jsp" %>
+
 
 	<div class="seller_title">회원 상세</div>
 		<%-- 	<input type="hidden" name="storenum" value="${memberDetail.mVO}"/> --%>
@@ -338,46 +360,74 @@
 				<hr/>
 				<div id="farm_info">
 				<div>INFO</div>
-				<p name="farmintro" var="member" items="${memberListAll}"></p>
+				<p name="farmintro" var="member" items="${memberList}"></p>
 				</div><!-- farm_info 종료 -->
 				<div id="farm_contact">
-				<div>CONTACT</div>
+				<div>회원 정보</div>
 					<div id="contact_content">
-<%-- 						<b>회원 정보</b>
-						<div><span>아이디</span><p name="m_id">${member.m_id }</p></div>
-						<div><span>이름</span><p name="m_name">${member.m_name}</p></div>
-						<div><span>휴대폰</span><p name="m_phone">${member.m_phone }</p></div>
-						<div><span>이메일</span><p name="m_email">${member.m_email} </p></div>
-						<div><span>주소</span><p name="m_address">${member.m_address}</p></div>
-						<div><span>상세주소</span><p name="m_address2">${member.m_address2 }</p></div>
-						<div><span>가입일</span><p name="m_registedate">${member.m_registedate }</p></div>
-						<div><span>회원타입</span><p name="m_type">${member.m_type }</p></div>
-						<div><span>정지유무</span><p name="m_stop">${member.m_stop }</p></div>
-						<div><span>적립금</span><p name="m_point">${member.m_point }</p></div>
-						<div><span>회원탈퇴여부</span><p name="m_exitstatus">${member.m_exitstatus }</p></div>
-						<div><span>회원탈퇴일</span><p name="m_exitdate">${member.m_exitdate }</p></div>
-						<div><span>회원타입</span><p name="auth_id">${member.auth_id }</p></div> --%>
-						<b>회원 정보</b>
-					<!--  	<div><span>아이디</span><p name="m_id">${member.M_ID }</p></div> -->
-						<div><span>아이디</span><p name="m_id"><%=m_id %></p></div>
-						<!--  이 름 : <input type="text" name="m_name" value="<%=m_name %>"> <br />
-						휴대폰 : <input type="text" name="m_phone" value="<%=m_phone %>"> <br />-->
-						<div><span>이름</span><p name="m_name"><%=m_name %></p></div>
-						<div><span>휴대폰</span><p name="m_phone"><%=m_phone %></p></div>
-						<div><span>이메일</span><p name="m_email"><%=m_email %></p></div>
-						<div><span>주소</span><p name="m_address"><%=m_address %></p></div>
-						<div><span>상세주소</span><p name="m_address2"><%=m_address2 %></p></div>
-						<div><span>가입일</span><p name="m_registedate"><%=m_registedate %></p></div>
-						<div><span>회원타입</span><p name="m_type"><%=m_type %></p></div>
-						<div><span>정지유무</span><p name="m_stop"><%=m_stop %></p></div>
-						<div><span>적립금</span><p name="m_point"><%=m_point %></p></div>
-						<div><span>회원탈퇴여부</span><p name="m_exitstatus"><%=m_exitstatus %></p></div>
-						<div><span>회원탈퇴일</span><p name="m_exitdate"><%=m_exitdate %></p></div>
-						<div><span>회원타입</span><p name="auth_id"><%=auth_id %></p></div>
+      	<table align="center" id="p" class="easyui-panel" title="글상세보기" data-options="footer:'#tb_read'"
+       				 style="width:600px; height:380px;padding:10px;background:#fafafa;">
+		    <tr>
+	    		<td><b>회원 구분</b></td>
+	    		<td><div><p name="auth_id"><%=auth_id %></p></div></td>
+	    	</tr>
+	    	<tr>
+	    		<td><b>회원 ID</b></td>
+	    		<td><div><p name="m_id"><%=m_id %></p></div></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>회원 이름</b></td>
+		    	<td><div><p name="m_name"><%=m_name %></p></div></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>회원 전화번호</b></td>
+		    	<td><div><p name="m_phone"><%=m_phone %></p></div></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>회원 이메일</b></td>
+		    	<td><div><p name="m_email"><%=m_email %></p></div></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>회원 주소</b></td>
+		    	<td><div><p name="m_address"><%=m_zipcode %> &nbsp;<%=m_address %> </p></div></td>
+	    	</tr>
+	    	<tr>
+	    	<tr>
+		    	<td><b></b></td>
+		    	<td><div><p name="m_address"> <%=m_address2 %></p></div></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>가입일</b></td>
+		    	<td><div><p name="m_registedate"><%=m_registedate %></p></div></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>회원 타입</b></td>
+		    	<td><input id="m_type" value="<%=m_type%>" name="m_type" class="easyui-textbox"></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>정지유무</b></td>
+		    	<td><input id="m_stop" value="<%=m_stop%>" name="m_stop" class="easyui-textbox"></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>적립금</b></td>
+		    	<td><input id="m_point" value="<%=m_point%>" name="m_point" class="easyui-textbox"></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>회원탈퇴여부</b></td>
+		    	<td><input id="m_exitstatus" value="<%=m_exitstatus%>" name="m_exitstatus" class="easyui-textbox"></td>
+	    	</tr>
+	    	<tr>
+		    	<td><b>회원탈퇴일</b></td>
+		    	<td><input id="m_exitdate" value="<%=m_exitdate%>" name="m_exitdate" class="easyui-textbox"></td>
+	    	</tr>
+
+    	  </table> 
 					</div>
-				</div><!-- farm_contact 종료 -->
+			</div><!-- contact 종료 -->
+			<span style="float:right">
 				<button type="search" role="button" class="btn btn-success m-1">취소</button>
 				<button type="search" role="button" class="btn btn-success m-1">수정</button>
-				<button type="search" role="button" class="btn btn-success m-1">삭제</button>
+				<button type="search" role="button" class="btn btn-success m-1" onClick="location.href='memberList'">목록</button>
+			</span>
 			</div><!-- info_container 종료 -->
 </div>

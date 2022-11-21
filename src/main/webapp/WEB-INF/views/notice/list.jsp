@@ -2,17 +2,35 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title></title>
-    
-	<%@ include file="/resources/common/common.jsp" %>
 
+  <head>
+  <%@ include file="/resources/common/common.jsp" %>
+    <title></title>
+<style type="text/css">
+.scontainer {
+	float: left;
+	margin-top:  -40px;
+	margin-left: 150px;
+	margin-bottom: 50px;
+}
+#productListContainer {
+	width: 70%;
+	:A
+	margin: 0 auto;
+	float: right;
+	margin-right: 100px;
+	margin-bottom: 50px;
+}
+#ffooter {
+	clear: both;
+}
+</style>
     <meta charset="UTF-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link href="css/style.css" rel="stylesheet" />
-
+<!-- 
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -20,11 +38,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  	 	
+-->
   </head>
 <!-- ########## [[ 헤더 시작 ]] ########## -->
 <%@include file="/resources/layout/header.jsp"%>
 <%@include file="/resources/layout/nav.jsp"%>
+<%@include file="/resources/layout/sidebar.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
 
 <br>

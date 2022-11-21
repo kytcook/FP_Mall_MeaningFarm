@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String m_id = (String)session.getAttribute("m_id"); //인클루드 jsp앞에 넣었을때 변수 선언해야함
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +51,7 @@
           placeholder="제목을 입력해주세요." required
           >
           <input type="text" name="m_id" class="form-control mt-4 mb-2"
-          placeholder="작성자" required
+          value="<%=m_id %>" required readOnly
           >
           <div class="form-group">
             <textarea class="form-control" rows="10" name="recipe_content"

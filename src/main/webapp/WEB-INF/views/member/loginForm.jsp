@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/resources/common/common.jsp" %>
 <meta charset="UTF-8">
+<!-- <meta name ="google-signin-client_id" content="804660487448-0nvqsmf9e6gs38u4m61f5kd5cuvtb994.apps.googleusercontent.com"> -->
+<meta name ="google-signin-client_id" content="804660487448-dsdtvcune7f5tigo16j98hrmf64fqfdc.apps.googleusercontent.com">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <title>로그인 폼 페이지</title>
 <style type="text/css">
 
@@ -87,6 +92,7 @@ h4 {
 	text-align: center;
 	margin-top: 30px;
 	color: #888;
+	font-size:20px;
 }
 input::placeholder{ 
 	color:transparent; 
@@ -114,6 +120,26 @@ input:focus, input:not(:placeholder-shown){
 	width: 186px;
 	margin: 20px auto 0;
 }
+/* 자동로그인 */
+.auto-login {
+	width: 100px;
+	float: left;
+}
+.find-area {
+	color: #888;
+}
+.find-area:last-child {
+	margin-left: 10px;
+}
+.find-area:hover {
+	color: #0160ff;
+}
+.kakao-btn img {
+	width:300px;
+	height: 45px;
+	margin-top: 20px;
+	margin-bottom: 200px;
+}
 
 #left-login-bt {
 	width: 100%;
@@ -125,6 +151,54 @@ input:focus, input:not(:placeholder-shown){
 	font-size: 16px;
 	font-weight: 600;
 	cursor:pointer;
+}
+
+
+/* 구글로그인 */
+#GgCustomLogin {
+	margin-top: 60px;
+	margin-left: -30px;
+	
+}
+.google-login {
+	display: inline-block;
+	border-radius: 3px;
+	border: 1px solid #e3e4e5;
+	cursor: pointer;
+	height: 40px;
+	margin-top: 20px;
+	margin-left: 80px;
+	z-index: -1;
+	opacity: 0%;
+}
+.fake-glogin {
+	width: 300px;
+	height: 45px;
+	display: block;
+	border: 1px solid #e3e4e5;
+	border-radius: 5px;
+	z-index: 1;
+	margin-top: -40px;
+	line-height: 45px;
+}
+.fake-glogin img {
+	width: 26px;
+	margin: 10px 0 0 8px;
+	
+}
+.fake-glogin p {
+	display: block;
+	width: 100%;
+	height: 20px;
+	line-height: 48px;
+	text-align: center;
+	margin-top: -54px;
+	margin-left: 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+	--letter-spacing: -1.2px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #333;
 }
 
 
@@ -141,6 +215,7 @@ input:focus, input:not(:placeholder-shown){
 <body>
 
 <!-- ########## 헤더 시작 ########## -->
+<%@ include file="/resources/common/common.jsp" %>
 <%@ include file="/resources/layout/header.jsp" %>
 <%@ include file="/resources/layout/nav.jsp" %>
 <!-- ########## 헤더 끝 ########## -->
@@ -154,8 +229,10 @@ input:focus, input:not(:placeholder-shown){
       
 		<div class="frame">
 			<div class="height-fixed">
+			
+			
 			<div class="color-frame" name="auth_id" value="User">
-				<h2>일반회원 로그인</h2> <br>
+				<br><br><h2><b>일반회원 로그인</b></h2> <br>
 		    	<div id="msg">
 				 	<c:if test="${not empty msg}">
                   		<p class="text mb-5" style="color:red; font-size:20px;">
@@ -174,7 +251,7 @@ input:focus, input:not(:placeholder-shown){
 				    <form id="login-form" action="<c:url value='/member/login'/>" method="post" onsubmit="return">
 						<div class="input-box"> 
 							
-							<input id="m_id" type="text" name="m_id" placeholder="아이디"> 
+							<input id="m_id" type="text" name="m_id" placeholder="아이디" > 
 							<label for="m_id">아이디</label> 
 						</div> 
 						<div class="input-box"> 
@@ -194,17 +271,36 @@ input:focus, input:not(:placeholder-shown){
 								<input id = "remember_me" name ="remember-me" type = "checkbox"/>&nbsp;로그인유지<br>
 							</div> -->
 							<div class="inline find" style="width:400px; margin-left:-50px;">
-							<a class="find-area" href="findIdView.dz">아이디 찾기</a> |
-							<a class="find-area" href="findPwView.dz">비밀번호 찾기</a> |
+							<a class="find-area" href="findId">아이디 찾기</a> |
+							<a class="find-area" href="findPw">비밀번호 찾기</a> |
 							<a class="find-area" href="/mall/member/join">회원가입</a>
 							</div>
 							
 						</div>
 					</form>
-					
-					
 				</div>
 			</div>
+			<div class="color-frame right-frame">
+				<br><br><h2><b>간편 로그인</b></h2>
+				<br><br><h4>일반회원 전용</h4>
+				<div class="left-inner-box">
+					<div class="input-box"> 
+						<a href="javascript:kakaoLogin();">
+							<img alt="카카오 회원가입" src="${pageContext.request.contextPath}/resources/img/main/kakaologin-btn.png" >
+						</a>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<p id="token-result"></p>
+								<ul id="GgCustomLogin">
+									<a href="javascript:void(0)">
+										<div class="fake-glogin">
+										<img alt="구글로그인" src="${pageContext.request.contextPath}/resources/img/main/g-logo.png" style="height:30px;width:30px;margin-top:-10px;">
+										<p>구글 로그인</p></div>
+									</a>
+								</ul>
+							<p>판매자는 일반회원 로그인을 이용해주세요.</p>
+					</div>
+				</div>
+				</div>
 			</div>
 
 		</div>
@@ -252,6 +348,106 @@ input:focus, input:not(:placeholder-shown){
         }
    }	
  
+	/* 카카오 로그인 */
+	window.Kakao.init('ac0919ac9d1466243218cd8d0c427416'); //발급받은 키 중 javascript키를 사용해
+	console.log(Kakao.isInitialized()); // sdk초기화여부판단
+	
+ 	function kakaoLogin() {
+		window.Kakao.Auth.login({
+			scope:'profile_nickname, account_email, birthday',
+			success: function(response) {
+				console.log(response);
+				window.Kakao.API.request({ 
+					url: '/v2/user/me',//현재 로그인한 사용자 정보 가져오기
+					success : result => {
+						const kakao_account = result.kakao_account;
+						console.log("로그인되었나요?"+kakao_account);
+						console.log(result);
+					
+						var kakaoId = result.id;
+		        	    var kakaoNickname = result.properties.nickname;
+		        	    
+		        	    
+		        	    
+		        	    
+					} //success
+				})//window.Kakao.Auth.login({
+			} //success
+		})//window.Kakao.Auth.login
+	}//function
+	 
+	//카카오로그아웃  
+	function kakaoLogout() {
+	    if (Kakao.Auth.getAccessToken()) {
+	      Kakao.API.request({
+	        url: '/v1/user/unlink',
+	        success: function (response) {
+	        	console.log(response)
+	        },
+	        fail: function (error) {
+	          console.log(error)
+	        },
+	      })
+	      Kakao.Auth.setAccessToken(undefined)
+	    }
+	  }  
+	
+	
+	
+	//카카오로그아웃  
+	function kakaoLogout() {
+	    if (Kakao.Auth.getAccessToken()) {
+	      Kakao.API.request({
+	        url: '/v1/user/unlink',
+	        success: function (response) {
+	        	console.log(response)
+	        },
+	        fail: function (error) {
+	          console.log(error)
+	        },
+	      })
+	      Kakao.Auth.setAccessToken(undefined)
+	    }
+	  } 
+	
+	
+	
+	//처음 실행하는 함수
+	function init() {
+		gapi.load('auth2', function() {
+			gapi.auth2.init();
+			options = new gapi.auth2.SigninOptionsBuilder();
+			options.setPrompt('select_account');
+	        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+			options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+	        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+	        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+			gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+		})
+	}	
+	
+	function onSignIn(googleUser) {
+		var access_token = googleUser.getAuthResponse().access_token
+		$.ajax({
+	    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+			url: 'https://people.googleapis.com/v1/people/me'
+	        // key에 자신의 API 키를 넣습니다.
+			, data: {personFields:'birthdays', key:'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', 'access_token': access_token}
+			, method:'GET'
+		})
+		.done(function(e){
+	        //프로필을 가져온다.
+			var profile = googleUser.getBasicProfile();
+			console.log(profile)
+		})
+		.fail(function(e){
+			console.log(e);
+		})
+	}
+	function onSignInFailure(t){		
+		console.log(t);
+	}	
+	
 </script>
-
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </html>

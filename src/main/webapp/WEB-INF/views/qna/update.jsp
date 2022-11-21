@@ -13,6 +13,7 @@
 <body>
 	<!---------------------- 헤더시작 -------------------->
 <!-- ########## [[ 헤더 시작 ]] ########## -->
+<<<<<<< HEAD
 <%@include file="/resources/layout/header.jsp"%>
 <%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->

@@ -96,18 +96,18 @@ public class RecipeDaoImpl implements RecipeDao {
 
    //게시물 목록 + 페이징
    @Override
-   public List<RecipeVO> listPage(Criteria cri) throws Exception {
+   public List<RecipeVO> listPage(SearchCriteria scri) throws Exception {
       // TODO Auto-generated method stub
       
-      return sql.selectList(NAMESPACE + ".recipelistPage", cri);
+      return sql.selectList(NAMESPACE + ".recipelistPage", scri);
       
    }
 
    //게시물 총 갯수
    @Override
-   public int listCount() throws Exception {
+   public int listCount(SearchCriteria scri) throws Exception {
       // TODO Auto-generated method stub
-      return sql.selectOne(NAMESPACE+".recipelistCount");
+      return sql.selectOne(NAMESPACE+".recipelistCount", scri);
    }
 
    //검색 결과갯수

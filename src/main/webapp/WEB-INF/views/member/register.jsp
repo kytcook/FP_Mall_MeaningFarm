@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/common/common.jsp" %>
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
 <style type="text/css">

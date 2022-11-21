@@ -4,7 +4,7 @@
 	String m_id = (String)session.getAttribute("m_id");
 	String m_pw = (String)session.getAttribute("m_pw");
  
-	out.print(m_id);
+	//out.print(m_id);
 %>
 <style>
 	.scontainer {
@@ -79,16 +79,28 @@
 	#pwInput{
 		width:300px;
 		height:40px;
+		margin-left:280px;
 	}
-	#leaveCheck, #leaveCancel{
+	
+	#leaveCheck{
 		margin-top:20px;
-		margin-left:20px;
+		margin-left:420px;
 		background-color:#568A35;
 		font-size: 16px;
 		color: #fff;
 		font-weight: 600;
-	cursor:pointer;
+		cursor:pointer;
 	}
+	#leaveCancel{
+	
+		margin-top:20px;
+		background-color:#568A35;
+		font-size: 16px;
+		color: #fff;
+		font-weight: 600;
+		cursor:pointer;
+	}
+	
 	#buyCancelRollBack{
 		display:none;
 		left:650px;
@@ -154,8 +166,11 @@
 					contentType:"application/json;charset=UTF-8",
 					success: function(result){
 						console.log("result = "+result);
+						alert("회원탈퇴되었습니다.");
+						location.href = "/mall/member/login";
 					}, error: function(){
 						alert("111")
+						
 						console.log("에러")
 					} // error
 				});//ajax				

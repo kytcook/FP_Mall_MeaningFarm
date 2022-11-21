@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <%@ include file="/resources/common/common.jsp" %>
+<meta charset="UTF-8">
 <title>detail</title>
 </head>
 <body>

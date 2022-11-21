@@ -5,9 +5,9 @@
 	String m_id = (String)session.getAttribute("m_id"); //인클루드 jsp앞에 넣었을때 변수 선언해야함
 	String admin_name = (String)session.getAttribute("admin_name"); 
 	String m_email = (String)session.getAttribute("m_email"); 
-   out.print(m_id); // ok
-   out.print(admin_name); // no
-   out.print(m_email);  // no
+ //  out.print(m_id); // ok
+//   out.print(admin_name); // no
+//   out.print(m_email);  // no
 	//if(s_name != null){//인증 되었을 때 보여줄 페이지 출력  < 로그인 성공>
 %>
 <!DOCTYPE html>

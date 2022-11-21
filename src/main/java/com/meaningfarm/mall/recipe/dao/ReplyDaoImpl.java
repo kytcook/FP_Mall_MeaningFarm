@@ -32,5 +32,25 @@ public class ReplyDaoImpl implements ReplyDao {
       // TODO Auto-generated method stub
       sql.insert(NAMESPACE + ".recipewriteReply", rrVO);
    }
+   
+   //댓글 수정
+   @Override
+   public void updateReply(RecipeReplyVO rrVO) throws Exception {
+      // TODO Auto-generated method stub
+      sql.update(NAMESPACE + ".recipeupdateReply", rrVO);
+      
+   }
+
+   @Override
+   public void deleteReply(RecipeReplyVO rrVO) throws Exception {
+      // TODO Auto-generated method stub
+      sql.delete(NAMESPACE + ".recipedeleteReply", rrVO);
+   }
+
+   @Override
+   public RecipeReplyVO selectReply(int recipe_re_no) throws Exception {
+      // TODO Auto-generated method stub
+      return sql.selectOne(NAMESPACE + ".recipeselectReply", recipe_re_no);
+   }
 
 }

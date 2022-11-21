@@ -892,7 +892,7 @@ textarea::placeholder, input::placeholder{
 </style>
 
 <!-- ########## FOOTER 시작 ########## -->
-<footer id="ffooter" class="py-3 border-top border-secondary col-12">
+<footer id="ffooter" class="py-3 border-top border-secondary col-12" style="margin-top:350px;">
   <ul class="nav justify-content-center mb-2">
 
 <div id="footer">
@@ -969,14 +969,14 @@ textarea::placeholder, input::placeholder{
           김민지 : <a href="#" class="link">lcly311@gmail.com</a><br>
           임은택 : <a href="#" class="link">kytcook@gmail.com</a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          장혜지 : <a href="#" class="link">a0an0n@naver.com</a><br>
-          주연진 : <a href="#" class="link">yeonjin1103@gmail.com</a>
+          주연진 : <a href="#" class="link">yeonjin1103@gmail.com</a><br>
+           한아름 : <a href="#" class="link">rumi418@naver.com</a><br>
           &nbsp;&nbsp;&nbsp;&nbsp;
-          한아름 : <a href="#" class="link">rumi418@naver.com</a><br>
+         
           팩스 : 123 - 4567 - 1234
           <span class="bar">I</span>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          이메일 : <a href="#" class="link">meaningfarm@naver.com</a><br>
+        
           <br>
           <strong class="copy">© KURLY CORP. ALL RIGHTS RESERVED</strong>
           <ul class="sns">

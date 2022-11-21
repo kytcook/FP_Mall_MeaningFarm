@@ -3,21 +3,29 @@ package com.meaningfarm.mall.member.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.meaningfarm.mall.member.service.MemberService;
 import com.meaningfarm.mall.member.service.MyPageService;
+import com.vo.CartVO;
 import com.vo.MemberVO;
-//@SessionAttributes({ "m_id", "m_pw" })
 @Controller
 @RequestMapping("/mypage")
 public class MyPageController {
@@ -25,27 +33,46 @@ public class MyPageController {
 	
 	@Autowired
 	private MyPageService mypageService;
-	/* 마이페이지 - 사용저ㅏ정보 / 개인정보 / 주문 배송 / 정보수정 / 장바구니 / 구매내역/ 문의내역*/
-	public MyPageController(MyPageService mypageService) {
-		this.mypageService = mypageService;
+
+	@Autowired(required=false)
+	MemberVO mVO;
+	
+	@GetMapping("/myinfo")
+	public String myinfo(Model model, @RequestParam Map<String,Object> mMap, HttpServletRequest req) {
+		logger.info("MyPageController : myinfo 호출 성공"+mMap);
+		
+		List<Map<String,Object>> myinfo = null;
+		myinfo = mypageService.myinfo(mMap);
+		model.addAttribute("myinfo",myinfo);
+		logger.info("myinfo"+myinfo);
+		logger.info("MyPageController : myinfo 호출 성공" + myinfo.toString());
+		return "myPage/mypage2";
+	}  
+	
+	@GetMapping("/updatemyinfo")
+	public String updatemyinfo() {
+		logger.info("MyPageController : Get요청 _ updatemyinfo 호출 성공");
+		
+		return "myPage/updatemyinfo";
+		//String path = "redirect:mypage2";
+		//return path;
 	}
 	
-	/* ########## [[ 회원 정보 ]]  ########## */
-	@GetMapping("/myinfo")
-	public String myinfo(Model m, HttpSession session) throws Exception{
-		logger.info("MyPageController : myinfo 호출 성공");
-		MemberVO member = (MemberVO) session.getAttribute("MemberVO");
+	@PostMapping("/updatemyinfo")
+	public String updatemyinfo(@RequestParam Map<String,Object> mMap, Model model, HttpServletRequest request) {
+		logger.info("MyPageController : Post요청 _ updatemyinfo 호출 성공");
+		int result = mypageService.updatemyinfo(mMap);
 		
-		List<MemberVO> myinfo = null;
-		if(member != null) {
-			String id = member.getM_id();
-			myinfo = mypageService.mList(id);
-			logger.info("member"+id);
-		}
-		logger.info("myinfo, controller"+myinfo);
-		m.addAttribute("myinfo",myinfo);
-//		return "myPage/myInfo";
-		return "myPage/mypage2";
+		model.addAttribute("myinfo");
+		//return "myPage/updatemyinfo";
+		
+		String path = "redirect:mypage2";
+		return path;
 	}
-
+	
+	
+	
+	
+		
+		
 }

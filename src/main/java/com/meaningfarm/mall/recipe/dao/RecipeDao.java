@@ -36,10 +36,10 @@ public interface RecipeDao {
    public void insertFile(Map<String,Object> map) throws Exception;
 
    //게시물 총 갯수
-   public int listCount() throws Exception;
+   public int listCount(SearchCriteria scri) throws Exception;
 
    //게시물 목록 + 페이징
-   public List<RecipeVO> listPage(Criteria cri) throws Exception;
+   public List<RecipeVO> listPage(SearchCriteria scri) throws Exception;
 
    // 검색결과 갯수
    //public int countSearch(SearchCriteria scri) throws Exception;

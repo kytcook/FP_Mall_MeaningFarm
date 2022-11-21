@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>카테고리-LOCAL</title>
-<%@ include file="../../../resources/common/common.jsp" %>
+<%@ include file="/resources/common/common.jsp" %>
 </head>
 <body>
 <table border="1">

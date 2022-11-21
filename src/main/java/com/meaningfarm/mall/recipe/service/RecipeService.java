@@ -10,7 +10,8 @@ import com.vo.SearchCriteria;
 
 public interface RecipeService {
    //게시물 작성
-   public void write(RecipeVO recipeVO) throws Exception;
+   public void write(RecipeVO recipeVO, MultipartHttpServletRequest mpRequest) throws Exception;
+   
    //게시물 목록
    public List<RecipeVO> list() throws Exception;
 
@@ -25,10 +26,10 @@ public interface RecipeService {
    public void recommend(int recipe_no) throws Exception;
 
    //게시물 총 갯수
-   public int listCount() throws Exception;
+   public int listCount(SearchCriteria scri) throws Exception;
 
    //게시물 목록 + 페이징
-   public List<RecipeVO> listPage(Criteria cri) throws Exception;
+   public List<RecipeVO> listPage(SearchCriteria scri) throws Exception;
 
    // 검색 결과 갯수
    //public int countSearch(SearchCriteria scri) throws Exception;

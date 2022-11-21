@@ -1,6 +1,7 @@
 package com.meaningfarm.mall.member.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,13 +22,20 @@ public class MyPageService {
 	public MyPageService (MyPageDao mypageDao) {
 		this.mypageDao = mypageDao;
 	}
-	
-	@Transactional(readOnly = true)
-	public List<MemberVO> mList(String id) throws Exception {
-		logger.info("MyPageService : mList 호출 성공");
-		List<MemberVO> mList = null;
-		mList = mypageDao.mList(id);
-		return mList;
+
+	public List<Map<String, Object>> myinfo(Map<String, Object> mMap) {
+		logger.info("MyPageService : myinfo 호출 성공");
+		List<Map<String, Object>> myinfo = null;
+		myinfo = mypageDao.myinfo(mMap);
+		
+		return myinfo;
 	}
+
+	public int updatemyinfo(Map<String, Object> mMap) {
+		logger.info("MyPageService : updatemyinfo 호출 성공");
+		int result = mypageDao.updatemyinfo(mMap);
+		return result;
+	}
+
 	
 }

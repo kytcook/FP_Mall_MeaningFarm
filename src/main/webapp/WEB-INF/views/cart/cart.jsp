@@ -12,10 +12,6 @@
 <html>
 <head>
 <%@ include file="/resources/common/common.jsp" %>
-
-<style>
-</style>
-
 </head>
 <title>내 장바구니</title>
 <body>
@@ -24,7 +20,6 @@
 <%@include file="/resources/layout/header.jsp"%>
 <%@include file="/resources/layout/nav.jsp"%>
 <!--========= 헤더 =========-->
-
 <section class="container">
 <div class="h3">
 <b><%=m_id2%></b> 님의 장바구니

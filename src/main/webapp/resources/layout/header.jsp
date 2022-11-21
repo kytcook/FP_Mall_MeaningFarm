@@ -6,6 +6,9 @@
 	//out.print(m_id2);
 %>
 
+
+
+
 <!-- Login을 로그인되어있으면 LogOut으로, 로그인이 안되어있으면 Login으로 변경 
 <c:set var="logout" value="${sessionScope.m_id==null ? '' : '로그아웃'}"/>-->
 <!-- 맵핑된 주소를 로그아웃은 '/member/logout', 로그인은 '/member/login' 
@@ -30,6 +33,7 @@
 </script>
 
 	
+<html>
 <style type="text/css">
   .bd-placeholder-img {
         font-size: 1.125rem;
@@ -82,6 +86,7 @@
   <header class="blog-header lh-1 py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-4 pt-1">
+<!--         <a class="link-secondary" href="/mall"> -->
         <a class="link-secondary" href="/mall/home">
       		<img alt="" src="${pageContext.request.contextPath}/resources/img/main/meaningfarm2.png" width="300" height="200" left="20px">  
         </a>
@@ -126,10 +131,10 @@
        
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="/mall/mypage/myinfo">My Page</a></li>
-          <li><a class="dropdown-item" href="#">공지사항</a></li>
-          <li><a class="dropdown-item" href="${board}">1:1문의게시판</a></li>
+          <li><a class="dropdown-item" href="/mall/notice/list">공지사항</a></li>
+          <li><a class="dropdown-item" href="/mall/qna/list">1:1문의게시판</a></li>
           <li><a class="dropdown-item" href="${review}">후기</a></li>
-          <li><a class="dropdown-item" href="${myrecipe}">마이레시피</a></li>
+          <li><a class="dropdown-item" href="/mall/recipe/recipe_listPage">마이레시피</a></li>
         </ul>
       </div>
     </div>
@@ -137,6 +142,9 @@
     
  </header>
 <!-- ########## HEADER 끝 ########## -->
+
+
+
 <script>
    function needLogin(){
       alert("로그인 후 이용가능합니다.");
@@ -151,3 +159,4 @@
 	   location.href="/mall/member/login"
    }
 </script>
+</html>

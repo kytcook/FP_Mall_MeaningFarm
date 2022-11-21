@@ -33,6 +33,7 @@
 <body>
 
 <!-- ########## [[ 헤더 시작 ]] ########## -->
+<<<<<<< HEAD
 <%@include file="/resources/layout/header.jsp"%>
 <%@include file="/resources/layout/nav.jsp"%>
 <!-- ########## [[ 헤더 끝 ]] ########## -->
@@ -41,6 +42,7 @@
 
 
 <!-- ########## Main  시작 ########## -->
+<<<<<<< HEAD
 <%@ include file="resources/layout/main.jsp" %>
 <!-- ########## Main  끝 ########## -->
 
@@ -48,6 +50,7 @@
    
 
 <!-- ########## footer 시작 ##########-->
+<<<<<<< HEAD
 <%@ include file="/resources/layout/footer.jsp" %>
 <!-- ########## footer 끝 ##########-->
 

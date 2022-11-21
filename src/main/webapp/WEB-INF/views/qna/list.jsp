@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"> 
 <%@ include file="/resources/common/common.jsp" %>
+<meta charset="UTF-8"> 
 <!-- CSS only -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/qna/qna.css" rel="stylesheet">

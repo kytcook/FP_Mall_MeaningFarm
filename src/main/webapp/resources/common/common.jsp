@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!-- Jquery-->
+<!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
-<!-- BootStrap  -->
+<!-- BootStrap  css-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
 <!-- BootStrap  Js-->

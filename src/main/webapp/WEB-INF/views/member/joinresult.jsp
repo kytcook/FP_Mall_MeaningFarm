@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/resources/common/common.jsp" %>
 <meta charset="UTF-8">
 <title>회원가입완료창</title>
-<%@ include file="/resources/common/common.jsp" %>
 
 <style type="text/css">
 
