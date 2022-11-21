@@ -91,7 +91,7 @@ public class MemberController {
 			session.setAttribute("mVO", mVO); // 11.13 잠시추가함
 			
 		}
-		return "redirect:/";
+		return "redirect:/home";
 	}
 
 	/* ########## [[ 로그인 유효성 검사 ]] ########## */
