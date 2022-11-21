@@ -77,7 +77,7 @@ public class PageBar {
 			// 블록이 0보다 더 큰가??
 			if(nowBlock > 0 ) {                                    //(1-1)*2+(2-1)=1
 				pageLink.append("<a href='"+pagePath+"?nowPage="+((nowBlock-1)*pagePerBlock+(pagePerBlock-1))+"'>");
-				pageLink.append("<img border=0 src='/mall/images/bu_a.gif'>");
+				pageLink.append("<img border=0 src='/mall/resources/image/pagebar/bu_a.gif'>");
 				pageLink.append("</a>&nbsp;&nbsp;");
 			}
 			for(int i=0;i<pagePerBlock;i++) {
@@ -99,7 +99,7 @@ public class PageBar {
 			// a태그 활용하여 링크 처리하기
 			if(totalBlock > nowBlock+1) {
 				pageLink.append("&nbsp;&nbsp;<a href='"+pagePath+"?nowPage="+((nowBlock+1)*pagePerBlock)+"'>");
-				pageLink.append("<img border=0 src='/mall/images/bu_b.gif'>");
+				pageLink.append("<img border=0 src='/mall/resources/image/pagebar/bu_b.gif'>");
 				pageLink.append("</a>");	
 			}
 		}
