@@ -194,6 +194,6 @@
 // 				let product_no = $(this).find(".product_no").text();
 // 				location.href = "productView.do?product_no="+product_no
 // 			});
-		})
+		}) 
 	</script>  
 </html>
