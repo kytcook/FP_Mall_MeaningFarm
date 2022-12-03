@@ -68,7 +68,13 @@
             </tbody>
           </table>
           <div>        
-        <img src="${pageContext.request.contextPath}/resources/images/apple.jpg" alt="as" width="800" height="500" class="d-block">
+        <img src="${pageContext.request.contextPath}/resources/images/apple.jpg"
+        	 onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" 
+        	 alt="상품이미지" 
+        	 width="800" 
+        	 height="500" 
+        	 class="d-block"
+        	 >
         <%=p_detail%><!-- 인클루드로 페이지가 메인에 합쳐지기 때문에 여기서 오류나는건 정상입니다. -->
         </div>
         </div>

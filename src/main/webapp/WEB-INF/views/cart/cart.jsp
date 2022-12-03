@@ -54,11 +54,20 @@
 				<c:set var="total" value="0" />
 				<c:forEach var="row" items="${cartList}" varStatus="status">
 					<c:set var="rowSum" value="0" />
-					<tr>
+					<tr class="align-middle">
 						<!-- 상품체크박스 -->
 						<td><input class="form-check-input" type="checkbox" name="cb_cartProduct" value="${row.CART_NO}" /></td>
 						<!-- 상품그림 -->
-						<td>이미지.img</td>
+						<td>
+			               <img
+			                 src="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
+			                 alt="apple.jpg"
+			                 onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
+			                 width="50%"
+			                 height="200"
+			                 class="pt-5"
+			               />						
+						</td>
 						<!-- 상품이름 -->
 						<td>${row.PRODUCT_NAME}</td>
 						<!-- 상품가격 -->

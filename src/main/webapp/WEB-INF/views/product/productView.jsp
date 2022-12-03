@@ -55,7 +55,10 @@
             <div class="col-6 text-center align-self-center">
             <!-- jsp에 이미지를 넣기 위해 ${pageContext.request.contextPath}를 사용 
            		 참조 : https://byul91oh.tistory.com/m/203 -->
-              <img src="${path}/resources/images/이미지준비중_1.jpg" class="img-fluid rounded-start" alt="이미지를 불러오지 못 하고 있습니다.">
+              <img src="${path}/resources/images/이미지준비중_1.jpg" 
+              	   class="img-fluid rounded-start"\
+              	   onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" 
+              	   alt="이미지를 불러오지 못 하고 있습니다.">
             </div>
             <div class="col-6 ps-3">
               <div>

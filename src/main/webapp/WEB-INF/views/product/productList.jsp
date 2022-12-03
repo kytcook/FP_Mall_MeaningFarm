@@ -128,7 +128,7 @@
 
 			<!-- src="./display?fileName=apple.jpg" -->
                <img
-                 src="${path}/resources/image/apple.jpg"
+                 src="${path}/resources/image/"
                  alt="apple.jpg"
                  onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'"
                  width="100%"
